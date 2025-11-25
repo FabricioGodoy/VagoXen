@@ -10,19 +10,19 @@ const COLORS = {
   goldLight: "rgba(210, 152, 58, 0.10)",
 };
 
-// 🔵 TUS 3 REMERAS AQUÍ
+// LAS REMERAS AQUÍ
 const BANNERS = [
   {
     img: `${process.env.PUBLIC_URL}/img/banner/MP9.jpg`,
-    link: "/remeras/remera-1",
+    /* link: "/remeras/remera-1", */
   },
   {
-    img: `${process.env.PUBLIC_URL}/img/logos/jpg/Logo_puente_azul.jpg`,
-    link: "/remeras/remera-2",
+    img: `${process.env.PUBLIC_URL}/img/banner/JR10.jpg`,
+   /*  link: "/remeras/remera-2", */
   },
   {
-    img: `${process.env.PUBLIC_URL}/img/Vagos/1.jpg`,
-    link: "/remeras/remera-3",
+    img: `${process.env.PUBLIC_URL}/img/banner/AR12.jpg`,
+   /*  link: "/remeras/remera-3", */
   },
 ];
 
@@ -34,7 +34,7 @@ export default function HeroModern() {
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((i) => (i + 1) % BANNERS.length);
-    }, 4000);
+    }, 5000);
     return () => clearInterval(interval);
   }, []);
 
@@ -64,7 +64,7 @@ export default function HeroModern() {
             initial={{ opacity: 0.4, scale: 1 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0.2, scale: 1 }}
-            transition={{ duration: 0.2, ease: "easeInOut" }}
+            transition={{ duration: 0.1, ease: "easeInOut" }}
           >
             <img
               src={BANNERS[index].img}
