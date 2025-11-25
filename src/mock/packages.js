@@ -37,7 +37,7 @@ export const travelPackages = [
   },
   {
     id: 'pkg-003',
-    name: 'Vago Xeneize”',
+    name: 'Vago Xeneize',
     description:
       '- remera amarilla -Diseño moderno, con tipografía minimalista y el escudo tono sobre tono. Estilo callejero, 100% Boca.',
     longDescription:
