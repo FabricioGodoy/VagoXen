@@ -1,28 +1,3 @@
-// import React from 'react';
-// import Navbar from './components/Navbar';
-// import AboutSection from './components/AboutSection';
-// import PackagesSection from './components/PackagesSection';
-// /* import ContactSection from './components/ContactSection'; */
-// import Footer from './components/Footer';
-// import Hero from "./components/HeroSection.jsx";
-
- 
-// export default function App() {
-//   return (
-//     <div className="min-h-screen bg-gray-50">
-//       <Navbar />
-//       <main className="pt-20"> {/* Add padding-top to account for fixed navbar */}
-//         <Hero/>
-//         <AboutSection />
-//         <PackagesSection />
-//         {/* <ContactSection /> */}
-//       </main>
-//       <Footer />
-//     </div>
-//   );
-// }
-
-
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -32,10 +7,14 @@ import PackagesSection from "./components/PackagesSection";
 import Footer from "./components/Footer";
 import Hero from "./components/HeroSection.jsx";
 
+
 // Página Home – SOLO Hero + Paquetes
 function HomePage() {
   return (
     <>
+      <a href="https://wa.me/+5491133779222" className="btn-flotante" target="_blank" rel="noopener noreferrer">
+        <img src="https://img.icons8.com/office/40/whatsapp--v1.png" alt="wpp"></img>
+      </a>
       <Hero />
       <PackagesSection />
     </>

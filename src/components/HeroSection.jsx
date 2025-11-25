@@ -13,7 +13,7 @@ const COLORS = {
 // LAS REMERAS AQUÍ
 const BANNERS = [
   {
-    img: `${process.env.PUBLIC_URL}/img/banner/MP9.jpg`,
+    img: `${process.env.PUBLIC_URL}/img/banner/horizontalRemeras.JPG`,
     /* link: "/remeras/remera-1", */
   },
   {
@@ -53,7 +53,7 @@ export default function HeroModern() {
   };
 
   return (
-    <section id="hero" className="relative bg-black" style={{ marginTop: "2vh" }}>
+    <section id="hero" className="relative bg-black" style={{ marginTop: "-2vh" }}>
       {/* 🔵 Carrusel con crossfade suave */}
       <div className="relative h-[85vh] min-h-[520px] overflow-hidden">
         <AnimatePresence mode="wait">
@@ -119,19 +119,19 @@ export default function HeroModern() {
       </div>
 
       {/* Card de contenido */}
-      <div className="relative px-4 pt-10 pb-20">
+      {/* <div className="relative px-4 pt-10 pb-20">
         <div
           className="mx-auto max-w-5xl rounded-3xl border px-6 py-10 sm:px-10 sm:py-12 shadow-2xl bg-[#141416]/96 backdrop-blur-md transition-all duration-300 hover:shadow-[0_20px_60px_-15px_rgba(210,152,58,0.3)]"
           style={{ borderColor: COLORS.borderLight }}
-        >
-          <motion.div
+        > */}
+       {/*    <motion.div
             initial={reduce ? "visible" : "hidden"}
             animate="visible"
             variants={reduce ? undefined : containerVariants}
             className="flex flex-col items-center justify-center gap-6 text-center"
-          >
+          > */}
             {/* Badge */}
-            <motion.div
+         {/*    <motion.div
               variants={reduce ? undefined : itemVariants}
               className="inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs backdrop-blur-md transition-all duration-300 hover:scale-105"
               style={{
@@ -151,10 +151,10 @@ export default function HeroModern() {
                 ></span>
               </span>
               <span>Pasión xeneize en cada detalle</span>
-            </motion.div>
+            </motion.div> */}
 
             {/* Headline */}
-            <motion.h1
+          {/*   <motion.h1
               variants={reduce ? undefined : itemVariants}
               className="max-w-3xl text-4xl font-extrabold leading-tight sm:text-5xl lg:text-6xl"
             >
@@ -166,10 +166,10 @@ export default function HeroModern() {
               >
                 Vestite como late La Bombonera.
               </span>
-            </motion.h1>
+            </motion.h1> */}
 
             {/* Subhead */}
-            <motion.p
+         {/*    <motion.p
               variants={reduce ? undefined : itemVariants}
               className="max-w-2xl text-base sm:text-lg lg:text-xl leading-relaxed"
               style={{ color: COLORS.cream }}
@@ -177,10 +177,10 @@ export default function HeroModern() {
               Diseños exclusivos, calidad premium y la esencia del Xeneize en
               cada prenda. Elegí tu remera y llevá los colores más grandes del
               mundo en el pecho.
-            </motion.p>
+            </motion.p> */}
 
             {/* Botones */}
-            <motion.div
+        {/*     <motion.div
               variants={reduce ? undefined : itemVariants}
               className="flex flex-wrap items-center justify-center gap-3"
             >
@@ -205,20 +205,20 @@ export default function HeroModern() {
               >
                 Todos los modelos
               </a>
-            </motion.div>
+            </motion.div> */}
 
             {/* Stats */}
-            <motion.div
+          {/*   <motion.div
               variants={reduce ? undefined : itemVariants}
               className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-3xl"
             >
               <StatCard number="+3.000" label="Hinchas vistiendo nuestros diseños" />
               <StatCard number="5/5" label="Calidad en confección" />
               <StatCard number="24/48 hs" label="Envíos a todo el país" />
-            </motion.div>
-          </motion.div>
-        </div>
-      </div>
+            </motion.div> */}
+        {/*   </motion.div> */}
+    {/*     </div>
+      </div> */}
     </section>
   );
 }

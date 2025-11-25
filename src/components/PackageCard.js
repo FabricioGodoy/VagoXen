@@ -24,7 +24,7 @@ const PackageCard = ({ pkg, onSelectPackage }) => {
       <div className="absolute inset-x-0 top-0 h-[2px] bg-[#d2983a]" />
 
       {/* Imagen */}
-      <div className="relative h-52 md:h-56 overflow-hidden">
+      <div className="relative h-72 md:h-80 overflow-hidden">
         <img
           src={pkg.image}
           alt={pkg.name}
