@@ -1,0 +1,42 @@
+# 🔥 --- NODE & DEPENDENCIAS ---
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# 🔥 --- BUILD / DIST (archivos generados que NO van al repo) ---
+dist/
+build/
+.vite/
+.cache/
+*.local
+
+# 🔥 --- SISTEMA OPERATIVO ---
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# Linux
+*~
+
+# 🔥 --- ENTORNO / CONFIGURACIONES PRIVADAS ---
+.env
+.env.*
+!.env.example
+
+# 🔥 --- LOGS ---
+*.log
+
+# 🔥 --- EDITOR ---
+.vscode/
+.idea/
+
+# 🔥 --- IMÁGENES TEMPORALES (solo backups, NO las reales del sitio)
+# Si tuvieses carpetas de backups que NO son parte del sitio:
+# /public/img/backups/
+# /public/img/tmp/

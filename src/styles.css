@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+  scrollbar-width: none;
+}
+
+.logoNavBar{
+   /*  border-radius: 20%; */
+    height: 10vh;
+    width: auto;
+}
+.logoFooter{
+   /*  border-radius: 20%; */
+    height: 13vh;
+    width: auto;
+}
+
+/* === Botón WhatsApp flotante === */
+.btn-flotante {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25d366;
+  color: white;
+  padding: 6px 8px;
+  border-radius: 50px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  z-index: 1000;
+  transition: 0.3s ease;
+  display: grid;
+  place-items: center;
+}
+.btn-flotante:hover {
+  background-color: #128c7e;
+}
+.botonCerrarModal:hover{
+background-color: #EDE5DA;
+}
+/* === Media Queries === */
+@media (max-width: 1500px) {
+  .btn-flotante { font-size: 12px; }
+}
+@media (max-width: 860px) {
+  .btn-flotante { font-size: 11px; }
+}
+@media (max-width: 768px) {
+  .btn-flotante { font-size: 10px; }
+}
