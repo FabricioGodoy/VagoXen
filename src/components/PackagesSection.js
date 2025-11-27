@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import PackageCard from "./PackageCard";
 import PackageModal from "./PackageModal";
-import { travelPackages } from "../mock/packages";
+import { remerasDescripcion } from "../mock/packages";
 
 // Paleta: base neutral + acentos del logo
 const COLORS = {
@@ -19,7 +19,7 @@ const PackagesSection = () => {
   const handleCloseModal = () => setSelectedPackage(null);
 
   // Sólo mostramos 3 productos (como el ejemplo de Vans)
-  const visiblePackages = travelPackages.slice(0, 3);
+  const visiblePackages = remerasDescripcion.slice(0, 3);
 
   return (
     <section
@@ -88,9 +88,9 @@ const PackagesSection = () => {
       {/* BLOQUE FULL-WIDTH PARA LAS CARDS */}
       <div className="w-full relative h-50">
         {/* DESKTOP/TABLET: 3 columnas de borde a borde */}
-        <div className="hidden md:grid grid-cols-3 gap-0 w-full">
+        <div className="hidden md:grid grid-cols-3 gap-0 w-full items-stretch">
           {visiblePackages.map((pkg) => (
-            <div key={pkg.id} className="w-full">
+            <div key={pkg.id} className="w-full h-full">
               <PackageCard pkg={pkg} onSelectPackage={handleSelectPackage} />
             </div>
           ))}

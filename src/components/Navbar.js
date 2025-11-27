@@ -16,9 +16,9 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const navItems = [
+    { name: "Inicio", href: "/", type: "home-section" },
     { name: "Nosotros", href: "/nosotros", type: "route" },
     { name: "Remeras", href: "#packages", type: "home-section" },
-    // { name: "Contacto", href: "#contact", type: "home-section" },
   ];
 
   const toggleMenu = () => setIsOpen((v) => !v);
