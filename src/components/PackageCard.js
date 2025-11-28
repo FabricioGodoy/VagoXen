@@ -2,12 +2,33 @@ import React from "react";
 import { motion } from "framer-motion";
 import { MapPin, Clock } from "lucide-react";
 
-// Paleta: base neutral + acentos del logo
 const COLORS = {
-  midnight: "#141416", // grafito
-  navy: "#2b3036",     // pizarra
-  gold: "#d2983a",     // dorado (identidad)
-  sand: "#EDE5DA",     // arena (identidad)
+  midnight: "#141416",
+  navy: "#2b3036",
+  gold: "#d2983a",
+  sand: "#EDE5DA",
+
+  cardBgFrom: "rgba(43, 48, 54, 0.95)",
+  cardBgTo: "rgba(20, 20, 22, 0.95)",
+
+  textMain: "#EDE5DA",
+  textSoft: "rgba(237, 229, 218, 0.80)",
+
+  imgOverlayFrom: "rgba(20, 20, 22, 0.80)",
+  imgOverlayVia: "rgba(20, 20, 22, 0.25)",
+  imgOverlayTo: "transparent",
+
+  borderSoft: "rgba(255, 255, 255, 0.10)",
+  badgeBg: "rgba(255, 255, 255, 0.05)",
+  badgeText: "rgba(237, 229, 218, 0.80)",
+
+  topLine: "#d2983a",
+
+  buttonBg: "#d2983a",
+  buttonBgHover: "#c68a2f",
+  buttonBgActive: "#b87f2c",
+  buttonText: "#141416",
+  buttonFocusRing: "rgba(210, 152, 58, 0.50)",
 };
 
 const PackageCard = ({ pkg, onSelectPackage }) => {
@@ -20,66 +41,117 @@ const PackageCard = ({ pkg, onSelectPackage }) => {
       onClick={() => onSelectPackage(pkg)}
       className="
         group relative cursor-pointer rounded-2xl overflow-hidden
-        bg-gradient-to-b from-[#2b3036]/95 to-[#141416]/95 text-[#EDE5DA]
-        border border-white/10 shadow-xl hover:shadow-2xl hover:-translate-y-1
-        transition-all duration-300
-        flex flex-col h-full
+        border shadow-xl hover:shadow-2xl hover:-translate-y-1
+        transition-all duration-300 flex flex-col h-full
       "
+      style={{
+        backgroundImage: `linear-gradient(to bottom, ${COLORS.cardBgFrom}, ${COLORS.cardBgTo})`,
+        color: COLORS.textMain,
+        borderColor: COLORS.borderSoft,
+      }}
     >
+      {/* TOP LINE */}
+      <div
+        className="absolute inset-x-0 top-0 h-[2px]"
+        style={{ backgroundColor: COLORS.topLine }}
+      />
 
-      {/* filete superior */}
-      <div className="absolute inset-x-0 top-0 h-[2px] bg-[#d2983a]" />
-
-      {/* Imagen */}
-      <div className="relative h-72 md:h-80 overflow-hidden flex-shrink-0">
+      {/* IMAGEN */}
+      <div className="relative h-56 md:h-80 overflow-hidden flex-shrink-0">
         <img
           src={pkg.image}
           alt={pkg.name}
           className="h-full w-full object-cover transform transition-transform duration-700 ease-out group-hover:scale-105"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#141416]/80 via-[#141416]/25 to-transparent" />
-        <h3 className="absolute bottom-4 left-4 right-4 text-2xl font-extrabold drop-shadow-xl">
+
+        <div
+          className="absolute inset-0"
+          style={{
+            background: `linear-gradient(
+              to top,
+              ${COLORS.imgOverlayFrom},
+              ${COLORS.imgOverlayVia},
+              ${COLORS.imgOverlayTo}
+            )`,
+          }}
+        />
+
+        <h3 className="absolute bottom-3 left-3 right-3 text-xl md:text-2xl font-extrabold drop-shadow-xl">
           {pkg.name}
         </h3>
       </div>
 
-      {/* CONTENIDO - FLEX-1 PARA LLENAR ALTURA */}
-      <div className="p-6 flex flex-col flex-1">
+      {/* CONTENT */}
+      <div className="p-4 md:p-6 flex flex-col flex-1">
 
-        <p className="text-[#EDE5DA]/80 mb-4 flex-shrink-0">{pkg.description}</p>
+        <p className="mb-3 md:mb-4 flex-shrink-0" style={{ color: COLORS.textSoft }}>
+          {pkg.description}
+        </p>
 
         <div className="flex flex-col gap-2 mb-4 flex-shrink-0">
-          <div className="inline-flex items-center gap-2 text-sm text-[#EDE5DA]/80 bg-white/5 border border-white/10 px-3 py-2 rounded-xl w-fit">
-            <MapPin size={16} color={COLORS.gold} />
+          {/* Badge 1 */}
+          <div
+            className="inline-flex items-center gap-2 
+              text-xs md:text-sm 
+              px-2.5 py-1.5 md:px-3 md:py-2
+              rounded-xl w-fit border"
+            style={{
+              backgroundColor: COLORS.badgeBg,
+              borderColor: COLORS.borderSoft,
+              color: COLORS.badgeText,
+            }}
+          >
+            <MapPin size={15} color={COLORS.gold} />
             <span>{pkg.destination}</span>
           </div>
-          <div className="inline-flex items-center gap-2 text-sm text-[#EDE5DA]/80 bg-white/5 border border-white/10 px-3 py-2 rounded-xl w-fit">
-            <Clock size={16} color={COLORS.gold} />
+
+          {/* Badge 2 */}
+          <div
+            className="inline-flex items-center gap-2 
+              text-xs md:text-sm 
+              px-2.5 py-1.5 md:px-3 md:py-2
+              rounded-xl w-fit border"
+            style={{
+              backgroundColor: COLORS.badgeBg,
+              borderColor: COLORS.borderSoft,
+              color: COLORS.badgeText,
+            }}
+          >
+            <Clock size={15} color={COLORS.gold} />
             <span>{pkg.duration}</span>
           </div>
         </div>
 
-        {/* EMPUJA EL BOTÓN AL FONDO */}
         <div className="flex-1" />
 
-        {/* Botón */}
+        {/* BOTÓN */}
         <motion.button
           type="button"
-          aria-label={`Ver detalles de ${pkg.name}`}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.985 }}
           onClick={(e) => {
             e.stopPropagation();
             onSelectPackage(pkg);
           }}
-          className="
-            w-full inline-flex items-center justify-center gap-2 rounded-xl px-4 py-3
-            font-semibold text-[#141416] bg-[#d2983a]
-            hover:bg-[#c68a2f] active:bg-[#b87f2c]
-            focus:outline-none focus:ring-2 focus:ring-[#d2983a]/50
-            shadow-sm hover:shadow
-          "
+          className="w-full inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 md:py-3 font-semibold shadow-sm hover:shadow transition-all duration-200 text-sm md:text-base"
+          style={{
+            backgroundColor: COLORS.buttonBg,
+            color: COLORS.buttonText,
+          }}
+          onMouseEnter={(e) =>
+            (e.currentTarget.style.backgroundColor = COLORS.buttonBgHover)
+          }
+          onMouseLeave={(e) =>
+            (e.currentTarget.style.backgroundColor = COLORS.buttonBg)
+          }
+          onMouseDown={(e) =>
+            (e.currentTarget.style.backgroundColor = COLORS.buttonBgActive)
+          }
+          onFocus={(e) =>
+            (e.currentTarget.style.boxShadow = `0 0 0 2px ${COLORS.buttonFocusRing}`)
+          }
+          onBlur={(e) => (e.currentTarget.style.boxShadow = "none")}
         >
           Ver Detalles
         </motion.button>

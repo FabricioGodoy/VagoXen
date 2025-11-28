@@ -6,6 +6,7 @@ import AboutSection from "./components/AboutSection";
 import PackagesSection from "./components/PackagesSection";
 import Footer from "./components/Footer";
 import Hero from "./components/HeroSection.jsx";
+import ContactSection from "./components/ContactSection";
 
 
 // Página Home – SOLO Hero + Paquetes
@@ -43,6 +44,7 @@ export default function App() {
 
             {/* Ruta de Nosotros */}
             <Route path="/nosotros" element={<NosotrosPage />} />
+            <Route path="/contacto" element={<ContactSection />} />
           </Routes>
         </main>
 
