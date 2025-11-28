@@ -6,17 +6,77 @@ import {
   Clock,
   CheckCircle,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
 } from "lucide-react";
 
 import { FaWhatsapp } from "react-icons/fa";
 import { WHATSAPP_PHONE } from "../config";
 
 const COLORS = {
+  // Base brand
   midnight: "#141416",
   navy: "#2b3036",
   gold: "#d2983a",
   sand: "#EDE5DA",
+
+  // Modal backdrop
+  backdrop: "rgba(43, 48, 54, 0.30)",
+
+  // Modal container
+  modalBorder: "rgba(43, 48, 54, 0.15)",
+  modalBgTop: "#EDE5DA", // sand
+  modalBgBottom: "#FFFFFF",
+  modalShadow: "0 24px 80px rgba(20, 20, 22, 0.20)",
+
+  // Top filete
+  topStripeFrom: "#d2983a",
+  topStripeTo: "#2b3036",
+
+  // Close button
+  closeBg: "rgba(255, 255, 255, 0.75)",
+  closeBgHover: "#FFFFFF",
+  closeBorder: "rgba(43, 48, 54, 0.10)",
+
+  // Slider overlay
+  sliderOverlayStop1: "rgba(0, 0, 0, 0.55)",
+  sliderOverlayStop2: "rgba(0, 0, 0, 0.10)",
+  sliderOverlayStop3: "rgba(0, 0, 0, 0)",
+
+  // Text on image
+  sliderTitle: "#FFFFFF",
+  sliderBadgeBg: "rgba(0, 0, 0, 0.55)",
+  sliderBadgeText: "rgba(255, 255, 255, 0.90)",
+
+  // Slider arrows
+  sliderArrowBg: "rgba(0, 0, 0, 0.55)",
+  sliderArrowBgHover: "rgba(0, 0, 0, 0.80)",
+  sliderArrowBorder: "rgba(255, 255, 255, 0.20)",
+  sliderArrowIcon: "#FFFFFF",
+
+  // Slider dots
+  sliderDotActive: "#d2983a",
+  sliderDotInactive: "rgba(255, 255, 255, 0.70)",
+
+  // Body text
+  bodyText: "rgba(20, 20, 22, 0.80)",
+  bodyTextStrong: "rgba(20, 20, 22, 0.85)",
+
+  // Chips
+  chipBg: "rgba(255, 255, 255, 0.80)",
+  chipBorder: "rgba(43, 48, 54, 0.10)",
+  chipShadow: "0 2px 10px rgba(0, 0, 0, 0.04)",
+  chipLabel: "rgba(20, 20, 22, 0.70)",
+
+  // List / titles
+  sectionTitle: "#2b3036",
+  listText: "rgba(20, 20, 22, 0.85)",
+
+  // CTA buttons
+  ctaPrimaryBg: "#d2983a",
+  ctaPrimaryText: "#141416",
+  ctaSecondaryBg: "#FFFFFF",
+  ctaSecondaryText: "#2b3036",
+  ctaSecondaryBorder: "rgba(43, 48, 54, 0.20)",
 };
 
 const buildWhatsAppLink = (message = "", phone) => {
@@ -37,7 +97,7 @@ const PackageModal = ({ pkg, onClose }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
-  // 🔁 Auto-slide con pausa y reanudación
+  // 🔁 Auto-slide
   useEffect(() => {
     if (images.length <= 1) return;
     if (isPaused) return;
@@ -69,7 +129,7 @@ const PackageModal = ({ pkg, onClose }) => {
     pkg.whatsappPhone || WHATSAPP_PHONE
   );
 
-  // ESC + bloquear scroll del body
+  // ESC + bloquear scroll
   useEffect(() => {
     const onKeyDown = (e) => {
       if (e.key === "Escape") onClose?.();
@@ -90,7 +150,7 @@ const PackageModal = ({ pkg, onClose }) => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       className="fixed inset-0 z-50 flex items-center justify-center p-4 backdrop-blur-md"
-      style={{ backgroundColor: "rgba(43,48,54,0.30)" }}
+      style={{ backgroundColor: COLORS.backdrop }}
       onClick={onClose}
       role="dialog"
       aria-modal="true"
@@ -101,19 +161,20 @@ const PackageModal = ({ pkg, onClose }) => {
         animate={{ y: 0, opacity: 1, scale: 1 }}
         exit={{ y: 36, opacity: 0, scale: 0.98 }}
         transition={{ type: "spring", damping: 20, stiffness: 260 }}
-        className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-3xl border bg-gradient-to-b shadow-[0_24px_80px_rgba(20,20,22,0.20)]"
+        className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-3xl border bg-gradient-to-b"
         style={{
-          borderColor: "rgba(43,48,54,0.15)",
-          backgroundImage: `linear-gradient(180deg, ${COLORS.sand}, #FFFFFF)`,
+          borderColor: COLORS.modalBorder,
+          backgroundImage: `linear-gradient(180deg, ${COLORS.modalBgTop}, ${COLORS.modalBgBottom})`,
           color: COLORS.midnight,
+          boxShadow: COLORS.modalShadow,
         }}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* filete superior dorado */}
+        {/* filete superior */}
         <div
           className="absolute inset-x-0 top-0 h-[3px]"
           style={{
-            background: `linear-gradient(90deg, ${COLORS.gold}, ${COLORS.navy})`,
+            background: `linear-gradient(90deg, ${COLORS.topStripeFrom}, ${COLORS.topStripeTo})`,
             opacity: 0.9,
           }}
         />
@@ -122,13 +183,23 @@ const PackageModal = ({ pkg, onClose }) => {
         <button
           onClick={onClose}
           aria-label="Cerrar modal"
-          className="absolute top-4 right-4 z-20 p-2 rounded-full bg-white/75 border hover:bg-white transition-colors"
-          style={{ color: COLORS.midnight, borderColor: "rgba(43,48,54,0.10)" }}
+          className="absolute top-4 right-4 z-20 p-2 rounded-full border transition-colors"
+          style={{
+            backgroundColor: COLORS.closeBg,
+            borderColor: COLORS.closeBorder,
+            color: COLORS.midnight,
+          }}
+          onMouseEnter={(e) =>
+            (e.currentTarget.style.backgroundColor = COLORS.closeBgHover)
+          }
+          onMouseLeave={(e) =>
+            (e.currentTarget.style.backgroundColor = COLORS.closeBg)
+          }
         >
           <X size={20} />
         </button>
 
-        {/* SLIDER con más presencia */}
+        {/* SLIDER */}
         <div className="relative h-72 md:h-[440px] overflow-hidden rounded-t-3xl">
           <motion.img
             key={images[currentIndex]}
@@ -140,18 +211,28 @@ const PackageModal = ({ pkg, onClose }) => {
             transition={{ duration: 0.4 }}
           />
 
-          {/* overlay más sutil: se ve más la remera */}
+          {/* Overlay */}
           <div
             className="absolute inset-0"
             style={{
-              background:
-                "linear-gradient(to top, rgba(0,0,0,0.55) 5%, rgba(0,0,0,0.10) 45%, transparent 80%)",
+              background: `linear-gradient(
+                to top,
+                ${COLORS.sliderOverlayStop1} 5%,
+                ${COLORS.sliderOverlayStop2} 45%,
+                ${COLORS.sliderOverlayStop3} 80%
+              )`,
             }}
           />
 
-          {/* título + mini badge sobre la imagen */}
+          {/* título y badge */}
           <div className="absolute bottom-6 left-6 right-6 flex flex-col gap-2">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/55 backdrop-blur-sm text-xs font-semibold text-white/90 w-fit">
+            <div
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-full backdrop-blur-sm text-xs font-semibold w-fit"
+              style={{
+                backgroundColor: COLORS.sliderBadgeBg,
+                color: COLORS.sliderBadgeText,
+              }}
+            >
               <span>
                 Diseño {currentIndex + 1} de {images.length}
               </span>
@@ -159,19 +240,32 @@ const PackageModal = ({ pkg, onClose }) => {
             <h2
               id="package-modal-title"
               className="text-3xl md:text-4xl font-extrabold drop-shadow-lg"
-              style={{ color: "#FFFFFF" }}
+              style={{ color: COLORS.sliderTitle }}
             >
               {pkg.name}
             </h2>
           </div>
 
-          {/* flechas solo si hay más de una imagen */}
+          {/* flechas + dots */}
           {images.length > 1 && (
             <>
               <button
                 type="button"
                 onClick={goPrev}
-                className="absolute left-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/55 border border-white/20 text-white shadow-sm hover:bg-black/80"
+                className="absolute left-3 top-1/2 -translate-y-1/2 p-2 rounded-full border shadow-sm transition-colors"
+                style={{
+                  backgroundColor: COLORS.sliderArrowBg,
+                  borderColor: COLORS.sliderArrowBorder,
+                  color: COLORS.sliderArrowIcon,
+                }}
+                onMouseEnter={(e) =>
+                  (e.currentTarget.style.backgroundColor =
+                    COLORS.sliderArrowBgHover)
+                }
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.backgroundColor =
+                    COLORS.sliderArrowBg)
+                }
               >
                 <ChevronLeft size={20} />
               </button>
@@ -179,12 +273,24 @@ const PackageModal = ({ pkg, onClose }) => {
               <button
                 type="button"
                 onClick={goNext}
-                className="absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/55 border border-white/20 text-white shadow-sm hover:bg-black/80"
+                className="absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-full border shadow-sm transition-colors"
+                style={{
+                  backgroundColor: COLORS.sliderArrowBg,
+                  borderColor: COLORS.sliderArrowBorder,
+                  color: COLORS.sliderArrowIcon,
+                }}
+                onMouseEnter={(e) =>
+                  (e.currentTarget.style.backgroundColor =
+                    COLORS.sliderArrowBgHover)
+                }
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.backgroundColor =
+                    COLORS.sliderArrowBg)
+                }
               >
                 <ChevronRight size={20} />
               </button>
 
-              {/* Dots */}
               <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-2">
                 {images.map((_, idx) => (
                   <span
@@ -192,7 +298,9 @@ const PackageModal = ({ pkg, onClose }) => {
                     className="w-2.5 h-2.5 rounded-full"
                     style={{
                       backgroundColor:
-                        idx === currentIndex ? COLORS.gold : "rgba(255,255,255,0.7)",
+                        idx === currentIndex
+                          ? COLORS.sliderDotActive
+                          : COLORS.sliderDotInactive,
                       opacity: idx === currentIndex ? 1 : 0.7,
                     }}
                   />
@@ -206,7 +314,7 @@ const PackageModal = ({ pkg, onClose }) => {
         <div className="p-6 md:p-8">
           <p
             className="text-lg mb-6 leading-relaxed"
-            style={{ color: "rgba(20,20,22,0.8)" }}
+            style={{ color: COLORS.bodyText }}
           >
             {pkg.longDescription}
           </p>
@@ -214,12 +322,21 @@ const PackageModal = ({ pkg, onClose }) => {
           {/* Chips info */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
             <div
-              className="inline-flex items-center gap-3 text-sm bg-white/80 px-4 py-3 rounded-2xl shadow-[0_2px_10px_rgba(0,0,0,0.04)] border"
-              style={{ borderColor: "rgba(43,48,54,0.10)" }}
+              className="inline-flex items-center gap-3 text-sm px-4 py-3 rounded-2xl border"
+              style={{
+                backgroundColor: COLORS.chipBg,
+                borderColor: COLORS.chipBorder,
+                boxShadow: COLORS.chipShadow,
+              }}
             >
               <MapPin size={18} color={COLORS.gold} />
-              <div className="font-medium" style={{ color: COLORS.navy }}>
-                <span className="opacity-70">Colección:</span>{" "}
+              <div className="font-medium">
+                <span
+                  className="opacity-70"
+                  style={{ color: COLORS.chipLabel }}
+                >
+                  Colección:
+                </span>{" "}
                 <span style={{ color: COLORS.midnight }}>
                   {pkg.destination}
                 </span>
@@ -227,12 +344,21 @@ const PackageModal = ({ pkg, onClose }) => {
             </div>
 
             <div
-              className="inline-flex items-center gap-3 text-sm bg-white/80 px-4 py-3 rounded-2xl shadow-[0_2px_10px_rgba(0,0,0,0.04)] border"
-              style={{ borderColor: "rgba(43,48,54,0.10)" }}
+              className="inline-flex items-center gap-3 text-sm px-4 py-3 rounded-2xl border"
+              style={{
+                backgroundColor: COLORS.chipBg,
+                borderColor: COLORS.chipBorder,
+                boxShadow: COLORS.chipShadow,
+              }}
             >
               <Clock size={18} color={COLORS.gold} />
-              <div className="font-medium" style={{ color: COLORS.navy }}>
-                <span className="opacity-70">Edición:</span>{" "}
+              <div className="font-medium">
+                <span
+                  className="opacity-70"
+                  style={{ color: COLORS.chipLabel }}
+                >
+                  Edición:
+                </span>{" "}
                 <span style={{ color: COLORS.midnight }}>
                   {pkg.duration}
                 </span>
@@ -240,7 +366,10 @@ const PackageModal = ({ pkg, onClose }) => {
             </div>
           </div>
 
-          <h3 className="text-xl font-bold mb-3" style={{ color: COLORS.navy }}>
+          <h3
+            className="text-xl font-bold mb-3"
+            style={{ color: COLORS.sectionTitle }}
+          >
             Incluye
           </h3>
 
@@ -249,7 +378,7 @@ const PackageModal = ({ pkg, onClose }) => {
               <li
                 key={index}
                 className="flex items-start"
-                style={{ color: "rgba(20,20,22,0.85)" }}
+                style={{ color: COLORS.listText }}
               >
                 <CheckCircle
                   size={18}
@@ -268,7 +397,10 @@ const PackageModal = ({ pkg, onClose }) => {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center rounded-xl px-4 py-3 font-semibold shadow-sm"
-              style={{ backgroundColor: COLORS.gold, color: COLORS.midnight }}
+              style={{
+                backgroundColor: COLORS.ctaPrimaryBg,
+                color: COLORS.ctaPrimaryText,
+              }}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.985 }}
             >
@@ -278,10 +410,11 @@ const PackageModal = ({ pkg, onClose }) => {
 
             <button
               onClick={onClose}
-              className="inline-flex items-center justify-center rounded-xl px-4 py-3 font-semibold bg-white border hover:text-[#141416]"
+              className="inline-flex items-center justify-center rounded-xl px-4 py-3 font-semibold border transition-colors"
               style={{
-                color: COLORS.navy,
-                borderColor: "rgba(43,48,54,0.20)",
+                backgroundColor: COLORS.ctaSecondaryBg,
+                color: COLORS.ctaSecondaryText,
+                borderColor: COLORS.ctaSecondaryBorder,
               }}
             >
               Cerrar

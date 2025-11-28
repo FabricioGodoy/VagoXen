@@ -2,12 +2,26 @@ import React from "react";
 import { motion } from "framer-motion";
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 
-// Paleta: base neutral + acentos del logo
+// Paleta centralizada
 const COLORS = {
-  midnight: "#141416",
-  navy: "#2b3036",
-  gold: "#d2983a",
-  sand: "#EDE5DA",
+  midnight: "#141416", /* parte de arriba degrade */
+  navy: "#2b3036", /* parte de abajo degrade */
+  // Footer
+  footerText: "#EDE5DA",
+  footerTextMuted: "rgba(237, 229, 218, 0.8)",
+  footerTextMuted70: "rgba(237, 229, 218, 0.7)",
+  footerBorderTop: "rgba(210, 152, 58, 0.35)",
+
+  // Sociales
+  socialText: "rgba(237, 229, 218, 0.8)",
+  socialBorder: "rgba(255, 255, 255, 0.10)",
+  socialHoverText: "#d2983a",
+  socialHoverBorder: "rgba(210, 152, 58, 0.60)",
+  socialHoverBg: "rgba(255, 255, 255, 0.05)",
+  socialFocusRing: "rgba(210, 152, 58, 0.60)",
+
+  // Divider
+  divider: "#d2983a",
 };
 
 const Footer = () => {
@@ -26,25 +40,42 @@ const Footer = () => {
   };
 
   const Social = ({ href, label, children }) => (
-    <a
+    <motion.a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
       aria-label={label}
-      className="inline-flex h-11 w-11 items-center justify-center rounded-full border text-[#EDE5DA]/80 border-white/10 hover:text-[#d2983a] hover:border-[#d2983a]/60 hover:bg-white/5 focus:outline-none focus:ring-2 focus:ring-[#d2983a]/60"
-      whileHover={{ scale: 1.1 }}
+      className="inline-flex h-11 w-11 items-center justify-center rounded-full border focus:outline-none"
+      style={{
+        color: COLORS.socialText,
+        borderColor: COLORS.socialBorder,
+        backgroundColor: "transparent",
+      }}
+      whileHover={{
+        scale: 1.1,
+        color: COLORS.socialHoverText,
+        borderColor: COLORS.socialHoverBorder,
+        backgroundColor: COLORS.socialHoverBg,
+      }}
       whileTap={{ scale: 0.94 }}
+      onFocus={(e) => {
+        e.currentTarget.style.boxShadow = `0 0 0 2px ${COLORS.socialFocusRing}`;
+      }}
+      onBlur={(e) => {
+        e.currentTarget.style.boxShadow = "none";
+      }}
     >
       {children}
-    </a>
+    </motion.a>
   );
 
   return (
-    <footer
-      className="border-t text-[#EDE5DA]"
+    <motion.footer
+      className="border-t"
       style={{
-        borderTopColor: "rgba(210,152,58,0.35)", // dorado
+        borderTopColor: COLORS.footerBorderTop,
         backgroundImage: `linear-gradient(to bottom, ${COLORS.midnight}, ${COLORS.navy})`,
+        color: COLORS.footerText,
       }}
       variants={footerVariants}
       initial="hidden"
@@ -53,7 +84,7 @@ const Footer = () => {
     >
       <div className="container mx-auto px-4 py-12 text-center">
         {/* Logo + descripción */}
-        <div variants={itemVariants} className="mb-8 flex flex-col items-center">
+        <motion.div variants={itemVariants} className="mb-8 flex flex-col items-center">
           <img
             src={`${process.env.PUBLIC_URL}/img/logos/svg/puente_amarillo.svg`}
             alt="Logo Xeneize"
@@ -61,16 +92,22 @@ const Footer = () => {
           />
           <h3 className="sr-only">Vagos Xeneizes</h3>
 
-          <p className="text-[#EDE5DA]/80 max-w-2xl leading-relaxed">
+          <p
+            className="max-w-2xl leading-relaxed"
+            style={{ color: COLORS.footerTextMuted }}
+          >
             Somos dos hinchas que crecimos soñando con estos colores. Diseñamos cada prenda con
             el amor, la pasión y el orgullo que nos despierta Boca. No somos una marca gigante:
             somos corazón, esfuerzo y sentimiento azul y oro. Gracias por bancar este proyecto
             hecho por y para xeneizes.
           </p>
-        </div>
+        </motion.div>
 
         {/* Iconos sociales */}
-        <div variants={itemVariants} className="flex justify-center gap-4 mb-8">
+        <motion.div
+          variants={itemVariants}
+          className="flex justify-center gap-4 mb-8"
+        >
           <Social href="https://facebook.com" label="Facebook">
             <FaFacebookF size={18} />
           </Social>
@@ -83,19 +120,27 @@ const Footer = () => {
           <Social href="https://linkedin.com" label="LinkedIn">
             <FaLinkedinIn size={18} />
           </Social>
-        </div>
+        </motion.div>
 
         {/* Divider dorado */}
-        <div variants={itemVariants} className="flex justify-center mb-4">
-          <span className="h-[2px] w-24 bg-[#d2983a] rounded-full opacity-80" />
-        </div>
+        <motion.div variants={itemVariants} className="flex justify-center mb-4">
+          <span
+            className="h-[2px] w-24 rounded-full"
+            style={{ backgroundColor: COLORS.divider, opacity: 0.8 }}
+          />
+        </motion.div>
 
         {/* Copyright */}
-        <p variants={itemVariants} className="text-sm text-[#EDE5DA]/70">
-          &copy; {new Date().getFullYear()} Vagos Xeneizes. Hecho con pasión azul y oro. Todos los derechos reservados.
-        </p>
+        <motion.p
+          variants={itemVariants}
+          className="text-sm"
+          style={{ color: COLORS.footerTextMuted70 }}
+        >
+          &copy; {new Date().getFullYear()} Vagos Xeneizes. Hecho con pasión azul y oro. Todos los
+          derechos reservados.
+        </motion.p>
       </div>
-    </footer>
+    </motion.footer>
   );
 };
 

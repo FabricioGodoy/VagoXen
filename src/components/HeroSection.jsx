@@ -1,84 +1,85 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useReducedMotion, motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
-// Color palette constants
+// 🎨 Paleta centralizada SOLO con los colores que usa este Hero
 const COLORS = {
-  gold: "#d2983a",
-  cream: "#EDE5DA",
-  darkBg: "#141416",
-  borderLight: "rgba(237, 229, 218, 0.25)",
-  goldLight: "rgba(210, 152, 58, 0.10)",
+  // Fondo general del hero
+  heroBg: "#000000",
+
+  // Overlay (equivalente a from-black/10 via-black/40 to-black/80)
+  heroOverlayFrom: "rgba(0, 0, 0, 0.10)",
+  heroOverlayVia: "rgba(0, 0, 0, 0.40)",
+  heroOverlayTo: "rgba(0, 0, 0, 0.80)",
+
+  // Flechas
+  heroArrowBorder: "rgba(255, 255, 255, 0.30)", // antes border-white/30
+  heroArrowBg: "rgba(0, 0, 0, 0.60)",           // antes bg-black/60
+  heroArrowIcon: "rgba(255, 255, 255, 0.90)",   // antes text-white/90
+
+  // Puntitos
+  heroDotActive: "#ffffff",                     // antes bg-white
+  heroDotInactive: "rgba(255, 255, 255, 0.40)", // antes bg-white/40
 };
 
 // LAS REMERAS AQUÍ
 const BANNERS = [
   {
-    img: `${process.env.PUBLIC_URL}/img/banner/banner_1.JPG`,
+    img: `${process.env.PUBLIC_URL}/img/banner/banner_1.webp`,
   },
   {
-    img: `${process.env.PUBLIC_URL}/img/banner/banner_2.jpg`,
+    img: `${process.env.PUBLIC_URL}/img/banner/banner_2.webp`,
   },
   {
-    img: `${process.env.PUBLIC_URL}/img/banner/banner_3.jpg`,
+    img: `${process.env.PUBLIC_URL}/img/banner/banner_3.webp`,
   },
   {
-    img: `${process.env.PUBLIC_URL}/img/banner/banner_4.jpg`,
-  }
+    img: `${process.env.PUBLIC_URL}/img/banner/banner_4.webp`,
+  },
 ];
 
 export default function HeroModern() {
-  const reduce = useReducedMotion();
   const [index, setIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
-
-  // 🔥 flag para saber si el usuario tocó flechas
+  // (si en algún momento querés trackear interacción de usuario)
   const userInteracted = useRef(false);
 
-  // 🔥 AUTO-SLIDE con pausa si el usuario toca las flechas
+  // AUTO-SLIDE con pausa si el usuario toca las flechas
   useEffect(() => {
-  if (isPaused) return; // mientras esté pausado, no corre
+    if (isPaused) return;
 
-  const interval = setInterval(() => {
-    setIndex((i) => (i + 1) % BANNERS.length);
-  }, 5000);
+    const interval = setInterval(() => {
+      setIndex((i) => (i + 1) % BANNERS.length);
+    }, 5000);
 
-  return () => clearInterval(interval);
-}, [isPaused]);
+    return () => clearInterval(interval);
+  }, [isPaused]);
 
-  // 🔥 función para frenar 6 segundos
-const pauseAutoSlide = () => {
-  setIsPaused(true);
-  setTimeout(() => setIsPaused(false), 6000);  // después de 6s vuelve a arrancar
-};
-
- const goPrev = () => {
-  pauseAutoSlide();
-  setIndex((i) => (i - 1 + BANNERS.length) % BANNERS.length);
-};
-
-const goNext = () => {
-  pauseAutoSlide();
-  setIndex((i) => (i + 1) % BANNERS.length);
-};
-
-  // Animaciones del contenido (card)
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1, delayChildren: 0.2 },
-    },
+  // función para frenar 6 segundos
+  const pauseAutoSlide = () => {
+    setIsPaused(true);
+    setTimeout(() => setIsPaused(false), 6000);
   };
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] } },
+  const goPrev = () => {
+    userInteracted.current = true;
+    pauseAutoSlide();
+    setIndex((i) => (i - 1 + BANNERS.length) % BANNERS.length);
+  };
+
+  const goNext = () => {
+    userInteracted.current = true;
+    pauseAutoSlide();
+    setIndex((i) => (i + 1) % BANNERS.length);
   };
 
   return (
-    <section id="hero" className="relative bg-black" style={{ marginTop: "-2vh" }}>
-      {/* 🔵 Carrusel con crossfade suave */}
+    <section
+      id="hero"
+      className="relative"
+      style={{ marginTop: "-2vh", backgroundColor: COLORS.heroBg }}
+    >
+      {/* Carrusel */}
       <div className="relative h-[85vh] min-h-[520px] overflow-hidden">
         <AnimatePresence mode="wait">
           <motion.a
@@ -98,24 +99,45 @@ const goNext = () => {
           </motion.a>
         </AnimatePresence>
 
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/80 pointer-events-none z-10" />
+        {/* Overlay con gradient desde COLORS */}
+        <div
+          className="absolute inset-0 pointer-events-none z-10"
+          style={{
+            background: `linear-gradient(
+              to bottom,
+              ${COLORS.heroOverlayFrom},
+              ${COLORS.heroOverlayVia},
+              ${COLORS.heroOverlayTo}
+            )`,
+          }}
+        />
 
-        {/* Flechas modernas */}
+        {/* Flecha izquierda */}
         <button
           type="button"
-          className="group absolute top-1/2 left-6 -translate-y-1/2 z-20 flex h-10 w-10 items-center justify-center rounded-full border border-white/30 bg-black/60 backdrop-blur-sm text-white/90 text-lg transition-transform duration-200 hover:scale-110 hover:bg-black/80 hover:border-white/60"
+          className="group absolute top-1/2 left-6 -translate-y-1/2 z-20 flex h-10 w-10 items-center justify-center rounded-full backdrop-blur-sm text-lg transition-transform duration-200 hover:scale-110 hover:brightness-110"
           onClick={goPrev}
+          style={{
+            border: `1px solid ${COLORS.heroArrowBorder}`,
+            backgroundColor: COLORS.heroArrowBg,
+            color: COLORS.heroArrowIcon,
+          }}
         >
           <span className="translate-x-[1px] group-hover:-translate-x-[2px] transition-transform">
             ‹
           </span>
         </button>
 
+        {/* Flecha derecha */}
         <button
           type="button"
-          className="group absolute top-1/2 right-6 -translate-y-1/2 z-20 flex h-10 w-10 items-center justify-center rounded-full border border-white/30 bg-black/60 backdrop-blur-sm text-white/90 text-lg transition-transform duration-200 hover:scale-110 hover:bg-black/80 hover:border-white/60"
+          className="group absolute top-1/2 right-6 -translate-y-1/2 z-20 flex h-10 w-10 items-center justify-center rounded-full backdrop-blur-sm text-lg transition-transform duration-200 hover:scale-110 hover:brightness-110"
           onClick={goNext}
+          style={{
+            border: `1px solid ${COLORS.heroArrowBorder}`,
+            backgroundColor: COLORS.heroArrowBg,
+            color: COLORS.heroArrowIcon,
+          }}
         >
           <span className="-translate-x-[1px] group-hover:translate-x-[2px] transition-transform">
             ›
@@ -130,13 +152,18 @@ const goNext = () => {
               <button
                 key={i}
                 type="button"
-               onClick={() => {
+                onClick={() => {
                   pauseAutoSlide();
                   setIndex(i);
                 }}
-                className={`h-2.5 rounded-full transition-all duration-200 ${
-                  active ? "w-6 bg-white" : "w-2.5 bg-white/40 hover:bg-white/70"
+                className={`h-2.5 rounded-full transition-all duration-200 hover:brightness-125 ${
+                  active ? "w-6" : "w-2.5"
                 }`}
+                style={{
+                  backgroundColor: active
+                    ? COLORS.heroDotActive
+                    : COLORS.heroDotInactive,
+                }}
               />
             );
           })}

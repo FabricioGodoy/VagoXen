@@ -10,12 +10,12 @@ export const remerasDescripcion = [
       'Inspirada en la camiseta histórica del club, la Remera Clásica Azul y Oro combina comodidad y orgullo. Confeccionada en algodón peinado premium, cuello redondo reforzado y costuras de alta durabilidad. Ideal para llevar al estadio, al gimnasio o a cualquier lugar donde quieras mostrar tus colores.',
     // 🔴 NUEVO: array de imágenes para el slider
     images: [
-      `${PUBLIC}/img/VAGOS/horizontalNegra.JPG`,
-      `${PUBLIC}/img/VAGOS/horizontalAmarilla.JPG`, // cambialo por el nombre real
-      `${PUBLIC}/img/VAGOS/verticalAzul.JPG`, // idem
+      `${PUBLIC}/img/VAGOS/horizontalNegra.webp`,
+      `${PUBLIC}/img/VAGOS/horizontalAmarilla.webp`, // cambialo por el nombre real
+      `${PUBLIC}/img/VAGOS/verticalAzul.webp`, // idem
     ],
     // podés dejar "image" como primera imagen para compatibilidad
-    image: `${PUBLIC}/img/VAGOS/horizontalNegra.JPG`,
+    image: `${PUBLIC}/img/VAGOS/horizontalNegra.webp`,
     price: 0,
     duration: 'Edición permanente',
     destination: 'Colección Tradicional',
@@ -33,11 +33,12 @@ export const remerasDescripcion = [
     longDescription:
       'Esta edición especial revive la camiseta usada durante la era dorada del 81. Con materiales de alta calidad, cuello redondo acanalado y un diseño fiel a la original. Perfecta para coleccionistas o fanáticos que quieren llevar la historia puesta.',
     images: [
-       `${PUBLIC}/img/VAGOS/horizontalNegra.JPG`,
-      `${PUBLIC}/img/VAGOS/horizontalAmarilla.JPG`, // cambialo por el nombre real
-      `${PUBLIC}/img/VAGOS/verticalAzul.JPG`, // idem
+       `${PUBLIC}/img/VAGOS/horizontalNegra.webp
+`,
+      `${PUBLIC}/img/VAGOS/horizontalAmarilla.webp`, // cambialo por el nombre real
+      `${PUBLIC}/img/VAGOS/verticalAzul.webp`, // idem
     ],
-    image: `${PUBLIC}/img/VAGOS/verticalAzul.JPG`,
+    image: `${PUBLIC}/img/VAGOS/verticalAzul.webp`,
     price: 0,
     duration: 'Edición limitada',
     destination: 'Colección Retro',
@@ -55,11 +56,11 @@ export const remerasDescripcion = [
     longDescription:
       'La remera urbana combina la estética del lifestyle con el ADN xeneize. Su corte recto y el diseño discreto pero contundente la hacen ideal para todos los días. Con estampado soft-touch y tela liviana respirable. Estilo, comodidad y orgullo en una sola prenda.',
     images: [
-      `${PUBLIC}/img/VAGOS/horizontalNegra.JPG`,
-      `${PUBLIC}/img/VAGOS/horizontalAmarilla.JPG`, // cambialo por el nombre real
-      `${PUBLIC}/img/VAGOS/verticalAzul.JPG`, // idem
+      `${PUBLIC}/img/VAGOS/horizontalNegra.webp`,
+      `${PUBLIC}/img/VAGOS/horizontalAmarilla.webp`, // cambialo por el nombre real
+      `${PUBLIC}/img/VAGOS/verticalAzul.webp`, // idem
     ],
-    image: `${PUBLIC}/img/VAGOS/horizontalAmarilla.JPG`,
+    image: `${PUBLIC}/img/VAGOS/horizontalAmarilla.webp`,
     price: 0,
     duration: 'Colección 2025',
     destination: 'Urban Collection',

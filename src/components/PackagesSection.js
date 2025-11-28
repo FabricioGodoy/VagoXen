@@ -10,6 +10,24 @@ const COLORS = {
   navy: "#2b3036",     // gris pizarra
   gold: "#d2983a",     // dorado
   sand: "#EDE5DA",     // arena
+
+  // Fondo sección
+  sectionBgStart: "#EDE5DA",                            // sand
+  sectionBgMiddle: "#FFFFFF",
+  sectionBgEnd: "rgba(43, 48, 54, 0.10)",              // navy 1A
+
+  // Filetes
+  topBorderLine: "rgba(210, 152, 58, 0.10)",           // gold 1A
+  bottomBorderLine: "rgba(210, 152, 58, 0.30)",        // gold 4D
+
+  // Manchas de luz
+  glowTop: "rgba(43, 48, 54, 0.20)",                   // navy 33
+  glowBottom: "rgba(20, 20, 22, 0.10)",                // midnight 1A
+
+  // Texto
+  titleText: "#141416",
+  titleAccentText: "#d2983a",
+  divider: "#d2983a",
 };
 
 const PackagesSection = () => {
@@ -18,11 +36,11 @@ const PackagesSection = () => {
   const handleSelectPackage = (pkg) => setSelectedPackage(pkg);
   const handleCloseModal = () => setSelectedPackage(null);
 
-  // Sólo mostramos 3 productos (como el ejemplo de Vans)
+  // Sólo mostramos 3 productos
   const visiblePackages = remerasDescripcion.slice(0, 3);
 
   return (
-    <section
+    <motion.section
       id="packages"
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -30,49 +48,54 @@ const PackagesSection = () => {
       transition={{ duration: 0.5 }}
       className="relative py-20 overflow-hidden bg-gradient-to-br"
       style={{
-        backgroundImage: `linear-gradient(135deg, ${COLORS.sand} 0%, #ffffff 55%, ${COLORS.navy}1A 100%)`,
+        backgroundImage: `linear-gradient(
+          135deg,
+          ${COLORS.sectionBgStart} 0%,
+          ${COLORS.sectionBgMiddle} 55%,
+          ${COLORS.sectionBgEnd} 100%
+        )`,
       }}
     >
       {/* Filetes dorados sutiles */}
       <div
         className="pointer-events-none absolute inset-x-0 top-0 h-px"
-        style={{ background: `${COLORS.gold}1A` }}
+        style={{ background: COLORS.topBorderLine }}
       />
       <div
         className="pointer-events-none absolute inset-x-0 bottom-0 h-px"
-        style={{ background: `${COLORS.gold}4D` }}
+        style={{ background: COLORS.bottomBorderLine }}
       />
 
       {/* manchas de luz */}
       <div
         className="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full blur-3xl"
-        style={{ background: `${COLORS.navy}33` }}
+        style={{ background: COLORS.glowTop }}
       />
       <div
         className="pointer-events-none absolute -bottom-24 -left-24 h-72 w-72 rounded-full blur-3xl"
-        style={{ background: `${COLORS.midnight}1A` }}
+        style={{ background: COLORS.glowBottom }}
       />
 
-      {/* TÍTULO EN CONTAINER (LO MISMO QUE TENÍAS) */}
+      {/* TÍTULO */}
       <div className="container mx-auto px-4 max-w-6xl relative">
-        <h2
+        <motion.h2
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.35 }}
           className="text-4xl md:text-5xl font-extrabold text-center mb-6"
-          style={{ color: COLORS.midnight }}
+          style={{ color: COLORS.titleText }}
         >
           Nuestras{" "}
           <span
             className="inline-flex items-center gap-2 px-3 py-1 rounded-xl"
-            style={{ color: COLORS.gold }}
+            style={{ color: COLORS.titleAccentText }}
           >
             Remeras
           </span>
-        </h2>
+        </motion.h2>
 
-        <div
+        <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true, amount: 0.5 }}
@@ -80,9 +103,9 @@ const PackagesSection = () => {
         >
           <span
             className="h-[2px] w-24 rounded-full"
-            style={{ background: COLORS.gold }}
+            style={{ background: COLORS.divider }}
           />
-        </div>
+        </motion.div>
       </div>
 
       {/* BLOQUE FULL-WIDTH PARA LAS CARDS */}
@@ -117,7 +140,7 @@ const PackagesSection = () => {
           <PackageModal pkg={selectedPackage} onClose={handleCloseModal} />
         )}
       </AnimatePresence>
-    </section>
+    </motion.section>
   );
 };
 
