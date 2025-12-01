@@ -138,7 +138,7 @@ const AboutSection = () => {
               className="text-sm font-semibold"
               style={{ color: COLORS.gold }}
             >
-              Nuestra Historia
+              Sobre nosotros
             </span>
           </div>
 
@@ -146,17 +146,17 @@ const AboutSection = () => {
             className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6"
             style={{ color: COLORS.textMain }}
           >
-            Hecho por{" "}
+            Ropa para{" "}
             <span
               className="bg-clip-text text-transparent"
               style={{
                 backgroundImage: `linear-gradient(to right, ${COLORS.gold}, ${COLORS.goldAlt})`,
               }}
             >
-              hinchas
+              el hincha
             </span>
-            ,<br />
-            para hinchas
+            <br />
+            de BOCA
           </h2>
 
           <div className="flex justify-center mb-8">

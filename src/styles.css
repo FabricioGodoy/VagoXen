@@ -16,6 +16,46 @@
     height: 5vh;
     width: auto;
 }
+.Appbgc{
+  background-color: #000010;
+
+}
+/* === Texto flotante con fondo azul degradado suave === */
+.texto-flotante {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  padding: 6px 14px;
+ 
+
+  /* Degradé azul suave estilo modal */
+  background: linear-gradient(
+    135deg,
+    rgba(28, 73, 133, 0.35),
+    rgba(0, 1, 16, 0.35)
+  );
+
+  backdrop-filter: blur(4px);   /* efecto vidrio, suave */
+  -webkit-backdrop-filter: blur(4px);
+
+  color: #ede350;               /* texto claro, NO blanco duro */
+  font-size: 13px;              /* más chico, como pediste */
+  font-weight: 500;
+  letter-spacing: 0.3px;
+
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+  z-index: 1000;
+  transition: 0.25s ease;
+}
+
+.texto-flotante:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(28, 73, 133, 0.55),
+    rgba(0, 1, 16, 0.55)
+  );
+  color: #f0f0f0;
+}
 
 /* === Botón WhatsApp flotante === */
 .btn-flotante {

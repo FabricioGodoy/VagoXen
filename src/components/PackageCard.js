@@ -81,7 +81,8 @@ const PackageCard = ({ pkg, onSelectPackage, disableAnimation = false }) => {
           }}
         />
 
-        <h3 className="absolute bottom-3 left-3 right-3 text-xl md:text-2xl font-extrabold drop-shadow-xl">
+        <h3 className="absolute bottom-3 left-3 right-3 text-xl md:text-2xl font-extrabold drop-shadow-xl"style={{ color: "#d0d0d0ff" }}>
+          
           {pkg.name}
         </h3>
       </div>

@@ -16,6 +16,8 @@ function HomePage() {
       <a href="https://wa.me/+5491133779222" className="btn-flotante" target="_blank" rel="noopener noreferrer">
         <img src="https://img.icons8.com/office/40/whatsapp--v1.png" alt="wpp"></img>
       </a>
+      <p class="texto-flotante">Vivir A LO BOCA</p>
+
       <Hero />
       <PackagesSection />
     </>
@@ -34,7 +36,7 @@ function NosotrosPage() {
 export default function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-gray-50 Appbgc">
         <Navbar />
 
         <main className="pt-19">

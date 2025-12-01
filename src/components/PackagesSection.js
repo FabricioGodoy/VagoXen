@@ -12,9 +12,9 @@ const COLORS = {
   sand: "#EDE5DA",     // arena
 
   // Fondo sección
-  sectionBgStart: "#EDE5DA",                            // sand
-  sectionBgMiddle: "#FFFFFF",
-  sectionBgEnd: "rgba(43, 48, 54, 0.10)",              // navy 1A
+  sectionBgStart: "#1c4985",                            // sand
+  sectionBgMiddle: "#000110",
+  sectionBgEnd: "#000110",              // navy 1A
 
   // Filetes
   topBorderLine: "rgba(210, 152, 58, 0.10)",           // gold 1A
@@ -27,6 +27,7 @@ const COLORS = {
   // Texto
   titleText: "#141416",
   titleAccentText: "#d2983a",
+  titleAccentText2: "#d0d0d0ff",
   divider: "#d2983a",
 };
 
@@ -42,11 +43,11 @@ const PackagesSection = () => {
   return (
     <motion.section
       id="packages"
-      initial={{ opacity: 0, y: 24 }}
+      initial={{ opacity: 0.1, y: 1 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.5 }}
-      className="relative py-20 overflow-hidden bg-gradient-to-br"
+      transition={{ duration: 0.25 }}
+      className="relative pt-[2em] overflow-hidden bg-gradient-to-br"
       style={{
         backgroundImage: `linear-gradient(
           135deg,
@@ -79,14 +80,27 @@ const PackagesSection = () => {
       {/* TÍTULO */}
       <div className="container mx-auto px-4 max-w-6xl relative">
         <motion.h2
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 1, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.35 }}
+          transition={{ duration: 0.15 }}
           className="text-4xl md:text-5xl font-extrabold text-center mb-6"
           style={{ color: COLORS.titleText }}
         >
-          Nuestras{" "}
+            <span
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-xl"
+            style={{ color: COLORS.titleAccentText } }
+          >
+            VAGOS
+          </span>
+          <br/>
+          <br/>
+         
+          <span
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-xl"
+            style={{ color: COLORS.titleAccentText2 }}
+          > Nuestras{" "}</span>
+
           <span
             className="inline-flex items-center gap-2 px-3 py-1 rounded-xl"
             style={{ color: COLORS.titleAccentText }}
@@ -96,9 +110,7 @@ const PackagesSection = () => {
         </motion.h2>
 
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, amount: 0.5 }}
+         
           className="flex justify-center mb-12"
         >
           <span
@@ -148,6 +160,12 @@ const PackagesSection = () => {
           <PackageModal pkg={selectedPackage} onClose={handleCloseModal} />
         )}
       </AnimatePresence>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
     </motion.section>
   );
 };

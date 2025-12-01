@@ -22,20 +22,20 @@ const COLORS = {
   // Modal backdrop
   backdrop: "rgba(43, 48, 54, 0.30)",
 
-  // Modal container
-  modalBorder: "rgba(43, 48, 54, 0.15)",
-  modalBgTop: "#EDE5DA", // sand
-  modalBgBottom: "#FFFFFF",
-  modalShadow: "0 24px 80px rgba(20, 20, 22, 0.20)",
+  // Modal container (azul oscuro en degradé)
+  modalBorder: "rgba(43, 48, 54, 0.40)",
+  modalBgTop: "#1c4985",
+  modalBgBottom: "#000110",
+  modalShadow: "0 24px 80px rgba(0, 0, 0, 0.70)",
 
   // Top filete
   topStripeFrom: "#d2983a",
-  topStripeTo: "#2b3036",
+  topStripeTo: "#000110",
 
   // Close button
-  closeBg: "rgba(255, 255, 255, 0.75)",
-  closeBgHover: "#FFFFFF",
-  closeBorder: "rgba(43, 48, 54, 0.10)",
+  closeBg: "rgba(0, 0, 0, 0.55)",
+  closeBgHover: "rgba(0, 0, 0, 0.85)",
+  closeBorder: "rgba(255, 255, 255, 0.25)",
 
   // Slider overlay
   sliderOverlayStop1: "rgba(0, 0, 0, 0.55)",
@@ -43,9 +43,9 @@ const COLORS = {
   sliderOverlayStop3: "rgba(0, 0, 0, 0)",
 
   // Text on image
-  sliderTitle: "#FFFFFF",
+  sliderTitle: "#d0d0d0ff",
   sliderBadgeBg: "rgba(0, 0, 0, 0.55)",
-  sliderBadgeText: "rgba(255, 255, 255, 0.90)",
+  sliderBadgeText: "#d0d0d0ff",
 
   // Slider arrows
   sliderArrowBg: "rgba(0, 0, 0, 0.55)",
@@ -57,26 +57,26 @@ const COLORS = {
   sliderDotActive: "#d2983a",
   sliderDotInactive: "rgba(255, 255, 255, 0.70)",
 
-  // Body text
-  bodyText: "rgba(20, 20, 22, 0.80)",
-  bodyTextStrong: "rgba(20, 20, 22, 0.85)",
+  // Body text (amarillos claros sobre fondo oscuro)
+  bodyText: "#f4e3b0",
+  bodyTextStrong: "#f7e9c8",
 
   // Chips
-  chipBg: "rgba(255, 255, 255, 0.80)",
-  chipBorder: "rgba(43, 48, 54, 0.10)",
-  chipShadow: "0 2px 10px rgba(0, 0, 0, 0.04)",
-  chipLabel: "rgba(20, 20, 22, 0.70)",
+  chipBg: "rgba(0, 0, 0, 0.45)",
+  chipBorder: "rgba(255, 255, 255, 0.25)",
+  chipShadow: "0 2px 10px rgba(0, 0, 0, 0.5)",
+  chipLabel: "#f4e3b0",
 
   // List / titles
-  sectionTitle: "#2b3036",
-  listText: "rgba(20, 20, 22, 0.85)",
+  sectionTitle: "#f2c567",
+  listText: "#f4e3b0",
 
   // CTA buttons
   ctaPrimaryBg: "#d2983a",
   ctaPrimaryText: "#141416",
-  ctaSecondaryBg: "#FFFFFF",
+  ctaSecondaryBg: "#d0d0d0ff",
   ctaSecondaryText: "#2b3036",
-  ctaSecondaryBorder: "rgba(43, 48, 54, 0.20)",
+  ctaSecondaryBorder: "rgba(255, 255, 255, 0.35)",
 };
 
 const buildWhatsAppLink = (message = "", phone) => {
@@ -165,7 +165,7 @@ const PackageModal = ({ pkg, onClose }) => {
         style={{
           borderColor: COLORS.modalBorder,
           backgroundImage: `linear-gradient(180deg, ${COLORS.modalBgTop}, ${COLORS.modalBgBottom})`,
-          color: COLORS.midnight,
+          color: COLORS.sand,
           boxShadow: COLORS.modalShadow,
         }}
         onClick={(e) => e.stopPropagation()}
@@ -187,7 +187,7 @@ const PackageModal = ({ pkg, onClose }) => {
           style={{
             backgroundColor: COLORS.closeBg,
             borderColor: COLORS.closeBorder,
-            color: COLORS.midnight,
+            color: COLORS.sand,
           }}
           onMouseEnter={(e) =>
             (e.currentTarget.style.backgroundColor = COLORS.closeBgHover)
@@ -332,12 +332,12 @@ const PackageModal = ({ pkg, onClose }) => {
               <MapPin size={18} color={COLORS.gold} />
               <div className="font-medium">
                 <span
-                  className="opacity-70"
+                  className="opacity-80"
                   style={{ color: COLORS.chipLabel }}
                 >
                   Colección:
                 </span>{" "}
-                <span style={{ color: COLORS.midnight }}>
+                <span style={{ color: COLORS.bodyTextStrong }}>
                   {pkg.destination}
                 </span>
               </div>
@@ -354,12 +354,12 @@ const PackageModal = ({ pkg, onClose }) => {
               <Clock size={18} color={COLORS.gold} />
               <div className="font-medium">
                 <span
-                  className="opacity-70"
+                  className="opacity-80"
                   style={{ color: COLORS.chipLabel }}
                 >
                   Edición:
                 </span>{" "}
-                <span style={{ color: COLORS.midnight }}>
+                <span style={{ color: COLORS.bodyTextStrong }}>
                   {pkg.duration}
                 </span>
               </div>

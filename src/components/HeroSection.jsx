@@ -27,9 +27,9 @@ const BANNERS = [
     img: `${process.env.PUBLIC_URL}/img/banner/banner_1.webp`,
   },
   {
-    img: `${process.env.PUBLIC_URL}/img/banner/banner_2.webp`,
+    img: `${process.env.PUBLIC_URL}/img/banner/bannerAmarillo.webp`,
   },
-  {
+   {
     img: `${process.env.PUBLIC_URL}/img/banner/banner_3.webp`,
   },
   {
