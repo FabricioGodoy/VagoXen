@@ -14,15 +14,15 @@ const COLORS = {
   navBgFrom: "#ffffff",
   navBgTo: "rgba(182, 182, 182, 0.95)",
   navBorderBottom: "#d2983a", // dorado del resto del proyecto
-  navText: "#070942",
-  navTextActive: "#0c158d",
+  navText: "#ede350",
+  navTextActive: "#d2983a",
   navTextHover: "#d2983a",
   navIndicator: "#d2983a",
 
   // Botón mobile (icono menú)
-  mobileButtonText: "#141416",
+  mobileButtonText: "#ede350",
   mobileButtonTextHover: "#d2983a",
-  focusRing: "rgba(193, 18, 31, 0.6)",
+  focusRing: "#031c4f)",
   ringOffsetColor: "transparent",
 
   // Mobile menu
@@ -76,7 +76,7 @@ const Navbar = () => {
   };
 
   return (
-    <motion.nav
+/*     <motion.nav
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.3 }}
@@ -92,8 +92,28 @@ const Navbar = () => {
         backgroundImage: `linear-gradient(to bottom, ${COLORS.navBgFrom}, ${COLORS.navBgTo})`,
         borderBottomColor: COLORS.navBorderBottom,
       }}
-    >
-      <div className="container mx-auto px-4 py-3 flex justify-between items-center">
+    > */
+     
+     <motion.nav
+  initial={{ y: -100, opacity: 0 }}
+  animate={{ y: 0, opacity: 1 }}
+  transition={{ duration: 0.3 }}
+  className={[
+    "fixed top-0 left-0 right-0 z-50",
+    "bg-gradient-to-r",
+    "backdrop-blur-xl",
+    "shadow-lg",
+    "border-b",
+  ].join(" ")}
+  style={{
+    color: COLORS.navText,
+    backgroundImage:
+      "linear-gradient(to right, #000000)",/* , #031c4f, #cec53fff */
+/* ede350f */    borderBottomColor: COLORS.navBorderBottom,
+  }}
+>
+
+     <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         <Link
           to="/"
           className="flex items-center gap-3"

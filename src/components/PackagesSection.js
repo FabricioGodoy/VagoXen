@@ -109,25 +109,33 @@ const PackagesSection = () => {
       </div>
 
       {/* BLOQUE FULL-WIDTH PARA LAS CARDS */}
-      <div className="w-full relative h-50">
-        {/* DESKTOP/TABLET: 3 columnas de borde a borde */}
+      <div className="w-full relative">
+        {/* DESKTOP/TABLET: 3 columnas de borde a borde (con animación) */}
         <div className="hidden md:grid grid-cols-3 gap-0 w-full items-stretch">
           {visiblePackages.map((pkg) => (
             <div key={pkg.id} className="w-full h-full">
-              <PackageCard pkg={pkg} onSelectPackage={handleSelectPackage} />
+              <PackageCard
+                pkg={pkg}
+                onSelectPackage={handleSelectPackage}
+                // animación ON en desktop (prop por defecto = false)
+              />
             </div>
           ))}
         </div>
 
-        {/* MOBILE: slider horizontal con snap */}
+        {/* MOBILE: slider horizontal con snap (SIN animación en las cards) */}
         <div className="md:hidden w-full">
-          <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 px-4 pb-4">
+          <div className="flex overflow-x-auto snap-mandatory gap-4 px-4 pb-4">
             {visiblePackages.map((pkg) => (
               <div
                 key={pkg.id}
                 className="min-w-[80%] snap-center"
               >
-                <PackageCard pkg={pkg} onSelectPackage={handleSelectPackage} />
+                <PackageCard
+                  pkg={pkg}
+                  onSelectPackage={handleSelectPackage}
+                  disableAnimation={true}
+                />
               </div>
             ))}
           </div>

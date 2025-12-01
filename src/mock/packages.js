@@ -1,13 +1,58 @@
 const PUBLIC = process.env.PUBLIC_URL || '';
 
 export const remerasDescripcion = [
-  {
+{
     id: 'pkg-001',
+    name: 'Azul y Oro',
+    description:
+      '100% nuestros colores. 100% Boca. Un diseño en representación al Hincha Xeneize y al templo de Brandsen 805.',
+    longDescription:
+      '100% nuestros colores. 100% Boca. Un diseño en representación al Hincha Xeneize y al templo de Brandsen 805.',
+    images: [
+       `${PUBLIC}/img/VAGOS/horizontalNegra.webp`,
+      `${PUBLIC}/img/VAGOS/horizontalAmarilla.webp`, // cambialo por el nombre real
+      `${PUBLIC}/img/VAGOS/verticalAzul.webp`, // idem
+    ],
+    image: `${PUBLIC}/img/VAGOS/verticalAzul.webp`,
+    price: 0,
+    duration: 'Oversize',
+    destination: 'UNISEX',
+    includes: [
+      'remera azul'
+    ],
+    whatsappMessage:
+      'Hola, me interesa la Remera Brandsen 805. ¿Podés pasarme talles y precio?'
+  },
+
+   {
+    id: 'pkg-002',
+    name: 'Vago Xeneize',
+    description:
+      'En homenaje a Vago Xeneize. Diseño moderno, con tipografía romana y flow abstracto. Estilo artístico y callejero.',
+    longDescription:
+      'En homenaje a Vago Xeneize. Diseño moderno, con tipografía romana y flow abstracto. Estilo artístico y callejero.',
+    images: [
+      `${PUBLIC}/img/VAGOS/horizontalNegra.webp`,
+      `${PUBLIC}/img/VAGOS/horizontalAmarilla.webp`, // cambialo por el nombre real
+      `${PUBLIC}/img/VAGOS/verticalAzul.webp`, // idem
+    ],
+    image: `${PUBLIC}/img/VAGOS/horizontalAmarilla.webp`,
+    price: 0,
+    duration: 'Remeron',
+    destination: 'UNISEX',
+    includes: [
+      'remera amarilla'
+    ],
+    whatsappMessage:
+      'Hola, me interesa la Remera Vago Xeneize. ¿Podés pasarme talles y precio?'
+  },
+  {
+    id: 'pkg-003',
     name: '1905',
     description:
-      '- remera negra - El diseño más representativo del hincha. Azul profundo, franja dorada y detalles que gritan pasión xeneize.',
+      'Un diseño que representa el nacimiento del Club Atlético Boca Juniors y sus hazañas en el Continente Asiático.',
     longDescription:
-      'Inspirada en la camiseta histórica del club, la Remera Clásica Azul y Oro combina comodidad y orgullo. Confeccionada en algodón peinado premium, cuello redondo reforzado y costuras de alta durabilidad. Ideal para llevar al estadio, al gimnasio o a cualquier lugar donde quieras mostrar tus colores.',
+      'Un diseño que representa el nacimiento del Club Atlético Boca Juniors y sus hazañas en el Continente Asiático.',
     // 🔴 NUEVO: array de imágenes para el slider
     images: [
       `${PUBLIC}/img/VAGOS/horizontalNegra.webp`,
@@ -17,57 +62,12 @@ export const remerasDescripcion = [
     // podés dejar "image" como primera imagen para compatibilidad
     image: `${PUBLIC}/img/VAGOS/horizontalNegra.webp`,
     price: 0,
-    duration: 'Edición permanente',
-    destination: 'Colección Tradicional',
+    duration: 'Oversize',
+    destination: 'UNISEX',
     includes: [
       'remera negra'
     ],
     whatsappMessage:
       'Hola, me interesa la Remera 1905. ¿Podés pasarme talles y precio?'
-  },
-  {
-    id: 'pkg-002',
-    name: 'Brandsen 805',
-    description:
-      '- remera azul - Un homenaje al Boca campeón del 81. Diseño retro con tipografía vintage y detalles históricos.',
-    longDescription:
-      'Esta edición especial revive la camiseta usada durante la era dorada del 81. Con materiales de alta calidad, cuello redondo acanalado y un diseño fiel a la original. Perfecta para coleccionistas o fanáticos que quieren llevar la historia puesta.',
-    images: [
-       `${PUBLIC}/img/VAGOS/horizontalNegra.webp
-`,
-      `${PUBLIC}/img/VAGOS/horizontalAmarilla.webp`, // cambialo por el nombre real
-      `${PUBLIC}/img/VAGOS/verticalAzul.webp`, // idem
-    ],
-    image: `${PUBLIC}/img/VAGOS/verticalAzul.webp`,
-    price: 0,
-    duration: 'Edición limitada',
-    destination: 'Colección Retro',
-    includes: [
-      'remera azul'
-    ],
-    whatsappMessage:
-      'Hola, me interesa la Remera Brandsen 805. ¿Podés pasarme talles y precio?'
-  },
-  {
-    id: 'pkg-003',
-    name: 'Vago Xeneize',
-    description:
-      '- remera amarilla -Diseño moderno, con tipografía minimalista y el escudo tono sobre tono. Estilo callejero, 100% Boca.',
-    longDescription:
-      'La remera urbana combina la estética del lifestyle con el ADN xeneize. Su corte recto y el diseño discreto pero contundente la hacen ideal para todos los días. Con estampado soft-touch y tela liviana respirable. Estilo, comodidad y orgullo en una sola prenda.',
-    images: [
-      `${PUBLIC}/img/VAGOS/horizontalNegra.webp`,
-      `${PUBLIC}/img/VAGOS/horizontalAmarilla.webp`, // cambialo por el nombre real
-      `${PUBLIC}/img/VAGOS/verticalAzul.webp`, // idem
-    ],
-    image: `${PUBLIC}/img/VAGOS/horizontalAmarilla.webp`,
-    price: 0,
-    duration: 'Colección 2025',
-    destination: 'Urban Collection',
-    includes: [
-      'remera amarilla'
-    ],
-    whatsappMessage:
-      'Hola, me interesa la Remera Vago Xeneize. ¿Podés pasarme talles y precio?'
   }
 ];

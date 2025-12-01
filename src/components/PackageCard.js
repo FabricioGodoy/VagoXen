@@ -31,18 +31,22 @@ const COLORS = {
   buttonFocusRing: "rgba(210, 152, 58, 0.50)",
 };
 
-const PackageCard = ({ pkg, onSelectPackage }) => {
+const PackageCard = ({ pkg, onSelectPackage, disableAnimation = false }) => {
+  const Wrapper = disableAnimation ? "div" : motion.div;
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.25 }}
-      transition={{ duration: 0.35 }}
+    <Wrapper
+      {...(!disableAnimation && {
+        initial: { opacity: 0, y: 40 },
+        whileInView: { opacity: 1, y: 0 },
+        viewport: { once: true, amount: 0.25 },
+        transition: { duration: 0.35 },
+      })}
       onClick={() => onSelectPackage(pkg)}
       className="
         group relative cursor-pointer rounded-2xl overflow-hidden
         border shadow-xl hover:shadow-2xl hover:-translate-y-1
-        transition-all duration-300 flex flex-col h-full
+        transition-all duration-300 flex flex-col h-90
       "
       style={{
         backgroundImage: `linear-gradient(to bottom, ${COLORS.cardBgFrom}, ${COLORS.cardBgTo})`,
@@ -84,8 +88,10 @@ const PackageCard = ({ pkg, onSelectPackage }) => {
 
       {/* CONTENT */}
       <div className="p-4 md:p-6 flex flex-col flex-1">
-
-        <p className="mb-3 md:mb-4 flex-shrink-0" style={{ color: COLORS.textSoft }}>
+        <p
+          className="mb-3 md:mb-4 flex-shrink-0"
+          style={{ color: COLORS.textSoft }}
+        >
           {pkg.description}
         </p>
 
@@ -155,9 +161,8 @@ const PackageCard = ({ pkg, onSelectPackage }) => {
         >
           Ver Detalles
         </motion.button>
-
       </div>
-    </motion.div>
+    </Wrapper>
   );
 };
 
