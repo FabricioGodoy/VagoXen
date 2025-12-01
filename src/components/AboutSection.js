@@ -3,14 +3,16 @@ import { motion } from "framer-motion";
 import { Palette, Heart, Sparkles } from "lucide-react";
 
 const COLORS = {
-  // Fondo base
-  background: "#ffffff",
+  // Fondo base (similar al modal)
+  backgroundFrom: "#000110",
+  backgroundMid: "#041024",
+  backgroundTo: "#1c4985",
 
-  // Texto
-  textMain: "#141416",
-  textMain70: "rgba(20, 20, 22, 0.70)",
-  textMain80: "rgba(20, 20, 22, 0.80)",
-  textMain60: "rgba(20, 20, 22, 0.60)",
+  // Texto (clarito para fondo oscuro)
+  textMain: "#f7f4e6",
+  textMain80: "rgba(247, 244, 230, 0.80)",
+  textMain70: "rgba(247, 244, 230, 0.70)",
+  textMain60: "rgba(247, 244, 230, 0.60)",
 
   // Dorados
   gold: "#d2983a",
@@ -19,18 +21,15 @@ const COLORS = {
   goldSoft5: "rgba(210, 152, 58, 0.05)",
   goldSoft10: "rgba(210, 152, 58, 0.10)",
   goldSoft20: "rgba(210, 152, 58, 0.20)",
-  goldGlow1: "rgba(210, 152, 58, 0.08)",
-  goldGlow2: "rgba(210, 152, 58, 0.06)",
-
-  // Arena suave (antes #EDE5DA/30)
-  sandSoft30: "rgba(237, 229, 218, 0.30)",
+  goldGlow1: "rgba(210, 152, 58, 0.12)",
+  goldGlow2: "rgba(210, 152, 58, 0.10)",
 
   // Fondos de tarjetas / bloques
-  cardBg: "rgba(255, 255, 255, 0.80)",
-  contentBg: "rgba(255, 255, 255, 0.50)",
+  cardBg: "rgba(4, 16, 36, 0.95)",      // navy casi sólido
+  contentBg: "rgba(2, 10, 26, 0.95)",   // bloque principal
 
   // Líneas divisorias
-  divider: "rgba(210, 152, 58, 0.20)",
+  divider: "rgba(210, 152, 58, 0.35)",
 };
 
 const AboutSection = () => {
@@ -56,7 +55,7 @@ const AboutSection = () => {
       variants={itemVariants}
       className="group relative rounded-2xl p-6 backdrop-blur-sm border shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300"
       style={{
-        backgroundColor: COLORS.cardBg,
+        backgroundImage: `linear-gradient(135deg, rgba(12, 32, 68, 0.95), rgba(0, 1, 16, 0.95))`,
         color: COLORS.textMain,
         borderColor: COLORS.goldSoft20,
       }}
@@ -71,7 +70,7 @@ const AboutSection = () => {
       <div
         className="w-14 h-14 mb-5 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
         style={{
-          backgroundImage: `linear-gradient(to bottom right, ${COLORS.goldSoft20}, ${COLORS.goldSoft5})`,
+          backgroundImage: `linear-gradient(to bottom right, rgba(210,152,58,0.25), rgba(210,152,58,0.05))`,
         }}
       >
         <Icon className="w-7 h-7" color={COLORS.gold} strokeWidth={2} />
@@ -98,10 +97,10 @@ const AboutSection = () => {
       className="relative py-24 overflow-hidden"
       style={{
         background: `linear-gradient(
-          to bottom,
-          ${COLORS.background},
-          ${COLORS.sandSoft30},
-          ${COLORS.background}
+          135deg,
+          ${COLORS.backgroundFrom} 0%,
+          ${COLORS.backgroundMid} 45%,
+          ${COLORS.backgroundTo} 100%
         )`,
       }}
       variants={sectionVariants}
@@ -109,17 +108,17 @@ const AboutSection = () => {
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
     >
-      {/* Decorative elements */}
+      {/* Glows dorados suaves */}
       <div
         className="pointer-events-none absolute inset-0"
         style={{
-          background: `radial-gradient(circle at 30% 20%, ${COLORS.goldGlow1}, transparent 50%)`,
+          background: `radial-gradient(circle at 20% 15%, ${COLORS.goldGlow1}, transparent 55%)`,
         }}
       />
       <div
         className="pointer-events-none absolute inset-0"
         style={{
-          background: `radial-gradient(circle at 70% 80%, ${COLORS.goldGlow2}, transparent 50%)`,
+          background: `radial-gradient(circle at 80% 85%, ${COLORS.goldGlow2}, transparent 55%)`,
         }}
       />
 
@@ -129,14 +128,14 @@ const AboutSection = () => {
           <div
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 border"
             style={{
-              backgroundColor: COLORS.goldSoft10,
+              backgroundColor: "rgba(3, 14, 32, 0.85)",
               borderColor: COLORS.goldSoft20,
             }}
           >
             <Sparkles className="w-4 h-4" color={COLORS.gold} />
             <span
               className="text-sm font-semibold"
-              style={{ color: COLORS.gold }}
+              style={{ color: COLORS.goldAlt }}
             >
               Sobre nosotros
             </span>
@@ -169,13 +168,14 @@ const AboutSection = () => {
           </div>
         </motion.div>
 
-        {/* Content */}
+        {/* Content principal */}
         <motion.div variants={itemVariants} className="max-w-4xl mx-auto mb-16">
           <div
             className="rounded-3xl p-8 md:p-12 border shadow-xl backdrop-blur-sm"
             style={{
-              backgroundColor: COLORS.contentBg,
-              borderColor: COLORS.goldSoft10,
+              backgroundImage:
+                "linear-gradient(135deg, rgba(5, 18, 40, 0.96), rgba(0, 1, 16, 0.96))",
+              borderColor: COLORS.goldSoft20,
             }}
           >
             <p
@@ -183,10 +183,7 @@ const AboutSection = () => {
               style={{ color: COLORS.textMain80 }}
             >
               No tenemos décadas de historia.{" "}
-              <span
-                className="font-semibold"
-                style={{ color: COLORS.gold }}
-              >
+              <span className="font-semibold" style={{ color: COLORS.gold }}>
                 Tenemos algo mejor
               </span>
               : ganas, pasión genuina y el sueño de dos hinchas de Boca que
@@ -212,11 +209,7 @@ const AboutSection = () => {
               No somos una marca gigante ni pretendemos serlo. Somos auténticos,
               trabajamos de verdad en cada detalle, y estamos orgullosos de
               empezar desde abajo,{" "}
-              <span
-                className="font-semibold"
-                style={{ color: COLORS.gold }}
-              >
-                {" "}
+              <span className="font-semibold" style={{ color: COLORS.gold }}>
                 como Boca nos enseñó
               </span>
               .
@@ -255,8 +248,8 @@ const AboutSection = () => {
           />
         </div>
 
-        {/* CTA */}
-        {/* 
+        {/* CTA opcional (siguiendo paleta oscura) */}
+        {/*
         <motion.div variants={itemVariants} className="text-center mt-16">
           <p
             className="text-sm md:text-base mb-6"
@@ -269,7 +262,7 @@ const AboutSection = () => {
             className="inline-flex items-center gap-2 px-8 py-4 font-bold rounded-xl shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300"
             style={{
               backgroundColor: COLORS.gold,
-              color: COLORS.textMain,
+              color: COLORS.midnight,
             }}
           >
             Ver Remeras
@@ -279,7 +272,7 @@ const AboutSection = () => {
         */}
       </div>
 
-      {/* WhatsApp Button */}
+      {/* WhatsApp Button (se mantiene igual, apoyado sobre el fondo oscuro) */}
       <a
         href="https://wa.me/+5491133779222"
         className="btn-flotante"

@@ -200,12 +200,15 @@ const PackageModal = ({ pkg, onClose }) => {
         </button>
 
         {/* SLIDER */}
-        <div className="relative h-72 md:h-[440px] overflow-hidden rounded-t-3xl">
+        <div
+          className="relative w-full overflow-hidden rounded-t-3xl"
+          style={{ aspectRatio: "3 / 2" }}
+        >
           <motion.img
             key={images[currentIndex]}
             src={images[currentIndex]}
             alt={`${pkg.name} - diseño ${currentIndex + 1}`}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-contain bg-black"
             initial={{ opacity: 0, scale: 1.03 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.4 }}
@@ -225,9 +228,9 @@ const PackageModal = ({ pkg, onClose }) => {
           />
 
           {/* título y badge */}
-          <div className="absolute bottom-6 left-6 right-6 flex flex-col gap-2">
+          <div className="absolute bottom-4 md:bottom-6 left-4 md:left-6 right-4 md:right-6 flex flex-col gap-2">
             <div
-              className="inline-flex items-center gap-2 px-3 py-1 rounded-full backdrop-blur-sm text-xs font-semibold w-fit"
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-full backdrop-blur-sm text-[11px] md:text-xs font-semibold w-fit"
               style={{
                 backgroundColor: COLORS.sliderBadgeBg,
                 color: COLORS.sliderBadgeText,
@@ -239,7 +242,7 @@ const PackageModal = ({ pkg, onClose }) => {
             </div>
             <h2
               id="package-modal-title"
-              className="text-3xl md:text-4xl font-extrabold drop-shadow-lg"
+              className="text-2xl md:text-4xl font-extrabold drop-shadow-lg"
               style={{ color: COLORS.sliderTitle }}
             >
               {pkg.name}
@@ -252,7 +255,7 @@ const PackageModal = ({ pkg, onClose }) => {
               <button
                 type="button"
                 onClick={goPrev}
-                className="absolute left-3 top-1/2 -translate-y-1/2 p-2 rounded-full border shadow-sm transition-colors"
+                className="absolute left-3 top-1/2 -translate-y-1/2 p-1.5 md:p-2 rounded-full border shadow-sm transition-colors"
                 style={{
                   backgroundColor: COLORS.sliderArrowBg,
                   borderColor: COLORS.sliderArrowBorder,
@@ -267,13 +270,13 @@ const PackageModal = ({ pkg, onClose }) => {
                     COLORS.sliderArrowBg)
                 }
               >
-                <ChevronLeft size={20} />
+                <ChevronLeft size={18} />
               </button>
 
               <button
                 type="button"
                 onClick={goNext}
-                className="absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-full border shadow-sm transition-colors"
+                className="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 md:p-2 rounded-full border shadow-sm transition-colors"
                 style={{
                   backgroundColor: COLORS.sliderArrowBg,
                   borderColor: COLORS.sliderArrowBorder,
@@ -288,14 +291,14 @@ const PackageModal = ({ pkg, onClose }) => {
                     COLORS.sliderArrowBg)
                 }
               >
-                <ChevronRight size={20} />
+                <ChevronRight size={18} />
               </button>
 
-              <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-2">
+              <div className="absolute bottom-2.5 md:bottom-3 left-0 right-0 flex justify-center gap-2">
                 {images.map((_, idx) => (
                   <span
                     key={idx}
-                    className="w-2.5 h-2.5 rounded-full"
+                    className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full"
                     style={{
                       backgroundColor:
                         idx === currentIndex
@@ -311,18 +314,18 @@ const PackageModal = ({ pkg, onClose }) => {
         </div>
 
         {/* CONTENIDO */}
-        <div className="p-6 md:p-8">
+        <div className="p-4 pt-5 md:p-8 md:pt-6">
           <p
-            className="text-lg mb-6 leading-relaxed"
+            className="text-base md:text-lg mb-4 md:mb-6 leading-relaxed"
             style={{ color: COLORS.bodyText }}
           >
             {pkg.longDescription}
           </p>
 
           {/* Chips info */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 mb-6 md:mb-8">
             <div
-              className="inline-flex items-center gap-3 text-sm px-4 py-3 rounded-2xl border"
+              className="inline-flex items-center gap-3 text-sm px-3 py-2.5 md:px-4 md:py-3 rounded-2xl border"
               style={{
                 backgroundColor: COLORS.chipBg,
                 borderColor: COLORS.chipBorder,
@@ -344,7 +347,7 @@ const PackageModal = ({ pkg, onClose }) => {
             </div>
 
             <div
-              className="inline-flex items-center gap-3 text-sm px-4 py-3 rounded-2xl border"
+              className="inline-flex items-center gap-3 text-sm px-3 py-2.5 md:px-4 md:py-3 rounded-2xl border"
               style={{
                 backgroundColor: COLORS.chipBg,
                 borderColor: COLORS.chipBorder,
@@ -367,17 +370,17 @@ const PackageModal = ({ pkg, onClose }) => {
           </div>
 
           <h3
-            className="text-xl font-bold mb-3"
+            className="text-lg md:text-xl font-bold mb-2 md:mb-3"
             style={{ color: COLORS.sectionTitle }}
           >
             Incluye
           </h3>
 
-          <ul className="list-none space-y-2 mb-8">
+          <ul className="list-none space-y-1.5 md:space-y-2 mb-6 md:mb-8">
             {pkg.includes.map((item, index) => (
               <li
                 key={index}
-                className="flex items-start"
+                className="flex items-start text-sm md:text-base"
                 style={{ color: COLORS.listText }}
               >
                 <CheckCircle
@@ -391,12 +394,12 @@ const PackageModal = ({ pkg, onClose }) => {
           </ul>
 
           {/* BOTONES CTA */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 md:gap-3">
             <motion.a
               href={whatsappLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-xl px-4 py-3 font-semibold shadow-sm"
+              className="inline-flex items-center justify-center rounded-xl px-3.5 py-2.5 md:px-4 md:py-3 font-semibold shadow-sm"
               style={{
                 backgroundColor: COLORS.ctaPrimaryBg,
                 color: COLORS.ctaPrimaryText,
@@ -410,7 +413,7 @@ const PackageModal = ({ pkg, onClose }) => {
 
             <button
               onClick={onClose}
-              className="inline-flex items-center justify-center rounded-xl px-4 py-3 font-semibold border transition-colors"
+              className="inline-flex items-center justify-center rounded-xl px-3.5 py-2.5 md:px-4 md:py-3 font-semibold border transition-colors"
               style={{
                 backgroundColor: COLORS.ctaSecondaryBg,
                 color: COLORS.ctaSecondaryText,

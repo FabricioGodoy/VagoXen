@@ -9,11 +9,13 @@ export const remerasDescripcion = [
     longDescription:
       '100% nuestros colores. 100% Boca. Un diseño en representación al Hincha Xeneize y al templo de Brandsen 805.',
     images: [
-       `${PUBLIC}/img/VAGOS/horizontalNegra.webp`,
-      `${PUBLIC}/img/VAGOS/horizontalAmarilla.webp`, // cambialo por el nombre real
-      `${PUBLIC}/img/VAGOS/verticalAzul.webp`, // idem
+       `${PUBLIC}/img/azul/azul.webp`,
+       `${PUBLIC}/img/azul/azul2.webp`,
+       `${PUBLIC}/img/azul/azul3.webp`,
+       `${PUBLIC}/img/azul/azul4.webp`,
+       `${PUBLIC}/img/azul/azul5.webp`,
     ],
-    image: `${PUBLIC}/img/VAGOS/verticalAzul.webp`,
+    image: `${PUBLIC}/img/azul/azul.webp`,
     price: 0,
     duration: 'Oversize',
     destination: 'UNISEX',
@@ -32,9 +34,11 @@ export const remerasDescripcion = [
     longDescription:
       'En homenaje a Vago Xeneize. Diseño moderno, con tipografía romana y flow abstracto. Estilo artístico y callejero.',
     images: [
-      `${PUBLIC}/img/VAGOS/horizontalNegra.webp`,
-      `${PUBLIC}/img/VAGOS/horizontalAmarilla.webp`, // cambialo por el nombre real
-      `${PUBLIC}/img/VAGOS/verticalAzul.webp`, // idem
+      `${PUBLIC}/img/amarillo/amarilla2.webp`,
+      `${PUBLIC}/img/amarillo/amarilla4.webp`,
+      `${PUBLIC}/img/amarillo/amarilla.webp`,
+      `${PUBLIC}/img/amarillo/amarilla5.webp`,
+      `${PUBLIC}/img/amarillo/amarilla3.webp`,
     ],
     image: `${PUBLIC}/img/VAGOS/horizontalAmarilla.webp`,
     price: 0,
@@ -55,12 +59,14 @@ export const remerasDescripcion = [
       'Un diseño que representa el nacimiento del Club Atlético Boca Juniors y sus hazañas en el Continente Asiático.',
     // 🔴 NUEVO: array de imágenes para el slider
     images: [
-      `${PUBLIC}/img/VAGOS/horizontalNegra.webp`,
-      `${PUBLIC}/img/VAGOS/horizontalAmarilla.webp`, // cambialo por el nombre real
-      `${PUBLIC}/img/VAGOS/verticalAzul.webp`, // idem
+      `${PUBLIC}/img/negro/negra4.webp`,
+      `${PUBLIC}/img/negro/negra2.webp`,
+      `${PUBLIC}/img/negro/negra.webp`,
+      `${PUBLIC}/img/negro/negra3.webp`,
+      `${PUBLIC}/img/negro/negra5.webp`,
     ],
     // podés dejar "image" como primera imagen para compatibilidad
-    image: `${PUBLIC}/img/VAGOS/horizontalNegra.webp`,
+    image:`${PUBLIC}/img/negro/negra4.webp`,
     price: 0,
     duration: 'Oversize',
     destination: 'UNISEX',
