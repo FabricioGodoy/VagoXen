@@ -1,6 +1,15 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Palette, Heart, Sparkles } from "lucide-react";
+import TwitterFrame from "./TwitterFrame";
+
+
+// 🔗 Redes (cambiá estos handles por los tuyos reales)
+const INSTAGRAM_USER_1 = "vagos.ar"; // ej: "vagos.remeras"
+const INSTAGRAM_USER_2 = "vagoxeneize"; // ej: "vagos.boca"
+const TWITTER_USER = "vagoxeneize12";    // ej: "vagos_ok";
+
+
 
 const COLORS = {
   // Fondo base (similar al modal)
@@ -182,14 +191,27 @@ const AboutSection = () => {
               className="text-lg md:text-xl leading-relaxed mb-6"
               style={{ color: COLORS.textMain80 }}
             >
-              No tenemos décadas de historia.{" "}
+              Somos dos hinchas de Boca que un día, después de años compartiendo Vago Xeneize con una comunidad que siente lo mismo que nosotros, decidimos dar un paso más: crear VAGOS, una marca de ropa hecha por y para quienes viven los colores.
+              
+              <br/>
+              <br/>
+              No tenemos décadas de historia. Tenemos algo mejor: 
+              {" "}
               <span className="font-semibold" style={{ color: COLORS.gold }}>
-                Tenemos algo mejor
+                ganas, identidad y la convicción de que lo auténtico empieza desde abajo.{" "}
               </span>
-              : ganas, pasión genuina y el sueño de dos hinchas de Boca que
-              dijeron "hagámoslo".
+             Cada prenda que hacemos pasa por horas de diseño, pruebas, errores y ajustes hasta que queda como queremos: simple, urbana y con ese ADN bostero que solo entiende quien alguna vez sintió a La Bombonera temblar.
+             <br/>
+             Hacemos ropa para los nuestros — para los que caminan, sienten y sueñan en azul y amarillo.
+             <br/>
+             <br/>
+                {" "}
+              <span className="font-semibold" style={{ color: COLORS.gold }}>
+                Esto es VAGOS. {" "}
+              </span>
+               Y recién estamos empezando.
             </p>
-
+{/* 
             <p
               className="text-lg md:text-xl leading-relaxed mb-6"
               style={{ color: COLORS.textMain80 }}
@@ -225,51 +247,62 @@ const AboutSection = () => {
               >
                 Si sos hincha de verdad, esto es para vos. 💙💛
               </p>
-            </div>
+            </div> */}
           </div>
         </motion.div>
 
         {/* Feature Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-          <FeatureCard
-            Icon={Palette}
-            title="Diseños únicos"
-            desc="Cada estampa es exclusiva, pensada con criterio bostero y diseñada con amor al detalle. Nada de copiar y pegar."
-          />
-          <FeatureCard
-            Icon={Heart}
-            title="Calidad real"
-            desc="Usamos telas premium y técnicas de estampado duraderas. No vendemos promesas: vendemos remeras que van a durar."
-          />
-          <FeatureCard
-            Icon={Sparkles}
-            title="Fresh & auténtico"
-            desc="Somos nuevos, sí. Pero eso nos hace más genuinos, más cercanos y con más hambre de hacer las cosas bien."
-          />
-        </div>
+{/* Redes sociales embebidas */}
+<div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 justify-items-center">
 
-        {/* CTA opcional (siguiendo paleta oscura) */}
-        {/*
-        <motion.div variants={itemVariants} className="text-center mt-16">
-          <p
-            className="text-sm md:text-base mb-6"
-            style={{ color: COLORS.textMain60 }}
-          >
-            Seguimos creciendo, diseño a diseño, hincha a hincha. ¿Te sumás?
-          </p>
-          <a
-            href="#remeras"
-            className="inline-flex items-center gap-2 px-8 py-4 font-bold rounded-xl shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300"
-            style={{
-              backgroundColor: COLORS.gold,
-              color: COLORS.midnight,
-            }}
-          >
-            Ver Remeras
-            <span className="text-xl">→</span>
-          </a>
-        </motion.div>
-        */}
+  {/* Instagram 1 */}
+  <div className="rounded-2xl border border-white/10 bg-black/40 p-3 md:p-4 shadow-lg">
+    <h3 className="text-sm font-semibold mb-2 text-[#EDE5DA]">
+      Vagos
+    </h3>
+    <div className="w-full rounded-xl overflow-hidden bg-black aspect-[4/3]">
+      <iframe
+        src={`https://www.instagram.com/${INSTAGRAM_USER_1}/embed`}
+        title="Instagram feed 1"
+        className="w-full h-full"
+        frameBorder="0"
+        allowFullScreen
+        loading="lazy"
+      />
+    </div>
+  </div>
+
+  {/* Instagram 2 */}
+  <div className="rounded-2xl border border-white/10 bg-black/40 p-3 md:p-4 shadow-lg">
+    <h3 className="text-sm font-semibold mb-2 text-[#EDE5DA]">
+      Vago Xeneize
+    </h3>
+    <div className="w-full rounded-xl overflow-hidden bg-black aspect-[4/3]">
+      <iframe
+        src={`https://www.instagram.com/${INSTAGRAM_USER_2}/embed`}
+        title="Instagram feed 2"
+        className="w-full h-full"
+        frameBorder="0"
+        allowFullScreen
+        loading="lazy"
+      />
+    </div>
+  </div>
+
+  {/* Twitter */}
+{/* <div className="rounded-2xl border border-white/10 bg-black/40 p-3 md:p-4 shadow-lg">
+  <h3 className="text-sm font-semibold mb-2 text-[#EDE5DA]">
+    Twitter / X
+  </h3>
+  <TwitterFrame />
+</div>
+ */}
+
+
+</div>
+
+
+
       </div>
 
       {/* WhatsApp Button (se mantiene igual, apoyado sobre el fondo oscuro) */}

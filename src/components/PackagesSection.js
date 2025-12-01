@@ -12,17 +12,17 @@ const COLORS = {
   sand: "#EDE5DA",     // arena
 
   // Fondo sección
-  sectionBgStart: "#1c4985",                            // sand
+  sectionBgStart: "#1c4985",
   sectionBgMiddle: "#000110",
-  sectionBgEnd: "#000110",              // navy 1A
+  sectionBgEnd: "#000110",
 
   // Filetes
-  topBorderLine: "rgba(210, 152, 58, 0.10)",           // gold 1A
-  bottomBorderLine: "rgba(210, 152, 58, 0.30)",        // gold 4D
+  topBorderLine: "rgba(210, 152, 58, 0.10)",
+  bottomBorderLine: "rgba(210, 152, 58, 0.30)",
 
   // Manchas de luz
-  glowTop: "rgba(43, 48, 54, 0.20)",                   // navy 33
-  glowBottom: "rgba(20, 20, 22, 0.10)",                // midnight 1A
+  glowTop: "rgba(43, 48, 54, 0.20)",
+  glowBottom: "rgba(20, 20, 22, 0.10)",
 
   // Texto
   titleText: "#141416",
@@ -41,12 +41,8 @@ const PackagesSection = () => {
   const visiblePackages = remerasDescripcion.slice(0, 3);
 
   return (
-    <motion.section
+    <section
       id="packages"
-      initial={{ opacity: 0.1, y: 1 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.25 }}
       className="relative pt-[2em] overflow-hidden bg-gradient-to-br"
       style={{
         backgroundImage: `linear-gradient(
@@ -77,82 +73,83 @@ const PackagesSection = () => {
         style={{ background: COLORS.glowBottom }}
       />
 
-      {/* TÍTULO */}
-      <div className="container mx-auto px-4 max-w-6xl relative">
-        <motion.h2
-          initial={{ opacity: 1, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.15 }}
-          className="text-4xl md:text-5xl font-extrabold text-center mb-6"
-          style={{ color: COLORS.titleText }}
-        >
+      {/* CONTENIDO que aparece al hacer scroll (texto + cards) */}
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.08 }}
+        transition={{ duration: 0.35 }}
+        className="relative"
+      >
+        {/* TÍTULO */}
+        <div className="container mx-auto px-4 max-w-6xl">
+          <motion.h2
+            initial={{ opacity: 1, y: 0 }} // ya viene animado por el wrapper
+            className="text-4xl md:text-5xl font-extrabold text-center mb-6"
+            style={{ color: COLORS.titleText }}
+          >
             <span
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-xl"
-            style={{ color: COLORS.titleAccentText } }
-          >
-            VAGOS
-          </span>
-          <br/>
-          <br/>
-         
-          <span
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-xl"
-            style={{ color: COLORS.titleAccentText2 }}
-          > Nuestras{" "}</span>
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-xl"
+              style={{ color: COLORS.titleAccentText }}
+            >
+              VAGOS
+            </span>
+            <br />
+            <br />
+            <span
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-xl"
+              style={{ color: COLORS.titleAccentText2 }}
+            >
+              Nuestras{" "}
+            </span>
 
-          <span
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-xl"
-            style={{ color: COLORS.titleAccentText }}
-          >
-            Remeras
-          </span>
-        </motion.h2>
+            <span
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-xl"
+              style={{ color: COLORS.titleAccentText }}
+            >
+              Remeras
+            </span>
+          </motion.h2>
 
-        <motion.div
-         
-          className="flex justify-center mb-12"
-        >
-          <span
-            className="h-[2px] w-24 rounded-full"
-            style={{ background: COLORS.divider }}
-          />
-        </motion.div>
-      </div>
-
-      {/* BLOQUE FULL-WIDTH PARA LAS CARDS */}
-      <div className="w-full relative">
-        {/* DESKTOP/TABLET: 3 columnas de borde a borde (con animación) */}
-        <div className="hidden md:grid grid-cols-3 gap-0 w-full items-stretch">
-          {visiblePackages.map((pkg) => (
-            <div key={pkg.id} className="w-full h-full">
-              <PackageCard
-                pkg={pkg}
-                onSelectPackage={handleSelectPackage}
-                // animación ON en desktop (prop por defecto = false)
-              />
-            </div>
-          ))}
+          <div className="flex justify-center mb-12">
+            <span
+              className="h-[2px] w-24 rounded-full"
+              style={{ background: COLORS.divider }}
+            />
+          </div>
         </div>
 
-        {/* MOBILE: slider horizontal con snap (SIN animación en las cards) */}
-        <div className="md:hidden w-full">
-          <div className="flex overflow-x-auto snap-mandatory gap-4 px-4 pb-4">
+        {/* BLOQUE FULL-WIDTH PARA LAS CARDS */}
+        <div className="w-full relative">
+          {/* DESKTOP/TABLET: 3 columnas de borde a borde */}
+          <div className="hidden md:grid grid-cols-3 gap-0 w-full items-stretch">
             {visiblePackages.map((pkg) => (
-              <div
-                key={pkg.id}
-                className="min-w-[80%] snap-center"
-              >
+              <div key={pkg.id} className="w-full h-full">
                 <PackageCard
                   pkg={pkg}
                   onSelectPackage={handleSelectPackage}
-                  disableAnimation={true}
+                  disableAnimation={true} // que entren junto con el texto
                 />
               </div>
             ))}
           </div>
+
+          {/* MOBILE: slider horizontal */}
+          <div className="md:hidden w-full">
+            <div className="flex overflow-x-auto snap-mandatory gap-4 px-4 pb-4">
+              {visiblePackages.map((pkg) => (
+                <div key={pkg.id} className="min-w-[80%] snap-center">
+                  <PackageCard
+                    pkg={pkg}
+                    onSelectPackage={handleSelectPackage}
+                    disableAnimation={true}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Modal */}
       <AnimatePresence>
@@ -160,13 +157,14 @@ const PackagesSection = () => {
           <PackageModal pkg={selectedPackage} onClose={handleCloseModal} />
         )}
       </AnimatePresence>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-    </motion.section>
+
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+    </section>
   );
 };
 

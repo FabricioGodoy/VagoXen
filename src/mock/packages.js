@@ -16,14 +16,15 @@ export const remerasDescripcion = [
        `${PUBLIC}/img/azul/azul5.webp`,
     ],
     image: `${PUBLIC}/img/azul/azul.webp`,
-    price: 0,
+    price: `48.000`,
     duration: 'Oversize',
     destination: 'UNISEX',
     includes: [
       'remera azul'
     ],
     whatsappMessage:
-      'Hola, me interesa la Remera Brandsen 805. ¿Podés pasarme talles y precio?'
+      'Hola, me interesa la Remera Brandsen 805. ¿Podés pasarme talles y precio?',
+      guiaTalle: `${PUBLIC}/img/guitaTalle/guiaTalle1.webp`
   },
 
    {
@@ -41,14 +42,15 @@ export const remerasDescripcion = [
       `${PUBLIC}/img/amarillo/amarilla3.webp`,
     ],
     image: `${PUBLIC}/img/VAGOS/horizontalAmarilla.webp`,
-    price: 0,
+    price: `58.000`,
     duration: 'Remeron',
     destination: 'UNISEX',
     includes: [
       'remera amarilla'
     ],
     whatsappMessage:
-      'Hola, me interesa la Remera Vago Xeneize. ¿Podés pasarme talles y precio?'
+      'Hola, me interesa la Remera Vago Xeneize. ¿Podés pasarme talles y precio?',
+      guiaTalle: `${PUBLIC}/img/guitaTalle/guiaTalle1.webp`
   },
   {
     id: 'pkg-003',
@@ -67,13 +69,14 @@ export const remerasDescripcion = [
     ],
     // podés dejar "image" como primera imagen para compatibilidad
     image:`${PUBLIC}/img/negro/negra4.webp`,
-    price: 0,
+    price: `48.000`,
     duration: 'Oversize',
     destination: 'UNISEX',
     includes: [
       'remera negra'
     ],
     whatsappMessage:
-      'Hola, me interesa la Remera 1905. ¿Podés pasarme talles y precio?'
+      'Hola, me interesa la Remera 1905. ¿Podés pasarme talles y precio?',
+      guiaTalle: `${PUBLIC}/img/guitaTalle/guiaTalle1.webp`
   }
 ];

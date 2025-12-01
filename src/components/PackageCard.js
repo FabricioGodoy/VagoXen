@@ -35,25 +35,27 @@ const PackageCard = ({ pkg, onSelectPackage, disableAnimation = false }) => {
   const Wrapper = disableAnimation ? "div" : motion.div;
 
   return (
-    <Wrapper
-      {...(!disableAnimation && {
-        initial: { opacity: 0, y: 40 },
-        whileInView: { opacity: 1, y: 0 },
-        viewport: { once: true, amount: 0.25 },
-        transition: { duration: 0.35 },
-      })}
-      onClick={() => onSelectPackage(pkg)}
-      className="
-        group relative cursor-pointer rounded-2xl overflow-hidden
-        border shadow-xl hover:shadow-2xl hover:-translate-y-1
-        transition-all duration-300 flex flex-col h-90
-      "
-      style={{
-        backgroundImage: `linear-gradient(to bottom, ${COLORS.cardBgFrom}, ${COLORS.cardBgTo})`,
-        color: COLORS.textMain,
-        borderColor: COLORS.borderSoft,
-      }}
-    >
+  <Wrapper
+  {...(!disableAnimation && {
+    initial: { opacity: 0, y: 40 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, amount: 0.25 },
+    transition: { duration: 0.35 },
+  })}
+  onClick={() => onSelectPackage(pkg)}
+  className="
+    group relative cursor-pointer rounded-2xl overflow-hidden
+    border shadow-xl hover:shadow-2xl hover:-translate-y-1
+    transition-all duration-300 flex flex-col
+    h-full min-h-[430px]
+  "
+  style={{
+    backgroundImage: `linear-gradient(to bottom, ${COLORS.cardBgFrom}, ${COLORS.cardBgTo})`,
+    color: COLORS.textMain,
+    borderColor: COLORS.borderSoft,
+  }}
+>
+
       {/* TOP LINE */}
       <div
         className="absolute inset-x-0 top-0 h-[2px]"
@@ -96,8 +98,7 @@ const PackageCard = ({ pkg, onSelectPackage, disableAnimation = false }) => {
           {pkg.description}
         </p>
 
-        <div className="flex flex-col gap-2 mb-4 flex-shrink-0">
-          {/* Badge 1 */}
+  {/*       <div className="flex flex-col gap-2 mb-4 flex-shrink-0">
           <div
             className="inline-flex items-center gap-2 
               text-xs md:text-sm 
@@ -113,7 +114,6 @@ const PackageCard = ({ pkg, onSelectPackage, disableAnimation = false }) => {
             <span>{pkg.destination}</span>
           </div>
 
-          {/* Badge 2 */}
           <div
             className="inline-flex items-center gap-2 
               text-xs md:text-sm 
@@ -128,8 +128,8 @@ const PackageCard = ({ pkg, onSelectPackage, disableAnimation = false }) => {
             <Clock size={15} color={COLORS.gold} />
             <span>{pkg.duration}</span>
           </div>
-        </div>
-
+        </div> */}
+<br/>
         <div className="flex-1" />
 
         {/* BOTÓN */}

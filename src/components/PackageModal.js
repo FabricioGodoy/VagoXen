@@ -57,7 +57,7 @@ const COLORS = {
   sliderDotActive: "#d2983a",
   sliderDotInactive: "rgba(255, 255, 255, 0.70)",
 
-  // Body text (amarillos claros sobre fondo oscuro)
+  // Body text
   bodyText: "#f4e3b0",
   bodyTextStrong: "#f7e9c8",
 
@@ -77,6 +77,12 @@ const COLORS = {
   ctaSecondaryBg: "#d0d0d0ff",
   ctaSecondaryText: "#2b3036",
   ctaSecondaryBorder: "rgba(255, 255, 255, 0.35)",
+
+  // Botón guía de talles
+  sizeGuideBg: "rgba(210, 152, 58, 0.10)",
+  sizeGuideBgHover: "rgba(210, 152, 58, 0.20)",
+  sizeGuideBorder: "rgba(210, 152, 58, 0.60)",
+  sizeGuideText: "#f7e9c8",
 };
 
 const buildWhatsAppLink = (message = "", phone) => {
@@ -96,6 +102,7 @@ const PackageModal = ({ pkg, onClose }) => {
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [showSizeGuide, setShowSizeGuide] = useState(false);
 
   // 🔁 Auto-slide
   useEffect(() => {
@@ -323,7 +330,8 @@ const PackageModal = ({ pkg, onClose }) => {
           </p>
 
           {/* Chips info */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 mb-6 md:mb-8">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4 mb-4 md:mb-6">
+            {/* Chip: Colección */}
             <div
               className="inline-flex items-center gap-3 text-sm px-3 py-2.5 md:px-4 md:py-3 rounded-2xl border"
               style={{
@@ -346,6 +354,7 @@ const PackageModal = ({ pkg, onClose }) => {
               </div>
             </div>
 
+            {/* Chip: Edición */}
             <div
               className="inline-flex items-center gap-3 text-sm px-3 py-2.5 md:px-4 md:py-3 rounded-2xl border"
               style={{
@@ -367,9 +376,55 @@ const PackageModal = ({ pkg, onClose }) => {
                 </span>
               </div>
             </div>
+
+            {/* Chip: Precio */}
+            <div
+              className="inline-flex items-center gap-3 text-sm px-3 py-2.5 md:px-4 md:py-3 rounded-2xl border"
+              style={{
+                backgroundColor: COLORS.chipBg,
+                borderColor: COLORS.chipBorder,
+                boxShadow: COLORS.chipShadow,
+              }}
+            >
+              <CheckCircle size={18} color={COLORS.gold} />
+              <div className="font-medium">
+                <span
+                  className="opacity-80"
+                  style={{ color: COLORS.chipLabel }}
+                >
+                  Precio:
+                </span>{" "}
+                <span style={{ color: COLORS.bodyTextStrong }}>
+                  {pkg.price ? `$${pkg.price}` : "Consultar"}
+                </span>
+              </div>
+            </div>
           </div>
 
-          <h3
+          {/* Botón pequeño: Tabla guía de talles */}
+          <div className="flex justify-start mb-6">
+            <button
+              type="button"
+              onClick={() => setShowSizeGuide(true)}
+              className="inline-flex items-center rounded-full px-3 py-1 text-xs font-medium border transition-colors"
+              style={{
+                backgroundColor: COLORS.sizeGuideBg,
+                borderColor: COLORS.sizeGuideBorder,
+                color: COLORS.sizeGuideText,
+              }}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.backgroundColor =
+                  COLORS.sizeGuideBgHover)
+              }
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.backgroundColor = COLORS.sizeGuideBg)
+              }
+            >
+              Tabla guía de talles
+            </button>
+          </div>
+
+    {/*   <h3
             className="text-lg md:text-xl font-bold mb-2 md:mb-3"
             style={{ color: COLORS.sectionTitle }}
           >
@@ -391,7 +446,7 @@ const PackageModal = ({ pkg, onClose }) => {
                 {item}
               </li>
             ))}
-          </ul>
+          </ul> */}
 
           {/* BOTONES CTA */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 md:gap-3">
@@ -424,6 +479,43 @@ const PackageModal = ({ pkg, onClose }) => {
             </button>
           </div>
         </div>
+
+        {/* MINI-MODAL TABLA DE TALLES */}
+        {showSizeGuide && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[60] flex items-center justify-center bg-black/60 p-4"
+            onClick={() => setShowSizeGuide(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              transition={{ type: "spring", damping: 20, stiffness: 260 }}
+              className="relative w-full max-w-md rounded-2xl overflow-hidden bg-black border border-white/20"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* botón cerrar del mini-modal */}
+              <button
+                type="button"
+                onClick={() => setShowSizeGuide(false)}
+                className="absolute top-3 right-3 z-10 p-1.5 rounded-full border border-white/40 bg-black/70 text-white hover:bg-black/90 transition-colors"
+              >
+                <X size={16} />
+              </button>
+
+              <div className="w-full h-full flex items-center justify-center p-3 bg-black">
+                <img
+                  src={pkg.guiaTalle}
+                  alt="Tabla guía de talles"
+                  className="w-full h-full object-contain"
+                />
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
       </motion.div>
     </motion.div>
   );

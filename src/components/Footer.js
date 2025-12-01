@@ -108,18 +108,17 @@ const Footer = () => {
           variants={itemVariants}
           className="flex justify-center gap-4 mb-8"
         >
-          <Social href="https://facebook.com" label="Facebook">
-            <FaFacebookF size={18} />
-          </Social>
-          <Social href="https://twitter.com" label="Twitter">
-            <FaTwitter size={18} />
-          </Social>
-          <Social href="https://instagram.com" label="Instagram">
+          
+          <Social href="https://instagram.com/vagoxeneize" label="Instagram">
             <FaInstagram size={18} />
           </Social>
-          <Social href="https://linkedin.com" label="LinkedIn">
-            <FaLinkedinIn size={18} />
+          <Social href="https://twitter.com/vagoxeneize12" label="Twitter">
+            <FaTwitter size={18} />
           </Social>
+          <Social href="https://instagram.com/vagos.ar" label="Instagram">
+            <FaInstagram size={18} />
+          </Social>
+        
         </motion.div>
 
         {/* Divider dorado */}
@@ -136,7 +135,7 @@ const Footer = () => {
           className="text-sm"
           style={{ color: COLORS.footerTextMuted70 }}
         >
-          &copy; {new Date().getFullYear()} Vagos Xeneizes. Hecho con pasión azul y oro. Todos los
+          &copy; {new Date().getFullYear()} Vagos. Hecho con pasión azul y oro. Todos los
           derechos reservados.
         </motion.p>
       </div>
