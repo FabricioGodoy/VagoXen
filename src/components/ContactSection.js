@@ -1,11 +1,21 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin } from "lucide-react";
+import emailjs from "emailjs-com"; // 👈 NUEVO
+
+// 👇 COMPLETÁ ESTO CON TUS DATOS DE EMAILJS
+const SERVICE_ID = "service_6nlisl4";
+const TEMPLATE_ID = "template_svse0xk";
+const PUBLIC_KEY = "5tS8UDmLXl4gZ4ZcG";
 
 const COLORS = {
   // Fondo general sección
   bgGradientFrom: "#141416", // midnight
   bgGradientTo: "#2b3036",   // navy
+  
+  // Dorados
+  gold: "#d2983a",
+  goldAlt: "#f0a840",
 
   // Panel principal
   cardBg: "rgba(20, 20, 22, 0.9)",
@@ -67,11 +77,42 @@ const ContactSection = () => {
     }));
   };
 
+  // 👇 SOLO CAMBIA ESTO: ENVIAMOS CON EMAILJS
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Formulario enviado:", formData);
-    alert("¡Gracias por tu mensaje! Nos pondremos en contacto pronto.");
-    setFormData({ name: "", email: "", message: "" });
+
+    const { name, email, message } = formData;
+
+    // Validación simple extra por las dudas
+    if (!name.trim() || !email.trim() || !message.trim()) {
+      alert("Por favor completá todos los campos.");
+      return;
+    }
+
+    emailjs
+      .send(
+        SERVICE_ID,
+        TEMPLATE_ID,
+        {
+          name,
+          email,
+          message,
+          // estos nombres los tenés que mapear con tus variables del template en EmailJS
+          from_name: name,
+          reply_to: email,
+          sent_at: new Date().toLocaleString(),
+        },
+        PUBLIC_KEY
+      )
+      .then(
+        () => {
+          alert("Mensaje enviado con éxito ✔️");
+          setFormData({ name: "", email: "", message: "" });
+        },
+        () => {
+          alert("Hubo un error al enviar el mensaje. Probá de nuevo en un rato.");
+        }
+      );
   };
 
   const sectionVariants = {
@@ -142,14 +183,23 @@ const ContactSection = () => {
                 backgroundColor: COLORS.gold,
               }}
             />
-            <span>Vagos 12</span>
+            <span>Vagos</span>
           </div>
-          <h2
-            className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4"
+             <h2
+            className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6"
             style={{ color: COLORS.textMain }}
           >
-            Hablemos de{" "}
-            <span style={{ color: COLORS.gold }}>remeras bostera</span>
+            Ropa para{" "}
+            <span
+              className="bg-clip-text text-transparent"
+              style={{
+                backgroundImage: `linear-gradient(to right, ${COLORS.gold}, ${COLORS.goldAlt})`,
+              }}
+            >
+              el hincha
+            </span>
+            <br />
+            de BOCA
           </h2>
           <p
             className="max-w-2xl mx-auto text-sm md:text-base"
@@ -247,7 +297,7 @@ const ContactSection = () => {
                       className="text-sm"
                       style={{ color: COLORS.textMain }}
                     >
-                      vagos@masvagos.com
+                      vagosx12@gmail.com
                     </p>
                   </div>
                 </div>
@@ -270,13 +320,13 @@ const ContactSection = () => {
                       className="text-xs uppercase font-semibold tracking-wide mb-0.5"
                       style={{ color: COLORS.textSoft }}
                     >
-                      Desde
+                      Envíos
                     </p>
                     <p
                       className="text-sm"
                       style={{ color: COLORS.textMain }}
                     >
-                      Donde el puchero se cocina a los balazos
+                      A TODO EL PAÍS
                     </p>
                   </div>
                 </div>
@@ -305,7 +355,7 @@ const ContactSection = () => {
                 style={{ color: COLORS.textSoft }}
               >
                 Respondemos lo antes posible. Si es día de partido, bancanos un
-                poquito más. 💛💙
+                poquito más. 💙💛💙
               </span>
             </div>
           </div>

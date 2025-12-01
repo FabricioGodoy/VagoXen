@@ -1,7 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Palette, Heart, Sparkles } from "lucide-react";
-import TwitterFrame from "./TwitterFrame";
 
 
 // 🔗 Redes (cambiá estos handles por los tuyos reales)

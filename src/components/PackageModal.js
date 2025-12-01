@@ -423,15 +423,14 @@ const PackageModal = ({ pkg, onClose }) => {
               Tabla guía de talles
             </button>
           </div>
-
-    {/*   <h3
+    <h3
             className="text-lg md:text-xl font-bold mb-2 md:mb-3"
             style={{ color: COLORS.sectionTitle }}
           >
-            Incluye
+            Envíos a todo el país
           </h3>
 
-          <ul className="list-none space-y-1.5 md:space-y-2 mb-6 md:mb-8">
+          {/* <ul className="list-none space-y-1.5 md:space-y-2 mb-6 md:mb-8">
             {pkg.includes.map((item, index) => (
               <li
                 key={index}
@@ -448,6 +447,7 @@ const PackageModal = ({ pkg, onClose }) => {
             ))}
           </ul> */}
 
+<br/>
           {/* BOTONES CTA */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 md:gap-3">
             <motion.a
