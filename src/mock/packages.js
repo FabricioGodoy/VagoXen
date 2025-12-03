@@ -2,7 +2,7 @@ const PUBLIC = process.env.PUBLIC_URL || '';
 
 export const remerasDescripcion = [
 {
-    id: 'pkg-001',
+    id: '01',
     name: 'Azul y Oro',
     description:
       '100% nuestros colores. 100% Boca. Un diseño en representación al Hincha Xeneize y al templo de Brandsen 805.',
@@ -17,18 +17,19 @@ export const remerasDescripcion = [
     ],
     image: `${PUBLIC}/img/azul/azul.webp`,
     price: `48.000`,
+    originalPrice: '80.000', 
     duration: 'Oversize',
     destination: 'UNISEX',
     includes: [
       'remera azul'
     ],
     whatsappMessage:
-      'Hola, me interesa la Remera Brandsen 805. ¿Podés pasarme talles y precio?',
+      'AGUANTE BOCA LOCO, me interesa la remera Azul y Oro',
       guiaTalle: `${PUBLIC}/img/guitaTalle/guiaTalle1.webp`
   },
 
    {
-    id: 'pkg-002',
+    id: '02',
     name: 'Vago Xeneize',
     description:
       'En homenaje a Vago Xeneize. Diseño moderno, con tipografía romana y flow abstracto. Estilo artístico y callejero.',
@@ -43,17 +44,18 @@ export const remerasDescripcion = [
     ],
     image: `${PUBLIC}/img/VAGOS/horizontalAmarilla.webp`,
     price: `58.000`,
+    originalPrice: '80.000', 
     duration: 'Remeron',
     destination: 'UNISEX',
     includes: [
       'remera amarilla'
     ],
     whatsappMessage:
-      'Hola, me interesa la Remera Vago Xeneize. ¿Podés pasarme talles y precio?',
+      'AGUANTE BOCA LOCO, me interesa la remera Vago Xeneize',
       guiaTalle: `${PUBLIC}/img/guitaTalle/guiaTalle1.webp`
   },
   {
-    id: 'pkg-003',
+    id: '03',
     name: '1905',
     description:
       'Un diseño que representa el nacimiento del Club Atlético Boca Juniors y sus hazañas en el Continente Asiático.',
@@ -70,13 +72,14 @@ export const remerasDescripcion = [
     // podés dejar "image" como primera imagen para compatibilidad
     image:`${PUBLIC}/img/negro/negra4.webp`,
     price: `48.000`,
+    originalPrice: '80.000', 
     duration: 'Oversize',
     destination: 'UNISEX',
     includes: [
       'remera negra'
     ],
     whatsappMessage:
-      'Hola, me interesa la Remera 1905. ¿Podés pasarme talles y precio?',
+      'AGUANTE BOCA LOCO, me interesa la remera 1905',
       guiaTalle: `${PUBLIC}/img/guitaTalle/guiaTalle1.webp`
   }
 ];

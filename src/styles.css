@@ -48,14 +48,14 @@
   transition: 0.25s ease;
 }
 
-.texto-flotante:hover {
+/* .texto-flotante:hover {
   background: linear-gradient(
     135deg,
     rgba(28, 73, 133, 0.55),
     rgba(0, 1, 16, 0.55)
   );
   color: #f0f0f0;
-}
+} */
 
 /* === Botón WhatsApp flotante === */
 .btn-flotante {

@@ -14,7 +14,7 @@ const COLORS = {
   navBgFrom: "#ffffff",
   navBgTo: "rgba(182, 182, 182, 0.95)",
   navBorderBottom: "#d2983a", // dorado del resto del proyecto
-  navText: "#ede350",
+  navText: "#EDE5DA",
   navTextActive: "#d2983a",
   navTextHover: "#d2983a",
   navIndicator: "#d2983a",
