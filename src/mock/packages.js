@@ -17,7 +17,7 @@ export const remerasDescripcion = [
     ],
     image: `${PUBLIC}/img/azul/azul.webp`,
     price: `48.000`,
-    originalPrice: '80.000', 
+    originalPrice: '60.000', 
     duration: 'Oversize',
     destination: 'UNISEX',
     includes: [
@@ -44,7 +44,7 @@ export const remerasDescripcion = [
     ],
     image: `${PUBLIC}/img/VAGOS/horizontalAmarilla.webp`,
     price: `58.000`,
-    originalPrice: '80.000', 
+    originalPrice: '65.000', 
     duration: 'Remeron',
     destination: 'UNISEX',
     includes: [
@@ -72,7 +72,7 @@ export const remerasDescripcion = [
     // podés dejar "image" como primera imagen para compatibilidad
     image:`${PUBLIC}/img/negro/negra4.webp`,
     price: `48.000`,
-    originalPrice: '80.000', 
+    originalPrice: '60.000', 
     duration: 'Oversize',
     destination: 'UNISEX',
     includes: [
