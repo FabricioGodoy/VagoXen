@@ -25,7 +25,7 @@ export const remerasDescripcion = [
       `${PUBLIC}/img/remeras/fotosAzulesVerticales/azul4.webp`,
       `${PUBLIC}/img/remeras/fotosAzulesVerticales/azul5.webp`,
     ],
-    image: `${PUBLIC}/img/azul/azul.webp`,
+    image: `${PUBLIC}/img/VAGOS/verticalAzul.webp`,
     price: `48.000`,
     originalPrice: '60.000', 
     duration: 'Oversize',
@@ -96,7 +96,7 @@ export const remerasDescripcion = [
       `${PUBLIC}/img/remeras/fotosNegrasVerticales/negra5.webp`,
     ],
     // podés dejar "image" como primera imagen para compatibilidad
-    image:`${PUBLIC}/img/negro/negra4.webp`,
+    image:`${PUBLIC}/img/VAGOS/horizontalNegra.webp`,
     price: `48.000`,
     originalPrice: '60.000', 
     duration: 'Oversize',
