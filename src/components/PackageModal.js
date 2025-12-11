@@ -92,17 +92,59 @@ const buildWhatsAppLink = (message = "", phone) => {
   return `${base}?${params.toString()}`;
 };
 
+// Hook para detectar mobile
+const useIsMobile = (breakpoint = 768) => {
+  const [isMobile, setIsMobile] = useState(
+    typeof window !== "undefined" ? window.innerWidth < breakpoint : false
+  );
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < breakpoint);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [breakpoint]);
+
+  return isMobile;
+};
+
 const PackageModal = ({ pkg, onClose }) => {
   if (!pkg) return null;
 
-  const images =
+  const isMobile = useIsMobile();
+
+  // imágenes base (horizontales)
+  const baseImages =
     Array.isArray(pkg.images) && pkg.images.length > 0
       ? pkg.images
       : [pkg.image];
 
+  // imágenes mobile (verticales) – si no hay, usa las base
+  const mobileImages =
+    Array.isArray(pkg.imagesMobile) && pkg.imagesMobile.length > 0
+      ? pkg.imagesMobile
+      : baseImages;
+
+  // set final de imágenes según viewport
+  const images = isMobile ? mobileImages : baseImages;
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [showSizeGuide, setShowSizeGuide] = useState(false);
+
+  // 🚀 PRELOAD de TODAS las imágenes del modal (horizontales + verticales)
+  useEffect(() => {
+    const urls = Array.from(
+      new Set([...(baseImages || []), ...(mobileImages || [])])
+    );
+
+    urls.forEach((src) => {
+      if (!src) return;
+      const img = new Image();
+      img.src = src;
+    });
+  }, [pkg.id]); // una vez por producto cuando abrís el modal
 
   // 🔁 Auto-slide
   useEffect(() => {
@@ -150,6 +192,9 @@ const PackageModal = ({ pkg, onClose }) => {
       document.body.style.overflow = originalOverflow;
     };
   }, [onClose]);
+
+  // Aspect ratio dinámico según viewport
+  const sliderAspectRatio = isMobile ? "3 / 4" : "3 / 2";
 
   return (
     <motion.div
@@ -209,13 +254,16 @@ const PackageModal = ({ pkg, onClose }) => {
         {/* SLIDER */}
         <div
           className="relative w-full overflow-hidden rounded-t-3xl"
-          style={{ aspectRatio: "3 / 2" }}
+          style={{ aspectRatio: sliderAspectRatio }}
         >
           <motion.img
             key={images[currentIndex]}
             src={images[currentIndex]}
             alt={`${pkg.name} - diseño ${currentIndex + 1}`}
-            className="w-full h-full object-contain bg-black"
+            className={
+              "h-full object-contain bg-black " +
+              (isMobile ? "w-[90%] mx-auto" : "w-full")
+            }
             initial={{ opacity: 0, scale: 1.03 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.4 }}
@@ -378,7 +426,7 @@ const PackageModal = ({ pkg, onClose }) => {
             </div>
 
             {/* Chip: Precio */}
-         {/*    <div
+            <div
               className="inline-flex items-center gap-3 text-sm px-3 py-2.5 md:px-4 md:py-3 rounded-2xl border"
               style={{
                 backgroundColor: COLORS.chipBg,
@@ -387,74 +435,52 @@ const PackageModal = ({ pkg, onClose }) => {
               }}
             >
               <CheckCircle size={18} color={COLORS.gold} />
-              <div className="font-medium">
-                <span
-                  className="opacity-80"
-                  style={{ color: COLORS.chipLabel }}
-                >
-                  Precio:
-                </span>{" "}
-                <span style={{ color: COLORS.bodyTextStrong }}>
-                  {pkg.price ? `$${pkg.price}` : "Consultar"}
-                </span>
-              </div>
-            </div> */}
 
-            {/* Chip: Precio */}
-              <div
-                className="inline-flex items-center gap-3 text-sm px-3 py-2.5 md:px-4 md:py-3 rounded-2xl border"
-                style={{
-                  backgroundColor: COLORS.chipBg,
-                  borderColor: COLORS.chipBorder,
-                  boxShadow: COLORS.chipShadow,
-                }}
-              >
-                <CheckCircle size={18} color={COLORS.gold} />
+              <div className="font-medium flex flex-col">
+                {pkg.originalPrice && pkg.originalPrice > pkg.price ? (
+                  <>
+                    {/* Etiqueta promo */}
+                    <span
+                      className="text-[11px] md:text-xs uppercase tracking-[0.08em] mb-0.5"
+                      style={{ color: COLORS.chipLabel, opacity: 0.85 }}
+                    >
+                      OFERTA lanzamiento
+                    </span>
 
-                <div className="font-medium flex flex-col">
-                  {pkg.originalPrice && pkg.originalPrice > pkg.price ? (
-                    <>
-                      {/* Etiqueta promo */}
+                    {/* Precios */}
+                    <div className="flex items-baseline gap-2">
                       <span
-                        className="text-[11px] md:text-xs uppercase tracking-[0.08em] mb-0.5"
-                        style={{ color: COLORS.chipLabel, opacity: 0.85 }}
+                        className="text-xs md:text-sm line-through"
+                        style={{ color: "rgba(244, 227, 176, 0.7)" }}
                       >
-                        OFERTA lanzamiento
+                        ${pkg.originalPrice?.toLocaleString("es-AR")}
                       </span>
-
-                      {/* Precios */}
-                      <div className="flex items-baseline gap-2">
-                        <span
-                          className="text-xs md:text-sm line-through"
-                          style={{ color: "rgba(244, 227, 176, 0.7)" }}
-                        >
-                          ${pkg.originalPrice?.toLocaleString("es-AR")}
-                        </span>
-                        <span
-                          className="text-base md:text-lg font-semibold"
-                          style={{ color: COLORS.bodyTextStrong }}
-                        >
-                          ${pkg.price?.toLocaleString("es-AR")}
-                        </span>
-                      </div>
-                    </>
-                  ) : (
-                    <>
-                      {/* Caso normal sin precio anterior */}
                       <span
-                        className="opacity-80"
-                        style={{ color: COLORS.chipLabel }}
+                        className="text-base md:text-lg font-semibold"
+                        style={{ color: COLORS.bodyTextStrong }}
                       >
-                        Precio:
-                      </span>{" "}
-                      <span style={{ color: COLORS.bodyTextStrong }}>
-                        {pkg.price ? `$${pkg.price?.toLocaleString("es-AR")}` : "Consultar"}
+                        ${pkg.price?.toLocaleString("es-AR")}
                       </span>
-                    </>
-                  )}
-                </div>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    {/* Caso normal sin precio anterior */}
+                    <span
+                      className="opacity-80"
+                      style={{ color: COLORS.chipLabel }}
+                    >
+                      Precio:
+                    </span>{" "}
+                    <span style={{ color: COLORS.bodyTextStrong }}>
+                      {pkg.price
+                        ? `$${pkg.price?.toLocaleString("es-AR")}`
+                        : "Consultar"}
+                    </span>
+                  </>
+                )}
               </div>
-
+            </div>
           </div>
 
           {/* Botón pequeño: Tabla guía de talles */}
@@ -479,31 +505,16 @@ const PackageModal = ({ pkg, onClose }) => {
               Tabla guía de talles
             </button>
           </div>
-    <h3
+
+          <h3
             className="text-lg md:text-xl font-bold mb-2 md:mb-3"
             style={{ color: COLORS.sectionTitle }}
           >
             Envíos a todo el país
           </h3>
 
-          {/* <ul className="list-none space-y-1.5 md:space-y-2 mb-6 md:mb-8">
-            {pkg.includes.map((item, index) => (
-              <li
-                key={index}
-                className="flex items-start text-sm md:text-base"
-                style={{ color: COLORS.listText }}
-              >
-                <CheckCircle
-                  size={18}
-                  color={COLORS.gold}
-                  className="mr-3 mt-0.5 flex-shrink-0"
-                />
-                {item}
-              </li>
-            ))}
-          </ul> */}
+          <br />
 
-<br/>
           {/* BOTONES CTA */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 md:gap-3">
             <motion.a

@@ -8,12 +8,22 @@ export const remerasDescripcion = [
       '100% nuestros colores. 100% Boca. Un diseño en representación al Hincha Xeneize y al templo de Brandsen 805.',
     longDescription:
       '100% nuestros colores. 100% Boca. Un diseño en representación al Hincha Xeneize y al templo de Brandsen 805.',
+ // HORIZONTALES → para desktop
     images: [
-       `${PUBLIC}/img/azul/azul.webp`,
-       `${PUBLIC}/img/azul/azul2.webp`,
-       `${PUBLIC}/img/azul/azul3.webp`,
-       `${PUBLIC}/img/azul/azul4.webp`,
-       `${PUBLIC}/img/azul/azul5.webp`,
+      `${PUBLIC}/img/remeras/fotosAzulesHorizontal/azul.webp`,
+      `${PUBLIC}/img/remeras/fotosAzulesHorizontal/azul2.webp`,
+      `${PUBLIC}/img/remeras/fotosAzulesHorizontal/azul3.webp`,
+      `${PUBLIC}/img/remeras/fotosAzulesHorizontal/azul4.webp`,
+      `${PUBLIC}/img/remeras/fotosAzulesHorizontal/azul5.webp`,
+    ],
+
+    // VERTICALES → para mobile
+    imagesMobile: [
+      `${PUBLIC}/img/remeras/fotosAzulesVerticales/azul.webp`,
+      `${PUBLIC}/img/remeras/fotosAzulesVerticales/azul2.webp`,
+      `${PUBLIC}/img/remeras/fotosAzulesVerticales/azul3.webp`,
+      `${PUBLIC}/img/remeras/fotosAzulesVerticales/azul4.webp`,
+      `${PUBLIC}/img/remeras/fotosAzulesVerticales/azul5.webp`,
     ],
     image: `${PUBLIC}/img/azul/azul.webp`,
     price: `48.000`,
@@ -35,12 +45,20 @@ export const remerasDescripcion = [
       'En homenaje a Vago Xeneize. Diseño moderno, con tipografía romana y flow abstracto. Estilo artístico y callejero.',
     longDescription:
       'En homenaje a Vago Xeneize. Diseño moderno, con tipografía romana y flow abstracto. Estilo artístico y callejero.',
-    images: [
-      `${PUBLIC}/img/amarillo/amarilla2.webp`,
-      `${PUBLIC}/img/amarillo/amarilla4.webp`,
-      `${PUBLIC}/img/amarillo/amarilla.webp`,
-      `${PUBLIC}/img/amarillo/amarilla5.webp`,
-      `${PUBLIC}/img/amarillo/amarilla3.webp`,
+     images: [
+      `${PUBLIC}/img/remeras/fotosAmarillasHorizontal/amarilla.webp`,
+      `${PUBLIC}/img/remeras/fotosAmarillasHorizontal/amarilla2.webp`,
+      `${PUBLIC}/img/remeras/fotosAmarillasHorizontal/amarilla3.webp`,
+      `${PUBLIC}/img/remeras/fotosAmarillasHorizontal/amarilla4.webp`,
+      `${PUBLIC}/img/remeras/fotosAmarillasHorizontal/amarilla5.webp`,
+    ],
+
+    imagesMobile: [
+      `${PUBLIC}/img/remeras/fotosAmarillasVerticales/amarilla.webp`,
+      `${PUBLIC}/img/remeras/fotosAmarillasVerticales/amarilla2.webp`,
+      `${PUBLIC}/img/remeras/fotosAmarillasVerticales/amarilla3.webp`,
+      `${PUBLIC}/img/remeras/fotosAmarillasVerticales/amarilla4.webp`,
+      `${PUBLIC}/img/remeras/fotosAmarillasVerticales/amarilla5.webp`,
     ],
     image: `${PUBLIC}/img/VAGOS/horizontalAmarilla.webp`,
     price: `58.000`,
@@ -63,11 +81,19 @@ export const remerasDescripcion = [
       'Un diseño que representa el nacimiento del Club Atlético Boca Juniors y sus hazañas en el Continente Asiático.',
     // 🔴 NUEVO: array de imágenes para el slider
     images: [
-      `${PUBLIC}/img/negro/negra4.webp`,
-      `${PUBLIC}/img/negro/negra2.webp`,
-      `${PUBLIC}/img/negro/negra.webp`,
-      `${PUBLIC}/img/negro/negra3.webp`,
-      `${PUBLIC}/img/negro/negra5.webp`,
+      `${PUBLIC}/img/remeras/fotosNegrasHorizontal/negra.webp`,
+      `${PUBLIC}/img/remeras/fotosNegrasHorizontal/negra2.webp`,
+      `${PUBLIC}/img/remeras/fotosNegrasHorizontal/negra3.webp`,
+      `${PUBLIC}/img/remeras/fotosNegrasHorizontal/negra4.webp`,
+      `${PUBLIC}/img/remeras/fotosNegrasHorizontal/negra5.webp`,
+    ],
+
+    imagesMobile: [
+      `${PUBLIC}/img/remeras/fotosNegrasVerticales/negra.webp`,
+      `${PUBLIC}/img/remeras/fotosNegrasVerticales/negra2.webp`,
+      `${PUBLIC}/img/remeras/fotosNegrasVerticales/negra3.webp`,
+      `${PUBLIC}/img/remeras/fotosNegrasVerticales/negra4.webp`,
+      `${PUBLIC}/img/remeras/fotosNegrasVerticales/negra5.webp`,
     ],
     // podés dejar "image" como primera imagen para compatibilidad
     image:`${PUBLIC}/img/negro/negra4.webp`,

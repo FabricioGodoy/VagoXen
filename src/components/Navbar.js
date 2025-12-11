@@ -107,8 +107,7 @@ const Navbar = () => {
   ].join(" ")}
   style={{
     color: COLORS.navText,
-    backgroundImage:
-      "linear-gradient(to right, #000000)",/* , #031c4f, #cec53fff */
+    backgroundImage: "linear-gradient(to right, #000000, #031c4f)",/* , #031c4f, #cec53fff */
 /* ede350f */    borderBottomColor: COLORS.navBorderBottom,
   }}
 >

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 // 🎨 Paleta centralizada SOLO con los colores que usa este Hero
 const COLORS = {
@@ -29,7 +29,7 @@ const BANNERS = [
   {
     img: `${process.env.PUBLIC_URL}/img/banner/bannerAmarillo.webp`,
   },
-   {
+  {
     img: `${process.env.PUBLIC_URL}/img/banner/banner_3.webp`,
   },
   {
@@ -43,6 +43,15 @@ export default function HeroModern() {
 
   // (si en algún momento querés trackear interacción de usuario)
   const userInteracted = useRef(false);
+
+  // 🚀 PRELOAD de TODAS las imágenes del hero
+  useEffect(() => {
+    BANNERS.forEach((banner) => {
+      if (!banner.img) return;
+      const img = new Image();
+      img.src = banner.img;
+    });
+  }, []);
 
   // AUTO-SLIDE con pausa si el usuario toca las flechas
   useEffect(() => {
@@ -81,23 +90,27 @@ export default function HeroModern() {
     >
       {/* Carrusel */}
       <div className="relative h-[85vh] min-h-[520px] overflow-hidden">
-        <AnimatePresence mode="wait">
-          <motion.a
-            key={index}
-            href={BANNERS[index].link}
-            className="absolute inset-0 block"
-            initial={{ opacity: 0.4, scale: 1 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0.2, scale: 1 }}
-            transition={{ duration: 0.1, ease: "easeInOut" }}
-          >
-            <img
-              src={BANNERS[index].img}
-              alt={`Remera ${index + 1}`}
-              className="h-full w-full object-cover"
-            />
-          </motion.a>
-        </AnimatePresence>
+        {/* TRACK deslizante, sin fades raros */}
+        <motion.div
+          className="flex h-full w-full"
+          animate={{ x: `-${index * 100}%` }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+        >
+          {BANNERS.map((banner, i) => (
+            <a
+              key={i}
+              href={banner.link}
+              className="block h-full w-full flex-shrink-0"
+            >
+              <img
+                src={banner.img}
+                alt={`Remera ${i + 1}`}
+                className="h-full w-full object-cover"
+                loading="eager"
+              />
+            </a>
+          ))}
+        </motion.div>
 
         {/* Overlay con gradient desde COLORS */}
         <div

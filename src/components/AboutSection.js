@@ -189,25 +189,33 @@ const AboutSection = () => {
               className="text-lg md:text-xl leading-relaxed mb-6"
               style={{ color: COLORS.textMain80 }}
             >
-              Somos dos hinchas de Boca que un día, después de años compartiendo Vago Xeneize con una comunidad que siente lo mismo que nosotros, decidimos dar un paso más: crear VAGOS, una marca de ropa hecha por y para quienes viven los colores.
+               <span className="font-semibold" style={{ color: COLORS.gold }}>
+               VAGOS{" "}
+              </span> es una marca soñada, diseñada y llevada a cabo por Vago Xeneize, una comunidad de Boca para hinchas de Boca. Somos dos bosteros que buscan vivir  <span className="font-semibold" style={{ color: COLORS.gold }}>
+               A LO BOCA{" "}
+              </span> todos los días, y  <span className="font-semibold" style={{ color: COLORS.gold }}>
+               VAGOS{" "}
+              </span> es nuestra manera de materializar ese estilo de vida. Una forma de llevar a Boca con uno, siempre, en cualquier momento y lugar.
               
               <br/>
               <br/>
-              No tenemos décadas de historia. Tenemos algo mejor: 
-              {" "}
-              <span className="font-semibold" style={{ color: COLORS.gold }}>
-                ganas, identidad y la convicción de que lo auténtico empieza desde abajo.{" "}
-              </span>
-             Cada prenda que hacemos pasa por horas de diseño, pruebas, errores y ajustes hasta que queda como queremos: simple, urbana y con ese ADN bostero que solo entiende quien alguna vez sintió a La Bombonera temblar.
-             <br/>
-             Hacemos ropa para los nuestros — para los que caminan, sienten y sueñan en azul y amarillo.
-             <br/>
-             <br/>
-                {" "}
-              <span className="font-semibold" style={{ color: COLORS.gold }}>
-                Esto es VAGOS. {" "}
-              </span>
-               Y recién estamos empezando.
+              
+             <span className="font-semibold" style={{ color: COLORS.gold }}>
+               VAGOS{" "}
+              </span> nace de bosteros para bosteros. Para los que caminan, sienten y viven azul y oro. No somos diseñadores, no tenemos fábricas ni sabemos editar reels o TikToks… pero acá estamos, haciendo lo que sentimos, convencidos de que <span className="font-semibold" style={{ color: COLORS.gold }}>
+               A LO BOCA{" "}
+              </span> se vive mejor y de que era hora de crear algo que nos represente de verdad.
+               <br/>
+              <br/>
+              Esta es nuestra primera colección, y confiamos en que será la primera de muchas. Si estás leyendo esto, gracias por el aguante en estos primeros pasos.
+ <br/>
+              <br/>
+              Del Puente de La Boca al mundo.
+            Esto es <span className="font-semibold" style={{ color: COLORS.gold }}>
+               VAGOS{" "}
+              </span>.
+
+
             </p>
 {/* 
             <p
