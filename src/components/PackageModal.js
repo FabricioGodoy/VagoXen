@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import { motion } from "framer-motion";
 import { X, MapPin, Clock, CheckCircle, ChevronLeft, ChevronRight } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
@@ -79,9 +79,14 @@ const toResponsiveObj = (item, fallbackAlt = "") => {
   return { src: item.src, srcSet: item.srcSet, alt: item.alt || fallbackAlt };
 };
 
-const preloadImage = (src) => {
+// ✅ Preload responsive real (soporta srcSet + sizes)
+const preloadResponsiveImage = ({ src, srcSet }, sizes = "100vw") => {
   if (!src) return;
   const img = new Image();
+  if (srcSet) img.srcset = srcSet; // setear antes del src
+  img.sizes = sizes;
+  img.decoding = "async";
+  img.loading = "eager";
   img.src = src;
 };
 
@@ -116,16 +121,49 @@ const PackageModal = ({ pkg, onClose }) => {
   const [isPaused, setIsPaused] = useState(false);
   const [showSizeGuide, setShowSizeGuide] = useState(false);
 
-  // ✅ Preload SOLO current + next (no todas)
+  // ✅ Cache de preloads para no repetir requests
+  const preloadedKeysRef = useRef(new Set());
+  const modIndex = useCallback((i, n) => ((i % n) + n) % n, []);
+
+  const preloadAt = useCallback(
+    (i) => {
+      const n = images.length;
+      if (!n) return;
+
+      const idx = modIndex(i, n);
+      const it = images[idx];
+      if (!it?.src) return;
+
+      const key = `${pkg.id || "pkg"}|${isMobile ? "m" : "d"}|${idx}|${it.src}|${it.srcSet || ""}`;
+      if (preloadedKeysRef.current.has(key)) return;
+      preloadedKeysRef.current.add(key);
+
+      const sizes = isMobile ? "90vw" : "min(896px, 100vw)";
+      preloadResponsiveImage({ src: it.src, srcSet: it.srcSet }, sizes);
+    },
+    [images, modIndex, pkg.id, isMobile]
+  );
+
+  // ✅ PRELOAD “VENTANA”: actual + siguiente/anterior + tercera (±2)
   useEffect(() => {
     if (!images.length) return;
 
-    const current = images[currentIndex];
-    const next = images[(currentIndex + 1) % images.length];
+    const targets = [
+      currentIndex,
+      currentIndex + 1,
+      currentIndex - 1,
+      currentIndex + 2,
+      currentIndex - 2,
+    ];
 
-    preloadImage(current?.src);
-    preloadImage(next?.src);
-  }, [pkg.id, images.length, currentIndex, isMobile]);
+    const run = () => targets.forEach(preloadAt);
+
+    if ("requestIdleCallback" in window) {
+      window.requestIdleCallback(run, { timeout: 700 });
+    } else {
+      setTimeout(run, 0);
+    }
+  }, [images.length, currentIndex, preloadAt]);
 
   // 🔁 Auto-slide
   useEffect(() => {
@@ -237,13 +275,14 @@ const PackageModal = ({ pkg, onClose }) => {
             srcSet={current?.srcSet}
             sizes={isMobile ? "90vw" : "min(896px, 100vw)"}
             alt={`${pkg.name} - ${current?.alt || `diseño ${currentIndex + 1}`}`}
-className={
-  "w-full h-full " +
-  (isMobile ? "object-cover" : "object-contain") +
-  " bg-black"
-}
+            className={
+              "w-full h-full " +
+              (isMobile ? "object-cover" : "object-contain") +
+              " bg-black"
+            }
             loading="eager"
             decoding="async"
+            fetchpriority="high"
             initial={{ opacity: 0, scale: 1.03 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.4 }}
@@ -383,7 +422,9 @@ className={
             >
               <CheckCircle size={18} color={COLORS.gold} />
               <div className="font-medium flex flex-col">
-                {pkg.originalPrice && Number(String(pkg.originalPrice).replace(/\./g, "")) > Number(String(pkg.price).replace(/\./g, "")) ? (
+                {pkg.originalPrice &&
+                Number(String(pkg.originalPrice).replace(/\./g, "")) >
+                  Number(String(pkg.price).replace(/\./g, "")) ? (
                   <>
                     <span
                       className="text-[11px] md:text-xs uppercase tracking-[0.08em] mb-0.5"
@@ -393,7 +434,10 @@ className={
                     </span>
 
                     <div className="flex items-baseline gap-2">
-                      <span className="text-xs md:text-sm line-through" style={{ color: "rgba(244, 227, 176, 0.7)" }}>
+                      <span
+                        className="text-xs md:text-sm line-through"
+                        style={{ color: "rgba(244, 227, 176, 0.7)" }}
+                      >
                         ${Number(String(pkg.originalPrice).replace(/\./g, "")).toLocaleString("es-AR")}
                       </span>
                       <span className="text-base md:text-lg font-semibold" style={{ color: COLORS.bodyTextStrong }}>

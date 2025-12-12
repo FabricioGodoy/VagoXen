@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { motion } from "framer-motion";
 
 // 🎨 Paleta centralizada SOLO con los colores que usa este Hero
@@ -27,6 +27,8 @@ const heroBanner = (baseName) => ({
     ${PUBLIC}/img/generated/${baseName}-1920.webp 1920w,
     ${PUBLIC}/img/generated/${baseName}-2560.webp 2560w
   `.trim(),
+  // opcional si después querés link por banner:
+  // link: "/"
 });
 
 // BANNERS (NOMBRES EXACTOS SEGÚN TU CARPETA /img/generated)
@@ -42,13 +44,55 @@ export default function HeroModern() {
   const [isPaused, setIsPaused] = useState(false);
   const userInteracted = useRef(false);
 
-  // ✅ PRELOAD SOLO del primer banner (no de todos)
-  useEffect(() => {
-    const first = BANNERS[0];
-    if (!first?.src) return;
-    const img = new Image();
-    img.src = first.src;
+  // ✅ Cache de preloads para no repetir requests
+  const preloadedKeysRef = useRef(new Set());
+
+  const modIndex = useCallback((i) => {
+    const n = BANNERS.length;
+    return ((i % n) + n) % n;
   }, []);
+
+  const preloadBannerAt = useCallback(
+    (i) => {
+      const idx = modIndex(i);
+      const banner = BANNERS[idx];
+      if (!banner?.src) return;
+
+      // clave única (si cambiás srcSet en el futuro, no rompe)
+      const key = `${idx}|${banner.src}`;
+      if (preloadedKeysRef.current.has(key)) return;
+      preloadedKeysRef.current.add(key);
+
+      const img = new Image();
+
+      // Importante: setear srcset/sizes ANTES del src
+      // para que el browser elija el mejor recurso a bajar.
+      img.srcset = banner.srcSet;
+      img.sizes = "100vw";
+      img.decoding = "async";
+      img.loading = "eager";
+      img.src = banner.src;
+    },
+    [modIndex]
+  );
+
+  // ✅ PRELOAD “VENTANA”:
+  // - Siempre: actual
+  // - Ya: siguiente y anterior
+  // - También: la 3ra (siguiente de la siguiente y anterior de la anterior)
+  useEffect(() => {
+    // 0: visible, ±1: siguiente/anterior, ±2: tercera
+    const targets = [index, index + 1, index - 1, index + 2, index - 2];
+
+    // Si querés aún más suave, esto evita competir con render:
+    const run = () => targets.forEach(preloadBannerAt);
+
+    if ("requestIdleCallback" in window) {
+      window.requestIdleCallback(run, { timeout: 700 });
+    } else {
+      setTimeout(run, 0);
+    }
+  }, [index, preloadBannerAt]);
 
   // AUTO-SLIDE con pausa si el usuario toca las flechas
   useEffect(() => {
@@ -91,15 +135,17 @@ export default function HeroModern() {
           transition={{ duration: 0.5, ease: "easeInOut" }}
         >
           {BANNERS.map((banner, i) => (
-            <a key={i} href={banner.link} className="block h-full w-full flex-shrink-0">
+            <a key={i} href={banner.link || "#"} className="block h-full w-full flex-shrink-0">
               <img
                 src={banner.src}
                 srcSet={banner.srcSet}
                 sizes="100vw"
                 alt={`Remera ${i + 1}`}
                 className="h-full w-full object-cover"
-                loading={i === 0 ? "eager" : "lazy"}
+                loading={i === index ? "eager" : "lazy"}
                 decoding="async"
+                // ayuda al LCP si el hero es lo primero que se ve:
+                fetchpriority={i === index ? "high" : "low"}
               />
             </a>
           ))}
