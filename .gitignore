@@ -40,3 +40,7 @@ desktop.ini
 # Si tuvieses carpetas de backups que NO son parte del sitio:
 # /public/img/backups/
 # /public/img/tmp/
+
+# 🔥 Imágenes originales (fuente, NO runtime)
+src/assets/originals/
+

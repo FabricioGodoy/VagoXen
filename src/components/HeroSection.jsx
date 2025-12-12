@@ -3,54 +3,51 @@ import { motion } from "framer-motion";
 
 // 🎨 Paleta centralizada SOLO con los colores que usa este Hero
 const COLORS = {
-  // Fondo general del hero
   heroBg: "#000000",
-
-  // Overlay (equivalente a from-black/10 via-black/40 to-black/80)
   heroOverlayFrom: "rgba(0, 0, 0, 0.10)",
   heroOverlayVia: "rgba(0, 0, 0, 0.40)",
   heroOverlayTo: "rgba(0, 0, 0, 0.80)",
-
-  // Flechas
-  heroArrowBorder: "rgba(255, 255, 255, 0.30)", // antes border-white/30
-  heroArrowBg: "rgba(0, 0, 0, 0.60)",           // antes bg-black/60
-  heroArrowIcon: "rgba(255, 255, 255, 0.90)",   // antes text-white/90
-
-  // Puntitos
-  heroDotActive: "#ffffff",                     // antes bg-white
-  heroDotInactive: "rgba(255, 255, 255, 0.40)", // antes bg-white/40
+  heroArrowBorder: "rgba(255, 255, 255, 0.30)",
+  heroArrowBg: "rgba(0, 0, 0, 0.60)",
+  heroArrowIcon: "rgba(255, 255, 255, 0.90)",
+  heroDotActive: "#ffffff",
+  heroDotInactive: "rgba(255, 255, 255, 0.40)",
 };
 
-// LAS REMERAS AQUÍ
+const PUBLIC = process.env.PUBLIC_URL || "";
+
+// Helper: arma src/srcSet para los hero banners ya generados en /public/img/generated
+const heroBanner = (baseName) => ({
+  src: `${PUBLIC}/img/generated/${baseName}-1280.webp`, // fallback razonable
+  srcSet: `
+    ${PUBLIC}/img/generated/${baseName}-640.webp 640w,
+    ${PUBLIC}/img/generated/${baseName}-960.webp 960w,
+    ${PUBLIC}/img/generated/${baseName}-1280.webp 1280w,
+    ${PUBLIC}/img/generated/${baseName}-1600.webp 1600w,
+    ${PUBLIC}/img/generated/${baseName}-1920.webp 1920w,
+    ${PUBLIC}/img/generated/${baseName}-2560.webp 2560w
+  `.trim(),
+});
+
+// BANNERS (NOMBRES EXACTOS SEGÚN TU CARPETA /img/generated)
 const BANNERS = [
-  {
-    img: `${process.env.PUBLIC_URL}/img/banner/banner_1.webp`,
-  },
-  {
-    img: `${process.env.PUBLIC_URL}/img/banner/bannerAmarillo.webp`,
-  },
-  {
-    img: `${process.env.PUBLIC_URL}/img/banner/banner_3.webp`,
-  },
-  {
-    img: `${process.env.PUBLIC_URL}/img/banner/banner_4.webp`,
-  },
+  heroBanner("hero_banner_1"),
+  heroBanner("hero_bannerAmarillo"),
+  heroBanner("hero_banner_3"),
+  heroBanner("hero_banner_4"),
 ];
 
 export default function HeroModern() {
   const [index, setIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-
-  // (si en algún momento querés trackear interacción de usuario)
   const userInteracted = useRef(false);
 
-  // 🚀 PRELOAD de TODAS las imágenes del hero
+  // ✅ PRELOAD SOLO del primer banner (no de todos)
   useEffect(() => {
-    BANNERS.forEach((banner) => {
-      if (!banner.img) return;
-      const img = new Image();
-      img.src = banner.img;
-    });
+    const first = BANNERS[0];
+    if (!first?.src) return;
+    const img = new Image();
+    img.src = first.src;
   }, []);
 
   // AUTO-SLIDE con pausa si el usuario toca las flechas
@@ -64,7 +61,6 @@ export default function HeroModern() {
     return () => clearInterval(interval);
   }, [isPaused]);
 
-  // función para frenar 6 segundos
   const pauseAutoSlide = () => {
     setIsPaused(true);
     setTimeout(() => setIsPaused(false), 6000);
@@ -88,31 +84,28 @@ export default function HeroModern() {
       className="relative"
       style={{ marginTop: "-2vh", backgroundColor: COLORS.heroBg }}
     >
-      {/* Carrusel */}
       <div className="relative h-[85vh] min-h-[520px] overflow-hidden">
-        {/* TRACK deslizante, sin fades raros */}
         <motion.div
           className="flex h-full w-full"
           animate={{ x: `-${index * 100}%` }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
         >
           {BANNERS.map((banner, i) => (
-            <a
-              key={i}
-              href={banner.link}
-              className="block h-full w-full flex-shrink-0"
-            >
+            <a key={i} href={banner.link} className="block h-full w-full flex-shrink-0">
               <img
-                src={banner.img}
+                src={banner.src}
+                srcSet={banner.srcSet}
+                sizes="100vw"
                 alt={`Remera ${i + 1}`}
                 className="h-full w-full object-cover"
-                loading="eager"
+                loading={i === 0 ? "eager" : "lazy"}
+                decoding="async"
               />
             </a>
           ))}
         </motion.div>
 
-        {/* Overlay con gradient desde COLORS */}
+        {/* Overlay */}
         <div
           className="absolute inset-0 pointer-events-none z-10"
           style={{
@@ -125,7 +118,7 @@ export default function HeroModern() {
           }}
         />
 
-        {/* Flecha izquierda */}
+        {/* Flechas */}
         <button
           type="button"
           className="group absolute top-1/2 left-6 -translate-y-1/2 z-20 flex h-10 w-10 items-center justify-center rounded-full backdrop-blur-sm text-lg transition-transform duration-200 hover:scale-110 hover:brightness-110"
@@ -141,7 +134,6 @@ export default function HeroModern() {
           </span>
         </button>
 
-        {/* Flecha derecha */}
         <button
           type="button"
           className="group absolute top-1/2 right-6 -translate-y-1/2 z-20 flex h-10 w-10 items-center justify-center rounded-full backdrop-blur-sm text-lg transition-transform duration-200 hover:scale-110 hover:brightness-110"
@@ -173,9 +165,7 @@ export default function HeroModern() {
                   active ? "w-6" : "w-2.5"
                 }`}
                 style={{
-                  backgroundColor: active
-                    ? COLORS.heroDotActive
-                    : COLORS.heroDotInactive,
+                  backgroundColor: active ? COLORS.heroDotActive : COLORS.heroDotInactive,
                 }}
               />
             );

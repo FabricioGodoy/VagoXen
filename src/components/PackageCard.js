@@ -1,6 +1,5 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { MapPin, Clock } from "lucide-react";
 
 const COLORS = {
   midnight: "#141416",
@@ -34,28 +33,31 @@ const COLORS = {
 const PackageCard = ({ pkg, onSelectPackage, disableAnimation = false }) => {
   const Wrapper = disableAnimation ? "div" : motion.div;
 
-  return (
-  <Wrapper
-  {...(!disableAnimation && {
-    initial: { opacity: 0, y: 40 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true, amount: 0.25 },
-    transition: { duration: 0.35 },
-  })}
-  onClick={() => onSelectPackage(pkg)}
-  className="
-    group relative cursor-pointer rounded-2xl overflow-hidden
-    border shadow-xl hover:shadow-2xl hover:-translate-y-1
-    transition-all duration-300 flex flex-col
-    h-full min-h-[430px]
-  "
-  style={{
-    backgroundImage: `linear-gradient(to bottom, ${COLORS.cardBgFrom}, ${COLORS.cardBgTo})`,
-    color: COLORS.textMain,
-    borderColor: COLORS.borderSoft,
-  }}
->
+  // ✅ Preferimos responsive (imageCard). Fallback a legacy (image).
+  const imgSrc = pkg?.imageCard?.src || pkg?.image;
+  const imgSrcSet = pkg?.imageCard?.srcSet || undefined;
 
+  return (
+    <Wrapper
+      {...(!disableAnimation && {
+        initial: { opacity: 0, y: 40 },
+        whileInView: { opacity: 1, y: 0 },
+        viewport: { once: true, amount: 0.25 },
+        transition: { duration: 0.35 },
+      })}
+      onClick={() => onSelectPackage(pkg)}
+      className="
+        group relative cursor-pointer rounded-2xl overflow-hidden
+        border shadow-xl hover:shadow-2xl hover:-translate-y-1
+        transition-all duration-300 flex flex-col
+        h-full min-h-[430px]
+      "
+      style={{
+        backgroundImage: `linear-gradient(to bottom, ${COLORS.cardBgFrom}, ${COLORS.cardBgTo})`,
+        color: COLORS.textMain,
+        borderColor: COLORS.borderSoft,
+      }}
+    >
       {/* TOP LINE */}
       <div
         className="absolute inset-x-0 top-0 h-[2px]"
@@ -65,10 +67,13 @@ const PackageCard = ({ pkg, onSelectPackage, disableAnimation = false }) => {
       {/* IMAGEN */}
       <div className="relative h-56 md:h-80 overflow-hidden flex-shrink-0">
         <img
-          src={pkg.image}
+          src={imgSrc}
+          srcSet={imgSrcSet}
+          sizes="(min-width: 768px) 33vw, 80vw"
           alt={pkg.name}
           className="h-full w-full object-cover transform transition-transform duration-700 ease-out group-hover:scale-105"
           loading="lazy"
+          decoding="async"
         />
 
         <div
@@ -83,53 +88,22 @@ const PackageCard = ({ pkg, onSelectPackage, disableAnimation = false }) => {
           }}
         />
 
-        <h3 className="absolute bottom-3 left-3 right-3 text-xl md:text-2xl font-extrabold drop-shadow-xl"style={{ color: "#d0d0d0ff" }}>
-          
+        <h3
+          className="absolute bottom-3 left-3 right-3 text-xl md:text-2xl font-extrabold drop-shadow-xl"
+          style={{ color: "#d0d0d0ff" }}
+        >
           {pkg.name}
         </h3>
       </div>
 
       {/* CONTENT */}
       <div className="p-4 md:p-6 flex flex-col flex-1">
-        <p
-          className="mb-3 md:mb-4 flex-shrink-0"
-          style={{ color: COLORS.textSoft }}
-        >
+        <p className="mb-3 md:mb-4 flex-shrink-0" style={{ color: COLORS.textSoft }}>
           {pkg.description}
         </p>
 
-  {/*       <div className="flex flex-col gap-2 mb-4 flex-shrink-0">
-          <div
-            className="inline-flex items-center gap-2 
-              text-xs md:text-sm 
-              px-2.5 py-1.5 md:px-3 md:py-2
-              rounded-xl w-fit border"
-            style={{
-              backgroundColor: COLORS.badgeBg,
-              borderColor: COLORS.borderSoft,
-              color: COLORS.badgeText,
-            }}
-          >
-            <MapPin size={15} color={COLORS.gold} />
-            <span>{pkg.destination}</span>
-          </div>
+        <br />
 
-          <div
-            className="inline-flex items-center gap-2 
-              text-xs md:text-sm 
-              px-2.5 py-1.5 md:px-3 md:py-2
-              rounded-xl w-fit border"
-            style={{
-              backgroundColor: COLORS.badgeBg,
-              borderColor: COLORS.borderSoft,
-              color: COLORS.badgeText,
-            }}
-          >
-            <Clock size={15} color={COLORS.gold} />
-            <span>{pkg.duration}</span>
-          </div>
-        </div> */}
-<br/>
         <div className="flex-1" />
 
         {/* BOTÓN */}
@@ -146,15 +120,9 @@ const PackageCard = ({ pkg, onSelectPackage, disableAnimation = false }) => {
             backgroundColor: COLORS.buttonBg,
             color: COLORS.buttonText,
           }}
-          onMouseEnter={(e) =>
-            (e.currentTarget.style.backgroundColor = COLORS.buttonBgHover)
-          }
-          onMouseLeave={(e) =>
-            (e.currentTarget.style.backgroundColor = COLORS.buttonBg)
-          }
-          onMouseDown={(e) =>
-            (e.currentTarget.style.backgroundColor = COLORS.buttonBgActive)
-          }
+          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = COLORS.buttonBgHover)}
+          onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = COLORS.buttonBg)}
+          onMouseDown={(e) => (e.currentTarget.style.backgroundColor = COLORS.buttonBgActive)}
           onFocus={(e) =>
             (e.currentTarget.style.boxShadow = `0 0 0 2px ${COLORS.buttonFocusRing}`)
           }

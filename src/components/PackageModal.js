@@ -1,84 +1,49 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import {
-  X,
-  MapPin,
-  Clock,
-  CheckCircle,
-  ChevronLeft,
-  ChevronRight,
-} from "lucide-react";
-
+import { X, MapPin, Clock, CheckCircle, ChevronLeft, ChevronRight } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { WHATSAPP_PHONE } from "../config";
 
 const COLORS = {
-  // Base brand
   midnight: "#141416",
   navy: "#2b3036",
   gold: "#d2983a",
   sand: "#EDE5DA",
-
-  // Modal backdrop
   backdrop: "rgba(43, 48, 54, 0.30)",
-
-  // Modal container (azul oscuro en degradé)
   modalBorder: "rgba(43, 48, 54, 0.40)",
   modalBgTop: "#1c4985",
   modalBgBottom: "#000110",
   modalShadow: "0 24px 80px rgba(0, 0, 0, 0.70)",
-
-  // Top filete
   topStripeFrom: "#d2983a",
   topStripeTo: "#000110",
-
-  // Close button
   closeBg: "rgba(0, 0, 0, 0.55)",
   closeBgHover: "rgba(0, 0, 0, 0.85)",
   closeBorder: "rgba(255, 255, 255, 0.25)",
-
-  // Slider overlay
   sliderOverlayStop1: "rgba(0, 0, 0, 0.55)",
   sliderOverlayStop2: "rgba(0, 0, 0, 0.10)",
   sliderOverlayStop3: "rgba(0, 0, 0, 0)",
-
-  // Text on image
   sliderTitle: "#d0d0d0ff",
   sliderBadgeBg: "rgba(0, 0, 0, 0.55)",
   sliderBadgeText: "#d0d0d0ff",
-
-  // Slider arrows
   sliderArrowBg: "rgba(0, 0, 0, 0.55)",
   sliderArrowBgHover: "rgba(0, 0, 0, 0.80)",
   sliderArrowBorder: "rgba(255, 255, 255, 0.20)",
   sliderArrowIcon: "#FFFFFF",
-
-  // Slider dots
   sliderDotActive: "#d2983a",
   sliderDotInactive: "rgba(255, 255, 255, 0.70)",
-
-  // Body text
   bodyText: "#f4e3b0",
   bodyTextStrong: "#f7e9c8",
-
-  // Chips
   chipBg: "rgba(0, 0, 0, 0.45)",
   chipBorder: "rgba(255, 255, 255, 0.25)",
   chipShadow: "0 2px 10px rgba(0, 0, 0, 0.5)",
   chipLabel: "#f4e3b0",
-
-  // List / titles
   sectionTitle: "#f2c567",
   listText: "#f4e3b0",
-
-  // CTA buttons
   ctaPrimaryBg: "#d2983a",
   ctaPrimaryText: "#141416",
   ctaSecondaryBg: "#d0d0d0ff",
   ctaSecondaryText: "#2b3036",
   ctaSecondaryBorder: "rgba(255, 255, 255, 0.35)",
-
-  // Botón guía de talles
   sizeGuideBg: "rgba(210, 152, 58, 0.10)",
   sizeGuideBgHover: "rgba(210, 152, 58, 0.20)",
   sizeGuideBorder: "rgba(210, 152, 58, 0.60)",
@@ -99,9 +64,7 @@ const useIsMobile = (breakpoint = 768) => {
   );
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < breakpoint);
-    };
+    const handleResize = () => setIsMobile(window.innerWidth < breakpoint);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, [breakpoint]);
@@ -109,42 +72,60 @@ const useIsMobile = (breakpoint = 768) => {
   return isMobile;
 };
 
+// Helpers para soportar objetos responsive o strings legacy
+const toResponsiveObj = (item, fallbackAlt = "") => {
+  if (!item) return null;
+  if (typeof item === "string") return { src: item, srcSet: undefined, alt: fallbackAlt };
+  return { src: item.src, srcSet: item.srcSet, alt: item.alt || fallbackAlt };
+};
+
+const preloadImage = (src) => {
+  if (!src) return;
+  const img = new Image();
+  img.src = src;
+};
+
 const PackageModal = ({ pkg, onClose }) => {
   if (!pkg) return null;
 
   const isMobile = useIsMobile();
 
-  // imágenes base (horizontales)
-  const baseImages =
-    Array.isArray(pkg.images) && pkg.images.length > 0
+  // ✅ Preferimos los arrays responsive si existen, sino legacy
+  const baseImagesRaw =
+    Array.isArray(pkg.imagesResponsive) && pkg.imagesResponsive.length > 0
+      ? pkg.imagesResponsive
+      : Array.isArray(pkg.images) && pkg.images.length > 0
       ? pkg.images
       : [pkg.image];
 
-  // imágenes mobile (verticales) – si no hay, usa las base
-  const mobileImages =
-    Array.isArray(pkg.imagesMobile) && pkg.imagesMobile.length > 0
+  const mobileImagesRaw =
+    Array.isArray(pkg.imagesMobileResponsive) && pkg.imagesMobileResponsive.length > 0
+      ? pkg.imagesMobileResponsive
+      : Array.isArray(pkg.imagesMobile) && pkg.imagesMobile.length > 0
       ? pkg.imagesMobile
-      : baseImages;
+      : baseImagesRaw;
 
-  // set final de imágenes según viewport
-  const images = isMobile ? mobileImages : baseImages;
+  const imagesRaw = isMobile ? mobileImagesRaw : baseImagesRaw;
+
+  // Normalizamos a {src, srcSet}
+  const images = imagesRaw
+    .map((it, idx) => toResponsiveObj(it, `Diseño ${idx + 1}`))
+    .filter(Boolean);
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [showSizeGuide, setShowSizeGuide] = useState(false);
 
-  // 🚀 PRELOAD de TODAS las imágenes del modal (horizontales + verticales)
+  // ✅ Preload SOLO current + next (no todas)
   useEffect(() => {
-    const urls = Array.from(
-      new Set([...(baseImages || []), ...(mobileImages || [])])
-    );
+    if (!images.length) return;
 
-    urls.forEach((src) => {
-      if (!src) return;
-      const img = new Image();
-      img.src = src;
-    });
-  }, [pkg.id]); // una vez por producto cuando abrís el modal
+    const current = images[currentIndex];
+    const next = images[(currentIndex + 1) % images.length];
+
+    preloadImage(current?.src);
+    preloadImage(next?.src);
+  }, [pkg.id, images.length, currentIndex, isMobile]);
 
   // 🔁 Auto-slide
   useEffect(() => {
@@ -193,8 +174,8 @@ const PackageModal = ({ pkg, onClose }) => {
     };
   }, [onClose]);
 
-  // Aspect ratio dinámico según viewport
   const sliderAspectRatio = isMobile ? "3 / 4" : "3 / 2";
+  const current = images[currentIndex];
 
   return (
     <motion.div
@@ -241,29 +222,23 @@ const PackageModal = ({ pkg, onClose }) => {
             borderColor: COLORS.closeBorder,
             color: COLORS.sand,
           }}
-          onMouseEnter={(e) =>
-            (e.currentTarget.style.backgroundColor = COLORS.closeBgHover)
-          }
-          onMouseLeave={(e) =>
-            (e.currentTarget.style.backgroundColor = COLORS.closeBg)
-          }
+          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = COLORS.closeBgHover)}
+          onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = COLORS.closeBg)}
         >
           <X size={20} />
         </button>
 
         {/* SLIDER */}
-        <div
-          className="relative w-full overflow-hidden rounded-t-3xl"
-          style={{ aspectRatio: sliderAspectRatio }}
-        >
+        <div className="relative w-full overflow-hidden rounded-t-3xl" style={{ aspectRatio: sliderAspectRatio }}>
           <motion.img
-            key={images[currentIndex]}
-            src={images[currentIndex]}
-            alt={`${pkg.name} - diseño ${currentIndex + 1}`}
-            className={
-              "h-full object-contain bg-black " +
-              (isMobile ? "w-[90%] mx-auto" : "w-full")
-            }
+            key={current?.src}
+            src={current?.src}
+            srcSet={current?.srcSet}
+            sizes={isMobile ? "90vw" : "min(896px, 100vw)"}
+            alt={`${pkg.name} - ${current?.alt || `diseño ${currentIndex + 1}`}`}
+            className={"h-full object-contain bg-black " + (isMobile ? "w-[90%] mx-auto" : "w-full")}
+            loading="eager"
+            decoding="async"
             initial={{ opacity: 0, scale: 1.03 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.4 }}
@@ -286,15 +261,13 @@ const PackageModal = ({ pkg, onClose }) => {
           <div className="absolute bottom-4 md:bottom-6 left-4 md:left-6 right-4 md:right-6 flex flex-col gap-2">
             <div
               className="inline-flex items-center gap-2 px-3 py-1 rounded-full backdrop-blur-sm text-[11px] md:text-xs font-semibold w-fit"
-              style={{
-                backgroundColor: COLORS.sliderBadgeBg,
-                color: COLORS.sliderBadgeText,
-              }}
+              style={{ backgroundColor: COLORS.sliderBadgeBg, color: COLORS.sliderBadgeText }}
             >
               <span>
                 Diseño {currentIndex + 1} de {images.length}
               </span>
             </div>
+
             <h2
               id="package-modal-title"
               className="text-2xl md:text-4xl font-extrabold drop-shadow-lg"
@@ -316,14 +289,8 @@ const PackageModal = ({ pkg, onClose }) => {
                   borderColor: COLORS.sliderArrowBorder,
                   color: COLORS.sliderArrowIcon,
                 }}
-                onMouseEnter={(e) =>
-                  (e.currentTarget.style.backgroundColor =
-                    COLORS.sliderArrowBgHover)
-                }
-                onMouseLeave={(e) =>
-                  (e.currentTarget.style.backgroundColor =
-                    COLORS.sliderArrowBg)
-                }
+                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = COLORS.sliderArrowBgHover)}
+                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = COLORS.sliderArrowBg)}
               >
                 <ChevronLeft size={18} />
               </button>
@@ -337,14 +304,8 @@ const PackageModal = ({ pkg, onClose }) => {
                   borderColor: COLORS.sliderArrowBorder,
                   color: COLORS.sliderArrowIcon,
                 }}
-                onMouseEnter={(e) =>
-                  (e.currentTarget.style.backgroundColor =
-                    COLORS.sliderArrowBgHover)
-                }
-                onMouseLeave={(e) =>
-                  (e.currentTarget.style.backgroundColor =
-                    COLORS.sliderArrowBg)
-                }
+                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = COLORS.sliderArrowBgHover)}
+                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = COLORS.sliderArrowBg)}
               >
                 <ChevronRight size={18} />
               </button>
@@ -355,10 +316,7 @@ const PackageModal = ({ pkg, onClose }) => {
                     key={idx}
                     className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full"
                     style={{
-                      backgroundColor:
-                        idx === currentIndex
-                          ? COLORS.sliderDotActive
-                          : COLORS.sliderDotInactive,
+                      backgroundColor: idx === currentIndex ? COLORS.sliderDotActive : COLORS.sliderDotInactive,
                       opacity: idx === currentIndex ? 1 : 0.7,
                     }}
                   />
@@ -370,16 +328,12 @@ const PackageModal = ({ pkg, onClose }) => {
 
         {/* CONTENIDO */}
         <div className="p-4 pt-5 md:p-8 md:pt-6">
-          <p
-            className="text-base md:text-lg mb-4 md:mb-6 leading-relaxed"
-            style={{ color: COLORS.bodyText }}
-          >
+          <p className="text-base md:text-lg mb-4 md:mb-6 leading-relaxed" style={{ color: COLORS.bodyText }}>
             {pkg.longDescription}
           </p>
 
           {/* Chips info */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4 mb-4 md:mb-6">
-            {/* Chip: Colección */}
             <div
               className="inline-flex items-center gap-3 text-sm px-3 py-2.5 md:px-4 md:py-3 rounded-2xl border"
               style={{
@@ -390,19 +344,13 @@ const PackageModal = ({ pkg, onClose }) => {
             >
               <MapPin size={18} color={COLORS.gold} />
               <div className="font-medium">
-                <span
-                  className="opacity-80"
-                  style={{ color: COLORS.chipLabel }}
-                >
+                <span className="opacity-80" style={{ color: COLORS.chipLabel }}>
                   Colección:
                 </span>{" "}
-                <span style={{ color: COLORS.bodyTextStrong }}>
-                  {pkg.destination}
-                </span>
+                <span style={{ color: COLORS.bodyTextStrong }}>{pkg.destination}</span>
               </div>
             </div>
 
-            {/* Chip: Edición */}
             <div
               className="inline-flex items-center gap-3 text-sm px-3 py-2.5 md:px-4 md:py-3 rounded-2xl border"
               style={{
@@ -413,19 +361,13 @@ const PackageModal = ({ pkg, onClose }) => {
             >
               <Clock size={18} color={COLORS.gold} />
               <div className="font-medium">
-                <span
-                  className="opacity-80"
-                  style={{ color: COLORS.chipLabel }}
-                >
+                <span className="opacity-80" style={{ color: COLORS.chipLabel }}>
                   Edición:
                 </span>{" "}
-                <span style={{ color: COLORS.bodyTextStrong }}>
-                  {pkg.duration}
-                </span>
+                <span style={{ color: COLORS.bodyTextStrong }}>{pkg.duration}</span>
               </div>
             </div>
 
-            {/* Chip: Precio */}
             <div
               className="inline-flex items-center gap-3 text-sm px-3 py-2.5 md:px-4 md:py-3 rounded-2xl border"
               style={{
@@ -435,11 +377,9 @@ const PackageModal = ({ pkg, onClose }) => {
               }}
             >
               <CheckCircle size={18} color={COLORS.gold} />
-
               <div className="font-medium flex flex-col">
-                {pkg.originalPrice && pkg.originalPrice > pkg.price ? (
+                {pkg.originalPrice && Number(String(pkg.originalPrice).replace(/\./g, "")) > Number(String(pkg.price).replace(/\./g, "")) ? (
                   <>
-                    {/* Etiqueta promo */}
                     <span
                       className="text-[11px] md:text-xs uppercase tracking-[0.08em] mb-0.5"
                       style={{ color: COLORS.chipLabel, opacity: 0.85 }}
@@ -447,35 +387,22 @@ const PackageModal = ({ pkg, onClose }) => {
                       OFERTA lanzamiento
                     </span>
 
-                    {/* Precios */}
                     <div className="flex items-baseline gap-2">
-                      <span
-                        className="text-xs md:text-sm line-through"
-                        style={{ color: "rgba(244, 227, 176, 0.7)" }}
-                      >
-                        ${pkg.originalPrice?.toLocaleString("es-AR")}
+                      <span className="text-xs md:text-sm line-through" style={{ color: "rgba(244, 227, 176, 0.7)" }}>
+                        ${Number(String(pkg.originalPrice).replace(/\./g, "")).toLocaleString("es-AR")}
                       </span>
-                      <span
-                        className="text-base md:text-lg font-semibold"
-                        style={{ color: COLORS.bodyTextStrong }}
-                      >
-                        ${pkg.price?.toLocaleString("es-AR")}
+                      <span className="text-base md:text-lg font-semibold" style={{ color: COLORS.bodyTextStrong }}>
+                        ${Number(String(pkg.price).replace(/\./g, "")).toLocaleString("es-AR")}
                       </span>
                     </div>
                   </>
                 ) : (
                   <>
-                    {/* Caso normal sin precio anterior */}
-                    <span
-                      className="opacity-80"
-                      style={{ color: COLORS.chipLabel }}
-                    >
+                    <span className="opacity-80" style={{ color: COLORS.chipLabel }}>
                       Precio:
                     </span>{" "}
                     <span style={{ color: COLORS.bodyTextStrong }}>
-                      {pkg.price
-                        ? `$${pkg.price?.toLocaleString("es-AR")}`
-                        : "Consultar"}
+                      {pkg.price ? `$${Number(String(pkg.price).replace(/\./g, "")).toLocaleString("es-AR")}` : "Consultar"}
                     </span>
                   </>
                 )}
@@ -483,7 +410,7 @@ const PackageModal = ({ pkg, onClose }) => {
             </div>
           </div>
 
-          {/* Botón pequeño: Tabla guía de talles */}
+          {/* Botón: Tabla guía de talles */}
           <div className="flex justify-start mb-6">
             <button
               type="button"
@@ -494,22 +421,14 @@ const PackageModal = ({ pkg, onClose }) => {
                 borderColor: COLORS.sizeGuideBorder,
                 color: COLORS.sizeGuideText,
               }}
-              onMouseEnter={(e) =>
-                (e.currentTarget.style.backgroundColor =
-                  COLORS.sizeGuideBgHover)
-              }
-              onMouseLeave={(e) =>
-                (e.currentTarget.style.backgroundColor = COLORS.sizeGuideBg)
-              }
+              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = COLORS.sizeGuideBgHover)}
+              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = COLORS.sizeGuideBg)}
             >
               Tabla guía de talles
             </button>
           </div>
 
-          <h3
-            className="text-lg md:text-xl font-bold mb-2 md:mb-3"
-            style={{ color: COLORS.sectionTitle }}
-          >
+          <h3 className="text-lg md:text-xl font-bold mb-2 md:mb-3" style={{ color: COLORS.sectionTitle }}>
             Envíos a todo el país
           </h3>
 
@@ -522,10 +441,7 @@ const PackageModal = ({ pkg, onClose }) => {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center rounded-xl px-3.5 py-2.5 md:px-4 md:py-3 font-semibold shadow-sm"
-              style={{
-                backgroundColor: COLORS.ctaPrimaryBg,
-                color: COLORS.ctaPrimaryText,
-              }}
+              style={{ backgroundColor: COLORS.ctaPrimaryBg, color: COLORS.ctaPrimaryText }}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.985 }}
             >
@@ -564,7 +480,6 @@ const PackageModal = ({ pkg, onClose }) => {
               className="relative w-full max-w-md rounded-2xl overflow-hidden bg-black border border-white/20"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* botón cerrar del mini-modal */}
               <button
                 type="button"
                 onClick={() => setShowSizeGuide(false)}
@@ -574,11 +489,23 @@ const PackageModal = ({ pkg, onClose }) => {
               </button>
 
               <div className="w-full h-full flex items-center justify-center p-3 bg-black">
-                <img
-                  src={pkg.guiaTalle}
-                  alt="Tabla guía de talles"
-                  className="w-full h-full object-contain"
-                />
+                {(() => {
+                  const guide = pkg.guiaTalleResponsive
+                    ? { src: pkg.guiaTalleResponsive.src, srcSet: pkg.guiaTalleResponsive.srcSet }
+                    : { src: pkg.guiaTalle, srcSet: undefined };
+
+                  return (
+                    <img
+                      src={guide.src}
+                      srcSet={guide.srcSet}
+                      sizes="min(448px, 100vw)"
+                      alt="Tabla guía de talles"
+                      className="w-full h-full object-contain"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  );
+                })()}
               </div>
             </motion.div>
           </motion.div>
