@@ -236,7 +236,11 @@ const PackageModal = ({ pkg, onClose }) => {
             srcSet={current?.srcSet}
             sizes={isMobile ? "90vw" : "min(896px, 100vw)"}
             alt={`${pkg.name} - ${current?.alt || `diseño ${currentIndex + 1}`}`}
-            className={"h-full object-contain bg-black " + (isMobile ? "w-[90%] mx-auto" : "w-full")}
+className={
+  "w-full h-full " +
+  (isMobile ? "object-cover" : "object-contain") +
+  " bg-black"
+}
             loading="eager"
             decoding="async"
             initial={{ opacity: 0, scale: 1.03 }}
