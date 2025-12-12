@@ -188,6 +188,7 @@ const PackageModal = ({ pkg, onClose }) => {
       role="dialog"
       aria-modal="true"
       aria-labelledby="package-modal-title"
+      z-index={1000}
     >
       <motion.div
         initial={{ y: 36, opacity: 0, scale: 0.98 }}

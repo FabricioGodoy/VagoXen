@@ -6,6 +6,7 @@ import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from "react-icons/f
 const COLORS = {
   midnight: "#141416", /* parte de arriba degrade */
   navy: "#2b3036", /* parte de abajo degrade */
+  gold: "#d2983a",
   // Footer
   footerText: "#EDE5DA",
   footerTextMuted: "rgba(237, 229, 218, 0.8)",
@@ -96,10 +97,11 @@ const Footer = () => {
             className="max-w-2xl leading-relaxed"
             style={{ color: COLORS.footerTextMuted }}
           >
-            Somos dos hinchas que crecimos soñando con estos colores. Diseñamos cada prenda con
-            el amor, la pasión y el orgullo que nos despierta Boca. No somos una marca gigante:
-            somos corazón, esfuerzo y sentimiento azul y oro. Gracias por bancar este proyecto
-            hecho por y para xeneizes.
+             <span className="font-semibold" style={{ color: COLORS.gold }}>
+               VAGOS{" "}
+              </span> es una marca y comunidad independiente creada por hinchas.
+            No posee relación oficial, comercial ni institucional con el Club Atlético Boca Juniors, ni con ninguna de sus marcas registradas.
+            Todas las referencias culturales o deportivas se realizan con fines expresivos, editoriales y de identidad comunitaria.
           </p>
         </motion.div>
 
