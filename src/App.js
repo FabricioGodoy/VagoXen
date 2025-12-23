@@ -9,7 +9,7 @@ import Hero from "./components/HeroSection.jsx";
 import ContactSection from "./components/ContactSection";
 
 const WHATSAPP_HOME_MESSAGE =
-  "AGUANTE BOCA LOCO.";
+  "AGUANTE BOCA LOCO. Me interesa una remera de Vagos.";
 
 
 // Página Home – SOLO Hero + Paquetes

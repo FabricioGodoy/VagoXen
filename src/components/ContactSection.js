@@ -58,7 +58,7 @@ const COLORS = {
 };
 
 const phone = "+5491133779222";
-const defaultMsg = "AWANTE BOKITA, QUIERO COMPRAR UNA REMERA";
+const defaultMsg = "AGUANTE BOCA LOCO. Me interesa una remera de Vagos.";
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
