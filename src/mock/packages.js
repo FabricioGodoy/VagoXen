@@ -9,7 +9,7 @@ const makeSrcSet = (baseName, widths) => ({
 
 const CARD_W = [480, 768, 1024, 1280];
 const MODAL_DESKTOP_W = [800, 1200, 1600];
-const MODAL_MOBILE_W = [600, 900, 1200];
+// ⚠️ No tenés modalM_* en /generated, así que mobile usa las mismas del modal
 const GUIDE_W = [1000, 1600];
 
 export const remerasDescripcion = [
@@ -22,18 +22,17 @@ export const remerasDescripcion = [
       "100% nuestros colores. 100% Boca. Un diseño en representación al Hincha Xeneize y al templo de Brandsen 805.",
 
     // ✅ CARD (PackageCard / PackageSection)
-    imageCard: makeSrcSet("card_azul", CARD_W),
+    imageCard: makeSrcSet("card_azul_principal", CARD_W),
 
     // fallback legacy (por si algún lado aún usa pkg.image)
-    image: `${gen("card_azul")}-768.webp`,
+    image: `${gen("card_azul_principal")}-768.webp`,
 
-    // ✅ MODAL desktop (horizontales)
+    // ✅ MODAL desktop
     imagesResponsive: [
       makeSrcSet("modal_azul_1", MODAL_DESKTOP_W),
       makeSrcSet("modal_azul_2", MODAL_DESKTOP_W),
       makeSrcSet("modal_azul_3", MODAL_DESKTOP_W),
       makeSrcSet("modal_azul_4", MODAL_DESKTOP_W),
-      makeSrcSet("modal_azul_5", MODAL_DESKTOP_W),
     ],
 
     // fallback legacy (strings)
@@ -42,28 +41,23 @@ export const remerasDescripcion = [
       `${gen("modal_azul_2")}-1200.webp`,
       `${gen("modal_azul_3")}-1200.webp`,
       `${gen("modal_azul_4")}-1200.webp`,
-      `${gen("modal_azul_5")}-1200.webp`,
     ],
 
-    // ✅ MODAL mobile (verticales)
+    // ✅ MODAL mobile (no hay recortes mobile distintos -> reusa desktop)
     imagesMobileResponsive: [
-      makeSrcSet("modalM_azul_1", MODAL_MOBILE_W),
-      makeSrcSet("modalM_azul_2", MODAL_MOBILE_W),
-      makeSrcSet("modalM_azul_3", MODAL_MOBILE_W),
-      makeSrcSet("modalM_azul_4", MODAL_MOBILE_W),
-      makeSrcSet("modalM_azul_5", MODAL_MOBILE_W),
+      makeSrcSet("modal_azul_1", MODAL_DESKTOP_W),
+      makeSrcSet("modal_azul_2", MODAL_DESKTOP_W),
+      makeSrcSet("modal_azul_3", MODAL_DESKTOP_W),
+      makeSrcSet("modal_azul_4", MODAL_DESKTOP_W),
     ],
-
-    // fallback legacy (strings)
     imagesMobile: [
-      `${gen("modalM_azul_1")}-900.webp`,
-      `${gen("modalM_azul_2")}-900.webp`,
-      `${gen("modalM_azul_3")}-900.webp`,
-      `${gen("modalM_azul_4")}-900.webp`,
-      `${gen("modalM_azul_5")}-900.webp`,
+      `${gen("modal_azul_1")}-1200.webp`,
+      `${gen("modal_azul_2")}-1200.webp`,
+      `${gen("modal_azul_3")}-1200.webp`,
+      `${gen("modal_azul_4")}-1200.webp`,
     ],
 
-    // ✅ Guía talles
+    // ✅ Guía talles (NO TOCAR como pediste)
     guiaTalleResponsive: makeSrcSet("guide_guiaTalles", GUIDE_W),
     guiaTalle: `${gen("guide_guiaTalles")}-1000.webp`,
 
@@ -84,8 +78,8 @@ export const remerasDescripcion = [
       "En homenaje a Vago Xeneize. Diseño moderno, con tipografía romana y flow abstracto. Estilo artístico y callejero.",
 
     // ✅ CARD
-    imageCard: makeSrcSet("card_amarilla", CARD_W),
-    image: `${gen("card_amarilla")}-768.webp`,
+    imageCard: makeSrcSet("card_amarilla_principal", CARD_W),
+    image: `${gen("card_amarilla_principal")}-768.webp`,
 
     // ✅ MODAL desktop
     imagesResponsive: [
@@ -93,32 +87,29 @@ export const remerasDescripcion = [
       makeSrcSet("modal_amarilla_2", MODAL_DESKTOP_W),
       makeSrcSet("modal_amarilla_3", MODAL_DESKTOP_W),
       makeSrcSet("modal_amarilla_4", MODAL_DESKTOP_W),
-      makeSrcSet("modal_amarilla_5", MODAL_DESKTOP_W),
     ],
     images: [
       `${gen("modal_amarilla_1")}-1200.webp`,
       `${gen("modal_amarilla_2")}-1200.webp`,
       `${gen("modal_amarilla_3")}-1200.webp`,
       `${gen("modal_amarilla_4")}-1200.webp`,
-      `${gen("modal_amarilla_5")}-1200.webp`,
     ],
 
-    // ✅ MODAL mobile
+    // ✅ MODAL mobile (reusa desktop)
     imagesMobileResponsive: [
-      makeSrcSet("modalM_amarilla_1", MODAL_MOBILE_W),
-      makeSrcSet("modalM_amarilla_2", MODAL_MOBILE_W),
-      makeSrcSet("modalM_amarilla_3", MODAL_MOBILE_W),
-      makeSrcSet("modalM_amarilla_4", MODAL_MOBILE_W),
-      makeSrcSet("modalM_amarilla_5", MODAL_MOBILE_W),
+      makeSrcSet("modal_amarilla_1", MODAL_DESKTOP_W),
+      makeSrcSet("modal_amarilla_2", MODAL_DESKTOP_W),
+      makeSrcSet("modal_amarilla_3", MODAL_DESKTOP_W),
+      makeSrcSet("modal_amarilla_4", MODAL_DESKTOP_W),
     ],
     imagesMobile: [
-      `${gen("modalM_amarilla_1")}-900.webp`,
-      `${gen("modalM_amarilla_2")}-900.webp`,
-      `${gen("modalM_amarilla_3")}-900.webp`,
-      `${gen("modalM_amarilla_4")}-900.webp`,
-      `${gen("modalM_amarilla_5")}-900.webp`,
+      `${gen("modal_amarilla_1")}-1200.webp`,
+      `${gen("modal_amarilla_2")}-1200.webp`,
+      `${gen("modal_amarilla_3")}-1200.webp`,
+      `${gen("modal_amarilla_4")}-1200.webp`,
     ],
 
+    // ✅ Guía talles (NO TOCAR)
     guiaTalleResponsive: makeSrcSet("guide_TalleAmarilla", GUIDE_W),
     guiaTalle: `${gen("guide_TalleAmarilla")}-1000.webp`,
 
@@ -139,8 +130,8 @@ export const remerasDescripcion = [
       "Un diseño que representa el nacimiento del Club Atlético Boca Juniors y sus hazañas en el Continente Asiático.",
 
     // ✅ CARD
-    imageCard: makeSrcSet("card_negra", CARD_W),
-    image: `${gen("card_negra")}-768.webp`,
+    imageCard: makeSrcSet("card_negra_principal", CARD_W),
+    image: `${gen("card_negra_principal")}-768.webp`,
 
     // ✅ MODAL desktop
     imagesResponsive: [
@@ -148,32 +139,29 @@ export const remerasDescripcion = [
       makeSrcSet("modal_negra_2", MODAL_DESKTOP_W),
       makeSrcSet("modal_negra_3", MODAL_DESKTOP_W),
       makeSrcSet("modal_negra_4", MODAL_DESKTOP_W),
-      makeSrcSet("modal_negra_5", MODAL_DESKTOP_W),
     ],
     images: [
       `${gen("modal_negra_1")}-1200.webp`,
       `${gen("modal_negra_2")}-1200.webp`,
       `${gen("modal_negra_3")}-1200.webp`,
       `${gen("modal_negra_4")}-1200.webp`,
-      `${gen("modal_negra_5")}-1200.webp`,
     ],
 
-    // ✅ MODAL mobile
+    // ✅ MODAL mobile (reusa desktop)
     imagesMobileResponsive: [
-      makeSrcSet("modalM_negra_1", MODAL_MOBILE_W),
-      makeSrcSet("modalM_negra_2", MODAL_MOBILE_W),
-      makeSrcSet("modalM_negra_3", MODAL_MOBILE_W),
-      makeSrcSet("modalM_negra_4", MODAL_MOBILE_W),
-      makeSrcSet("modalM_negra_5", MODAL_MOBILE_W),
+      makeSrcSet("modal_negra_1", MODAL_DESKTOP_W),
+      makeSrcSet("modal_negra_2", MODAL_DESKTOP_W),
+      makeSrcSet("modal_negra_3", MODAL_DESKTOP_W),
+      makeSrcSet("modal_negra_4", MODAL_DESKTOP_W),
     ],
     imagesMobile: [
-      `${gen("modalM_negra_1")}-900.webp`,
-      `${gen("modalM_negra_2")}-900.webp`,
-      `${gen("modalM_negra_3")}-900.webp`,
-      `${gen("modalM_negra_4")}-900.webp`,
-      `${gen("modalM_negra_5")}-900.webp`,  
+      `${gen("modal_negra_1")}-1200.webp`,
+      `${gen("modal_negra_2")}-1200.webp`,
+      `${gen("modal_negra_3")}-1200.webp`,
+      `${gen("modal_negra_4")}-1200.webp`,
     ],
 
+    // ✅ Guía talles (NO TOCAR)
     guiaTalleResponsive: makeSrcSet("guide_guiaTalles", GUIDE_W),
     guiaTalle: `${gen("guide_guiaTalles")}-1000.webp`,
 

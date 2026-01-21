@@ -16,28 +16,40 @@ const COLORS = {
 
 const PUBLIC = process.env.PUBLIC_URL || "";
 
-// Helper: arma src/srcSet para los hero banners ya generados en /public/img/generated
-const heroBanner = (baseName) => ({
-  src: `${PUBLIC}/img/generated/${baseName}-1280.webp`, // fallback razonable
-  srcSet: `
-    ${PUBLIC}/img/generated/${baseName}-640.webp 640w,
-    ${PUBLIC}/img/generated/${baseName}-960.webp 960w,
-    ${PUBLIC}/img/generated/${baseName}-1280.webp 1280w,
-    ${PUBLIC}/img/generated/${baseName}-1600.webp 1600w,
-    ${PUBLIC}/img/generated/${baseName}-1920.webp 1920w,
-    ${PUBLIC}/img/generated/${baseName}-2560.webp 2560w
-  `.trim(),
-  // opcional si después querés link por banner:
-  // link: "/"
+const heroBannerArt = (webBase, mobBase) => ({
+  web: {
+    src: `${PUBLIC}/img/generated/${webBase}-1280.webp`,
+    srcSet: `
+      ${PUBLIC}/img/generated/${webBase}-640.webp 640w,
+      ${PUBLIC}/img/generated/${webBase}-960.webp 960w,
+      ${PUBLIC}/img/generated/${webBase}-1280.webp 1280w,
+      ${PUBLIC}/img/generated/${webBase}-1600.webp 1600w,
+      ${PUBLIC}/img/generated/${webBase}-1920.webp 1920w,
+      ${PUBLIC}/img/generated/${webBase}-2560.webp 2560w
+    `.trim(),
+  },
+  mob: {
+    src: `${PUBLIC}/img/generated/${mobBase}-1280.webp`,
+    srcSet: `
+      ${PUBLIC}/img/generated/${mobBase}-640.webp 640w,
+      ${PUBLIC}/img/generated/${mobBase}-960.webp 960w,
+      ${PUBLIC}/img/generated/${mobBase}-1280.webp 1280w,
+      ${PUBLIC}/img/generated/${mobBase}-1600.webp 1600w,
+      ${PUBLIC}/img/generated/${mobBase}-1920.webp 1920w,
+      ${PUBLIC}/img/generated/${mobBase}-2560.webp 2560w
+    `.trim(),
+  },
 });
+
 
 // BANNERS (NOMBRES EXACTOS SEGÚN TU CARPETA /img/generated)
 const BANNERS = [
-  heroBanner("hero_banner_1"),
-  heroBanner("hero_bannerAmarillo"),
-  heroBanner("hero_banner_3"),
-  heroBanner("hero_banner_4"),
+  heroBannerArt("hero_banner1-web", "hero_banner1-mob"),
+  heroBannerArt("hero_banner2-web", "hero_banner2-mob"),
+  heroBannerArt("hero_banner3-web", "hero_banner3-mob"),
+  heroBannerArt("hero_banner4-web", "hero_banner4-mob"),
 ];
+
 
 export default function HeroModern() {
   const [index, setIndex] = useState(0);
@@ -56,10 +68,10 @@ export default function HeroModern() {
     (i) => {
       const idx = modIndex(i);
       const banner = BANNERS[idx];
-      if (!banner?.src) return;
+      if (!banner?.web?.src) return;
 
       // clave única (si cambiás srcSet en el futuro, no rompe)
-      const key = `${idx}|${banner.src}`;
+      const key = `${idx}|${banner.web.src}`;
       if (preloadedKeysRef.current.has(key)) return;
       preloadedKeysRef.current.add(key);
 
@@ -67,12 +79,12 @@ export default function HeroModern() {
 
       // Importante: setear srcset/sizes ANTES del src
       // para que el browser elija el mejor recurso a bajar.
-      img.srcset = banner.srcSet;
+      img.srcset = banner.web.srcSet;
+      img.src = banner.web.src;
       img.sizes = "100vw";
       img.decoding = "async";
       img.loading = "eager";
-      img.src = banner.src;
-    },
+     },
     [modIndex]
   );
 
@@ -136,17 +148,32 @@ export default function HeroModern() {
         >
           {BANNERS.map((banner, i) => (
             <a key={i} href={banner.link || "#"} className="block h-full w-full flex-shrink-0">
-              <img
-                src={banner.src}
-                srcSet={banner.srcSet}
-                sizes="100vw"
-                alt={`Remera ${i + 1}`}
-                className="h-full w-full object-cover"
-                loading={i === index ? "eager" : "lazy"}
-                decoding="async"
-                // ayuda al LCP si el hero es lo primero que se ve:
-                fetchpriority={i === index ? "high" : "low"}
-              />
+           <picture>
+  {/* MOBILE */}
+  <source
+    media="(max-width: 767px)"
+    srcSet={banner.mob.srcSet}
+    sizes="100vw"
+  />
+
+  {/* DESKTOP */}
+  <source
+    media="(min-width: 768px)"
+    srcSet={banner.web.srcSet}
+    sizes="100vw"
+  />
+
+  {/* FALLBACK */}
+  <img
+    src={banner.web.src}
+    alt={`Remera ${i + 1}`}
+    className="h-full w-full object-cover"
+    loading={i === index ? "eager" : "lazy"}
+    decoding="async"
+    fetchPriority={i === index ? "high" : "low"}
+  />
+</picture>
+
             </a>
           ))}
         </motion.div>
