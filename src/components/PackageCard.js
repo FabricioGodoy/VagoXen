@@ -1,138 +1,118 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Eye, MessageCircle } from "lucide-react";
+import { WHATSAPP_PHONE } from "../config";
 
 const COLORS = {
-  midnight: "#141416",
-  navy: "#2b3036",
+  dark: "#000110",
+  surface: "#050b1a",
+  text: "#f7f4e6",
+  muted: "rgba(247, 244, 230, 0.66)",
   gold: "#d2983a",
-  sand: "#EDE5DA",
-
-  cardBgFrom: "rgba(43, 48, 54, 0.95)",
-  cardBgTo: "rgba(20, 20, 22, 0.95)",
-
-  textMain: "#EDE5DA",
-  textSoft: "rgba(237, 229, 218, 0.80)",
-
-  imgOverlayFrom: "rgba(20, 20, 22, 0.80)",
-  imgOverlayVia: "rgba(20, 20, 22, 0.25)",
-  imgOverlayTo: "transparent",
-
-  borderSoft: "rgba(255, 255, 255, 0.10)",
-  badgeBg: "rgba(255, 255, 255, 0.05)",
-  badgeText: "rgba(237, 229, 218, 0.80)",
-
-  topLine: "#d2983a",
-
-  buttonBg: "#d2983a",
-  buttonBgHover: "#c68a2f",
-  buttonBgActive: "#b87f2c",
-  buttonText: "#141416",
-  buttonFocusRing: "rgba(210, 152, 58, 0.50)",
+  line: "rgba(237, 229, 218, 0.14)",
 };
 
-const PackageCard = ({ pkg, onSelectPackage, disableAnimation = false }) => {
-  const Wrapper = disableAnimation ? "div" : motion.div;
+const price = (value) =>
+  value ? `$${Number(String(value).replace(/\./g, "")).toLocaleString("es-AR")}` : "Consultar";
 
-  // ✅ Preferimos responsive (imageCard). Fallback a legacy (image).
+const buildWhatsAppLink = (pkg) => {
+  const digits = (pkg.whatsappPhone || WHATSAPP_PHONE).replace(/\D/g, "");
+  const message = pkg.whatsappMessage || `Hola! Me interesa la remera ${pkg.name}`;
+  return `https://wa.me/${digits}?text=${encodeURIComponent(message)}`;
+};
+
+export default function PackageCard({ pkg, onSelectPackage, disableAnimation = false }) {
+  const Wrapper = disableAnimation ? "article" : motion.article;
   const imgSrc = pkg?.imageCard?.src || pkg?.image;
   const imgSrcSet = pkg?.imageCard?.srcSet || undefined;
+  const hasDiscount =
+    pkg.originalPrice &&
+    Number(String(pkg.originalPrice).replace(/\./g, "")) > Number(String(pkg.price).replace(/\./g, ""));
 
   return (
     <Wrapper
       {...(!disableAnimation && {
-        initial: { opacity: 0, y: 40 },
+        initial: { opacity: 0, y: 24 },
         whileInView: { opacity: 1, y: 0 },
-        viewport: { once: true, amount: 0.25 },
-        transition: { duration: 0.35 },
+        viewport: { once: true, amount: 0.2 },
+        transition: { duration: 0.28 },
       })}
-      onClick={() => onSelectPackage(pkg)}
-      className="
-        group relative cursor-pointer rounded-2xl overflow-hidden
-        border shadow-xl hover:shadow-2xl hover:-translate-y-1
-        transition-all duration-300 flex flex-col
-        h-full min-h-[430px]
-      "
-      style={{
-        backgroundImage: `linear-gradient(to bottom, ${COLORS.cardBgFrom}, ${COLORS.cardBgTo})`,
-        color: COLORS.textMain,
-        borderColor: COLORS.borderSoft,
-      }}
+      className="group flex h-full min-h-[520px] flex-col overflow-hidden rounded-md border"
+      style={{ backgroundColor: COLORS.surface, borderColor: COLORS.line }}
     >
-      {/* TOP LINE */}
-      <div
-        className="absolute inset-x-0 top-0 h-[2px]"
-        style={{ backgroundColor: COLORS.topLine }}
-      />
-
-      {/* IMAGEN */}
-      <div className="relative h-56 md:h-80 overflow-hidden flex-shrink-0">
+      <button
+        type="button"
+        onClick={() => onSelectPackage(pkg)}
+        className="relative block aspect-[4/5] w-full overflow-hidden text-left"
+      >
         <img
           src={imgSrc}
           srcSet={imgSrcSet}
-          sizes="(min-width: 768px) 33vw, 80vw"
+          sizes="(min-width: 1024px) 29vw, (min-width: 768px) 42vw, 92vw"
           alt={pkg.name}
-          className="h-full w-full object-cover transform transition-transform duration-700 ease-out group-hover:scale-105"
+          className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.035]"
           loading="lazy"
           decoding="async"
         />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,1,16,0)_42%,rgba(0,1,16,0.82)_100%)]" />
+        {hasDiscount && (
+          <span
+            className="absolute left-3 top-3 rounded-sm px-2 py-1 text-[11px] font-bold uppercase tracking-[0.14em]"
+            style={{ backgroundColor: COLORS.gold, color: COLORS.dark }}
+          >
+            Oferta
+          </span>
+        )}
+      </button>
 
-        <div
-          className="absolute inset-0"
-          style={{
-            background: `linear-gradient(
-              to top,
-              ${COLORS.imgOverlayFrom},
-              ${COLORS.imgOverlayVia},
-              ${COLORS.imgOverlayTo}
-            )`,
-          }}
-        />
+      <div className="flex flex-1 flex-col p-5">
+        <div className="mb-4 flex items-start justify-between gap-4">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em]" style={{ color: COLORS.gold }}>
+              {pkg.duration}
+            </p>
+            <h3 className="mt-2 text-2xl font-black leading-tight" style={{ color: COLORS.text }}>
+              {pkg.name}
+            </h3>
+          </div>
+          <div className="text-right">
+            {hasDiscount && (
+              <p className="text-xs line-through" style={{ color: COLORS.muted }}>
+                {price(pkg.originalPrice)}
+              </p>
+            )}
+            <p className="text-lg font-black" style={{ color: COLORS.text }}>
+              {price(pkg.price)}
+            </p>
+          </div>
+        </div>
 
-        <h3
-          className="absolute bottom-3 left-3 right-3 text-xl md:text-2xl font-extrabold drop-shadow-xl"
-          style={{ color: "#d0d0d0ff" }}
-        >
-          {pkg.name}
-        </h3>
-      </div>
-
-      {/* CONTENT */}
-      <div className="p-4 md:p-6 flex flex-col flex-1">
-        <p className="mb-3 md:mb-4 flex-shrink-0" style={{ color: COLORS.textSoft }}>
+        <p className="text-sm leading-6" style={{ color: COLORS.muted }}>
           {pkg.description}
         </p>
 
-        <br />
-
-        <div className="flex-1" />
-
-        {/* BOTÓN */}
-        <motion.button
-          type="button"
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.985 }}
-          onClick={(e) => {
-            e.stopPropagation();
-            onSelectPackage(pkg);
-          }}
-          className="w-full inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 md:py-3 font-semibold shadow-sm hover:shadow transition-all duration-200 text-sm md:text-base"
-          style={{
-            backgroundColor: COLORS.buttonBg,
-            color: COLORS.buttonText,
-          }}
-          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = COLORS.buttonBgHover)}
-          onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = COLORS.buttonBg)}
-          onMouseDown={(e) => (e.currentTarget.style.backgroundColor = COLORS.buttonBgActive)}
-          onFocus={(e) =>
-            (e.currentTarget.style.boxShadow = `0 0 0 2px ${COLORS.buttonFocusRing}`)
-          }
-          onBlur={(e) => (e.currentTarget.style.boxShadow = "none")}
-        >
-          Ver Detalles
-        </motion.button>
+        <div className="mt-auto grid grid-cols-[1fr_auto] gap-2 pt-6">
+          <button
+            type="button"
+            onClick={() => onSelectPackage(pkg)}
+            className="inline-flex h-11 items-center justify-center gap-2 rounded-md border px-4 text-sm font-semibold transition-colors duration-200 hover:bg-white/10"
+            style={{ borderColor: COLORS.line, color: COLORS.text }}
+          >
+            <Eye size={16} />
+            Detalles
+          </button>
+          <a
+            href={buildWhatsAppLink(pkg)}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Consultar ${pkg.name} por WhatsApp`}
+            className="inline-flex h-11 w-11 items-center justify-center rounded-md transition-transform duration-200 hover:-translate-y-0.5"
+            style={{ backgroundColor: COLORS.gold, color: COLORS.dark }}
+          >
+            <MessageCircle size={17} />
+          </a>
+        </div>
       </div>
     </Wrapper>
   );
-};
-
-export default PackageCard;
+}

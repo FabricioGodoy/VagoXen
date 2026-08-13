@@ -1,25 +1,28 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-import Navbar from "./components/Navbar";
 import AboutSection from "./components/AboutSection";
-import PackagesSection from "./components/PackagesSection";
+import ContactSection from "./components/ContactSection";
 import Footer from "./components/Footer";
 import Hero from "./components/HeroSection.jsx";
-import ContactSection from "./components/ContactSection";
+import Navbar from "./components/Navbar";
+import PackagesSection from "./components/PackagesSection";
 
-const WHATSAPP_HOME_MESSAGE =
-  "AGUANTE BOCA LOCO. Me interesa una remera de Vagos.";
+const WHATSAPP_HOME_MESSAGE = "AGUANTE BOCA LOCO. Me interesa una remera de Vagos.";
 
-
-// Página Home – SOLO Hero + Paquetes
 function HomePage() {
   return (
     <>
-      <a href={`https://wa.me/5491133779222?text=${encodeURIComponent( WHATSAPP_HOME_MESSAGE  )}`} className="btn-flotante" target="_blank" rel="noopener noreferrer">
-        <img src="https://img.icons8.com/office/40/whatsapp--v1.png" alt="wpp"></img>
+      <a
+        href={`https://wa.me/5491133779222?text=${encodeURIComponent(WHATSAPP_HOME_MESSAGE)}`}
+        className="btn-flotante"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Consultar por WhatsApp"
+      >
+        <img src="https://img.icons8.com/office/40/whatsapp--v1.png" alt="" />
       </a>
-      <p class="texto-flotante">Vivir A LO BOCA</p>
+      <p className="texto-flotante">Vivir A LO BOCA</p>
 
       <Hero />
       <PackagesSection />
@@ -27,27 +30,19 @@ function HomePage() {
   );
 }
 
-// Página Nosotros – SOLO la AboutSection
 function NosotrosPage() {
-  return (
-    <>
-      <AboutSection />
-    </>
-  );
+  return <AboutSection />;
 }
 
 export default function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-gray-50 Appbgc">
+      <div className="min-h-screen Appbgc">
         <Navbar />
 
-        <main className="pt-19">
+        <main>
           <Routes>
-            {/* Ruta del Home */}
             <Route path="/" element={<HomePage />} />
-
-            {/* Ruta de Nosotros */}
             <Route path="/nosotros" element={<NosotrosPage />} />
             <Route path="/contacto" element={<ContactSection />} />
           </Routes>

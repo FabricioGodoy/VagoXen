@@ -1,63 +1,21 @@
-import React, { useEffect, useState, useRef, useCallback } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import { X, MapPin, Clock, CheckCircle, ChevronLeft, ChevronRight } from "lucide-react";
-import { FaWhatsapp } from "react-icons/fa";
+import { ChevronLeft, ChevronRight, MessageCircle, Ruler, Truck, X } from "lucide-react";
 import { WHATSAPP_PHONE } from "../config";
 
 const COLORS = {
-  midnight: "#141416",
-  navy: "#2b3036",
+  dark: "#000110",
+  surface: "#050b1a",
+  surfaceAlt: "#08152c",
+  text: "#f7f4e6",
+  muted: "rgba(247, 244, 230, 0.68)",
   gold: "#d2983a",
-  sand: "#EDE5DA",
-  backdrop: "rgba(43, 48, 54, 0.30)",
-  modalBorder: "rgba(43, 48, 54, 0.40)",
-  modalBgTop: "#1c4985",
-  modalBgBottom: "#000110",
-  modalShadow: "0 24px 80px rgba(0, 0, 0, 0.70)",
-  topStripeFrom: "#d2983a",
-  topStripeTo: "#000110",
-  closeBg: "rgba(0, 0, 0, 0.55)",
-  closeBgHover: "rgba(0, 0, 0, 0.85)",
-  closeBorder: "rgba(255, 255, 255, 0.25)",
-  sliderOverlayStop1: "rgba(0, 0, 0, 0.55)",
-  sliderOverlayStop2: "rgba(0, 0, 0, 0.10)",
-  sliderOverlayStop3: "rgba(0, 0, 0, 0)",
-  sliderTitle: "#d0d0d0ff",
-  sliderBadgeBg: "rgba(0, 0, 0, 0.55)",
-  sliderBadgeText: "#d0d0d0ff",
-  sliderArrowBg: "rgba(0, 0, 0, 0.55)",
-  sliderArrowBgHover: "rgba(0, 0, 0, 0.80)",
-  sliderArrowBorder: "rgba(255, 255, 255, 0.20)",
-  sliderArrowIcon: "#FFFFFF",
-  sliderDotActive: "#d2983a",
-  sliderDotInactive: "rgba(255, 255, 255, 0.70)",
-  bodyText: "#f4e3b0",
-  bodyTextStrong: "#f7e9c8",
-  chipBg: "rgba(0, 0, 0, 0.45)",
-  chipBorder: "rgba(255, 255, 255, 0.25)",
-  chipShadow: "0 2px 10px rgba(0, 0, 0, 0.5)",
-  chipLabel: "#f4e3b0",
-  sectionTitle: "#f2c567",
-  listText: "#f4e3b0",
-  ctaPrimaryBg: "#d2983a",
-  ctaPrimaryText: "#141416",
-  ctaSecondaryBg: "#d0d0d0ff",
-  ctaSecondaryText: "#2b3036",
-  ctaSecondaryBorder: "rgba(255, 255, 255, 0.35)",
-  sizeGuideBg: "rgba(210, 152, 58, 0.10)",
-  sizeGuideBgHover: "rgba(210, 152, 58, 0.20)",
-  sizeGuideBorder: "rgba(210, 152, 58, 0.60)",
-  sizeGuideText: "#f7e9c8",
+  line: "rgba(237, 229, 218, 0.16)",
 };
 
-const buildWhatsAppLink = (message = "", phone) => {
-  const digits = (phone || "").replace(/\D/g, "");
-  const base = digits ? `https://wa.me/${digits}` : "https://wa.me/";
-  const params = new URLSearchParams({ text: message });
-  return `${base}?${params.toString()}`;
-};
+const price = (value) =>
+  value ? `$${Number(String(value).replace(/\./g, "")).toLocaleString("es-AR")}` : "Consultar";
 
-// Hook para detectar mobile
 const useIsMobile = (breakpoint = 768) => {
   const [isMobile, setIsMobile] = useState(
     typeof window !== "undefined" ? window.innerWidth < breakpoint : false
@@ -72,496 +30,265 @@ const useIsMobile = (breakpoint = 768) => {
   return isMobile;
 };
 
-// Helpers para soportar objetos responsive o strings legacy
-const toResponsiveObj = (item, fallbackAlt = "") => {
+const normalizeImage = (item, fallbackAlt) => {
   if (!item) return null;
   if (typeof item === "string") return { src: item, srcSet: undefined, alt: fallbackAlt };
   return { src: item.src, srcSet: item.srcSet, alt: item.alt || fallbackAlt };
 };
 
-// ✅ Preload responsive real (soporta srcSet + sizes)
-const preloadResponsiveImage = ({ src, srcSet }, sizes = "100vw") => {
-  if (!src) return;
-  const img = new Image();
-  if (srcSet) img.srcset = srcSet; // setear antes del src
-  img.sizes = sizes;
-  img.decoding = "async";
-  img.loading = "eager";
-  img.src = src;
+const buildWhatsAppLink = (pkg) => {
+  const digits = (pkg.whatsappPhone || WHATSAPP_PHONE).replace(/\D/g, "");
+  const message = pkg.whatsappMessage || `Hola! Me interesa la remera ${pkg.name}`;
+  return `https://wa.me/${digits}?text=${encodeURIComponent(message)}`;
 };
 
-const PackageModal = ({ pkg, onClose }) => {
-  if (!pkg) return null;
-
+export default function PackageModal({ pkg, onClose }) {
   const isMobile = useIsMobile();
-
-  // ✅ Preferimos los arrays responsive si existen, sino legacy
-  const baseImagesRaw =
-    Array.isArray(pkg.imagesResponsive) && pkg.imagesResponsive.length > 0
-      ? pkg.imagesResponsive
-      : Array.isArray(pkg.images) && pkg.images.length > 0
-      ? pkg.images
-      : [pkg.image];
-
-  const mobileImagesRaw =
-    Array.isArray(pkg.imagesMobileResponsive) && pkg.imagesMobileResponsive.length > 0
-      ? pkg.imagesMobileResponsive
-      : Array.isArray(pkg.imagesMobile) && pkg.imagesMobile.length > 0
-      ? pkg.imagesMobile
-      : baseImagesRaw;
-
-  const imagesRaw = isMobile ? mobileImagesRaw : baseImagesRaw;
-
-  // Normalizamos a {src, srcSet}
-  const images = imagesRaw
-    .map((it, idx) => toResponsiveObj(it, `Diseño ${idx + 1}`))
-    .filter(Boolean);
-
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
   const [showSizeGuide, setShowSizeGuide] = useState(false);
 
-  // ✅ Cache de preloads para no repetir requests
-  const preloadedKeysRef = useRef(new Set());
-  const modIndex = useCallback((i, n) => ((i % n) + n) % n, []);
+  const images = useMemo(() => {
+    const desktop =
+      Array.isArray(pkg.imagesResponsive) && pkg.imagesResponsive.length > 0
+        ? pkg.imagesResponsive
+        : pkg.images || [pkg.image];
+    const mobile =
+      Array.isArray(pkg.imagesMobileResponsive) && pkg.imagesMobileResponsive.length > 0
+        ? pkg.imagesMobileResponsive
+        : pkg.imagesMobile || desktop;
+    const source = isMobile ? mobile : desktop;
 
-  const preloadAt = useCallback(
-    (i) => {
-      const n = images.length;
-      if (!n) return;
+    return source.map((item, index) => normalizeImage(item, `${pkg.name} ${index + 1}`)).filter(Boolean);
+  }, [isMobile, pkg]);
 
-      const idx = modIndex(i, n);
-      const it = images[idx];
-      if (!it?.src) return;
+  const current = images[currentIndex] || images[0];
+  const hasDiscount =
+    pkg.originalPrice &&
+    Number(String(pkg.originalPrice).replace(/\./g, "")) > Number(String(pkg.price).replace(/\./g, ""));
 
-      const key = `${pkg.id || "pkg"}|${isMobile ? "m" : "d"}|${idx}|${it.src}|${it.srcSet || ""}`;
-      if (preloadedKeysRef.current.has(key)) return;
-      preloadedKeysRef.current.add(key);
-
-      const sizes = isMobile ? "90vw" : "min(896px, 100vw)";
-      preloadResponsiveImage({ src: it.src, srcSet: it.srcSet }, sizes);
-    },
-    [images, modIndex, pkg.id, isMobile]
-  );
-
-  // ✅ PRELOAD “VENTANA”: actual + siguiente/anterior + tercera (±2)
   useEffect(() => {
-    if (!images.length) return;
-
-    const targets = [
-      currentIndex,
-      currentIndex + 1,
-      currentIndex - 1,
-      currentIndex + 2,
-      currentIndex - 2,
-    ];
-
-    const run = () => targets.forEach(preloadAt);
-
-    if ("requestIdleCallback" in window) {
-      window.requestIdleCallback(run, { timeout: 700 });
-    } else {
-      setTimeout(run, 0);
-    }
-  }, [images.length, currentIndex, preloadAt]);
-
-  // 🔁 Auto-slide
-  useEffect(() => {
-    if (images.length <= 1) return;
-    if (isPaused) return;
-
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % images.length);
-    }, 3500);
-
-    return () => clearInterval(interval);
-  }, [images.length, isPaused]);
-
-  const pauseAutoslide = () => {
-    setIsPaused(true);
-    setTimeout(() => setIsPaused(false), 6000);
-  };
-
-  const goNext = () => {
-    pauseAutoslide();
-    setCurrentIndex((prev) => (prev + 1) % images.length);
-  };
-
-  const goPrev = () => {
-    pauseAutoslide();
-    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
-  };
-
-  const whatsappLink = buildWhatsAppLink(
-    pkg.whatsappMessage || `Hola! Me interesa el paquete: ${pkg.name}`,
-    pkg.whatsappPhone || WHATSAPP_PHONE
-  );
-
-  // ESC + bloquear scroll
-  useEffect(() => {
-    const onKeyDown = (e) => {
-      if (e.key === "Escape") onClose?.();
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") onClose?.();
     };
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-
     window.addEventListener("keydown", onKeyDown);
+
     return () => {
-      window.removeEventListener("keydown", onKeyDown);
       document.body.style.overflow = originalOverflow;
+      window.removeEventListener("keydown", onKeyDown);
     };
   }, [onClose]);
 
-  const sliderAspectRatio = isMobile ? "3 / 4" : "3 / 2";
-  const current = images[currentIndex];
+  useEffect(() => {
+    setCurrentIndex(0);
+  }, [pkg.id, isMobile]);
+
+  const goPrev = () => setCurrentIndex((value) => (value - 1 + images.length) % images.length);
+  const goNext = () => setCurrentIndex((value) => (value + 1) % images.length);
+
+  const guide = pkg.guiaTalleResponsive
+    ? { src: pkg.guiaTalleResponsive.src, srcSet: pkg.guiaTalleResponsive.srcSet }
+    : { src: pkg.guiaTalle, srcSet: undefined };
 
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[1000] flex items-center justify-center p-4 backdrop-blur-md"
-      style={{ backgroundColor: COLORS.backdrop }}
+      className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/78 p-3 backdrop-blur-md sm:p-5"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
       aria-labelledby="package-modal-title"
-      
     >
       <motion.div
-        initial={{ y: 36, opacity: 0, scale: 0.98 }}
-        animate={{ y: 0, opacity: 1, scale: 1 }}
-        exit={{ y: 36, opacity: 0, scale: 0.98 }}
-        transition={{ type: "spring", damping: 20, stiffness: 260 }}
-        className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-3xl border bg-gradient-to-b"
+        initial={{ y: 22, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: 22, opacity: 0 }}
+        transition={{ duration: 0.22 }}
+        className="relative grid max-h-[92svh] w-full max-w-6xl overflow-hidden rounded-md border md:grid-cols-[1.1fr_0.9fr]"
         style={{
-          borderColor: COLORS.modalBorder,
-          backgroundImage: `linear-gradient(180deg, ${COLORS.modalBgTop}, ${COLORS.modalBgBottom})`,
-          color: COLORS.sand,
-          boxShadow: COLORS.modalShadow,
+          background: `linear-gradient(145deg, ${COLORS.surface}, ${COLORS.surfaceAlt})`,
+          borderColor: COLORS.line,
+          color: COLORS.text,
+          boxShadow: "0 24px 90px rgba(0,0,0,0.72)",
         }}
-        onClick={(e) => e.stopPropagation()}
+        onClick={(event) => event.stopPropagation()}
       >
-        {/* filete superior */}
-        <div
-          className="absolute inset-x-0 top-0 h-[3px]"
-          style={{
-            background: `linear-gradient(90deg, ${COLORS.topStripeFrom}, ${COLORS.topStripeTo})`,
-            opacity: 0.9,
-          }}
-        />
-
-        {/* botón cerrar */}
         <button
+          type="button"
           onClick={onClose}
-          aria-label="Cerrar modal"
-          className="absolute top-4 right-4 z-20 p-2 rounded-full border transition-colors"
-          style={{
-            backgroundColor: COLORS.closeBg,
-            borderColor: COLORS.closeBorder,
-            color: COLORS.sand,
-          }}
-          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = COLORS.closeBgHover)}
-          onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = COLORS.closeBg)}
+          className="absolute right-3 top-3 z-30 grid h-10 w-10 place-items-center rounded-md border bg-black/45 backdrop-blur-md transition-colors duration-200 hover:bg-black/70"
+          style={{ borderColor: COLORS.line, color: COLORS.text }}
+          aria-label="Cerrar"
         >
-          <X size={20} />
+          <X size={18} />
         </button>
 
-        {/* SLIDER */}
-        <div className="relative w-full overflow-hidden rounded-t-3xl" style={{ aspectRatio: sliderAspectRatio }}>
-          <motion.img
-            key={current?.src}
-            src={current?.src}
-            srcSet={current?.srcSet}
-            sizes={isMobile ? "90vw" : "min(896px, 100vw)"}
-            alt={`${pkg.name} - ${current?.alt || `diseño ${currentIndex + 1}`}`}
-            className={
-              "w-full h-full " +
-              (isMobile ? "object-cover" : "object-contain") +
-              " bg-black"
-            }
-            loading="eager"
-            decoding="async"
-            fetchpriority="high"
-            initial={{ opacity: 0, scale: 1.03 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.4 }}
-          />
+        <div className="relative min-h-[360px] bg-black md:min-h-[680px]">
+          {current && (
+            <motion.img
+              key={current.src}
+              src={current.src}
+              srcSet={current.srcSet}
+              sizes={isMobile ? "96vw" : "min(640px, 56vw)"}
+              alt={current.alt}
+              className="h-full w-full object-contain"
+              loading="eager"
+              decoding="async"
+              fetchPriority="high"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.25 }}
+            />
+          )}
 
-          {/* Overlay */}
-          <div
-            className="absolute inset-0"
-            style={{
-              background: `linear-gradient(
-                to top,
-                ${COLORS.sliderOverlayStop1} 5%,
-                ${COLORS.sliderOverlayStop2} 45%,
-                ${COLORS.sliderOverlayStop3} 80%
-              )`,
-            }}
-          />
-
-          {/* título y badge */}
-          <div className="absolute bottom-4 md:bottom-6 left-4 md:left-6 right-4 md:right-6 flex flex-col gap-2">
-            <div
-              className="inline-flex items-center gap-2 px-3 py-1 rounded-full backdrop-blur-sm text-[11px] md:text-xs font-semibold w-fit"
-              style={{ backgroundColor: COLORS.sliderBadgeBg, color: COLORS.sliderBadgeText }}
-            >
-              <span>
-                Diseño {currentIndex + 1} de {images.length}
-              </span>
-            </div>
-
-            <h2
-              id="package-modal-title"
-              className="text-2xl md:text-4xl font-extrabold drop-shadow-lg"
-              style={{ color: COLORS.sliderTitle }}
-            >
-              {pkg.name}
-            </h2>
-          </div>
-
-          {/* flechas + dots */}
           {images.length > 1 && (
             <>
               <button
                 type="button"
                 onClick={goPrev}
-                className="absolute left-3 top-1/2 -translate-y-1/2 p-1.5 md:p-2 rounded-full border shadow-sm transition-colors"
-                style={{
-                  backgroundColor: COLORS.sliderArrowBg,
-                  borderColor: COLORS.sliderArrowBorder,
-                  color: COLORS.sliderArrowIcon,
-                }}
-                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = COLORS.sliderArrowBgHover)}
-                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = COLORS.sliderArrowBg)}
+                className="absolute left-3 top-1/2 grid h-10 w-10 -translate-y-1/2 place-items-center rounded-md border bg-black/45 backdrop-blur-md hover:bg-black/70"
+                style={{ borderColor: COLORS.line, color: COLORS.text }}
+                aria-label="Imagen anterior"
               >
                 <ChevronLeft size={18} />
               </button>
-
               <button
                 type="button"
                 onClick={goNext}
-                className="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 md:p-2 rounded-full border shadow-sm transition-colors"
-                style={{
-                  backgroundColor: COLORS.sliderArrowBg,
-                  borderColor: COLORS.sliderArrowBorder,
-                  color: COLORS.sliderArrowIcon,
-                }}
-                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = COLORS.sliderArrowBgHover)}
-                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = COLORS.sliderArrowBg)}
+                className="absolute right-3 top-1/2 grid h-10 w-10 -translate-y-1/2 place-items-center rounded-md border bg-black/45 backdrop-blur-md hover:bg-black/70"
+                style={{ borderColor: COLORS.line, color: COLORS.text }}
+                aria-label="Imagen siguiente"
               >
                 <ChevronRight size={18} />
               </button>
-
-              <div className="absolute bottom-2.5 md:bottom-3 left-0 right-0 flex justify-center gap-2">
-                {images.map((_, idx) => (
-                  <span
-                    key={idx}
-                    className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full"
-                    style={{
-                      backgroundColor: idx === currentIndex ? COLORS.sliderDotActive : COLORS.sliderDotInactive,
-                      opacity: idx === currentIndex ? 1 : 0.7,
-                    }}
-                  />
-                ))}
-              </div>
             </>
           )}
         </div>
 
-        {/* CONTENIDO */}
-        <div className="p-4 pt-5 md:p-8 md:pt-6">
-          <p className="text-base md:text-lg mb-4 md:mb-6 leading-relaxed" style={{ color: COLORS.bodyText }}>
-            {pkg.longDescription}
+        <div className="flex max-h-[92svh] flex-col overflow-y-auto p-5 sm:p-7">
+          <p className="text-xs font-semibold uppercase tracking-[0.22em]" style={{ color: COLORS.gold }}>
+            {pkg.duration} / {pkg.destination}
           </p>
 
-          {/* Chips info */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4 mb-4 md:mb-6">
-            <div
-              className="inline-flex items-center gap-3 text-sm px-3 py-2.5 md:px-4 md:py-3 rounded-2xl border"
-              style={{
-                backgroundColor: COLORS.chipBg,
-                borderColor: COLORS.chipBorder,
-                boxShadow: COLORS.chipShadow,
-              }}
-            >
-              <MapPin size={18} color={COLORS.gold} />
-              <div className="font-medium">
-                <span className="opacity-80" style={{ color: COLORS.chipLabel }}>
-                  Colección:
-                </span>{" "}
-                <span style={{ color: COLORS.bodyTextStrong }}>{pkg.destination}</span>
+          <div className="mt-3 flex items-start justify-between gap-6 border-b pb-6" style={{ borderColor: COLORS.line }}>
+            <div>
+              <h2 id="package-modal-title" className="text-4xl font-black leading-none" style={{ color: COLORS.text }}>
+                {pkg.name}
+              </h2>
+              <p className="mt-4 text-sm leading-6" style={{ color: COLORS.muted }}>
+                {pkg.longDescription}
+              </p>
+            </div>
+            <div className="shrink-0 text-right">
+              {hasDiscount && (
+                <p className="text-sm line-through" style={{ color: COLORS.muted }}>
+                  {price(pkg.originalPrice)}
+                </p>
+              )}
+              <p className="text-2xl font-black" style={{ color: COLORS.text }}>
+                {price(pkg.price)}
+              </p>
+            </div>
+          </div>
+
+          <div className="grid gap-3 border-b py-6" style={{ borderColor: COLORS.line }}>
+            <div className="flex items-start gap-3">
+              <Truck size={19} color={COLORS.gold} />
+              <div>
+                <p className="text-sm font-semibold" style={{ color: COLORS.text }}>
+                  Envios a todo el pais
+                </p>
+                <p className="mt-1 text-sm" style={{ color: COLORS.muted }}>
+                  Coordinamos stock, pago y envio directo por WhatsApp.
+                </p>
               </div>
             </div>
-
-            <div
-              className="inline-flex items-center gap-3 text-sm px-3 py-2.5 md:px-4 md:py-3 rounded-2xl border"
-              style={{
-                backgroundColor: COLORS.chipBg,
-                borderColor: COLORS.chipBorder,
-                boxShadow: COLORS.chipShadow,
-              }}
-            >
-              <Clock size={18} color={COLORS.gold} />
-              <div className="font-medium">
-                <span className="opacity-80" style={{ color: COLORS.chipLabel }}>
-                  Edición:
-                </span>{" "}
-                <span style={{ color: COLORS.bodyTextStrong }}>{pkg.duration}</span>
-              </div>
-            </div>
-
-            <div
-              className="inline-flex items-center gap-3 text-sm px-3 py-2.5 md:px-4 md:py-3 rounded-2xl border"
-              style={{
-                backgroundColor: COLORS.chipBg,
-                borderColor: COLORS.chipBorder,
-                boxShadow: COLORS.chipShadow,
-              }}
-            >
-              <CheckCircle size={18} color={COLORS.gold} />
-              <div className="font-medium flex flex-col">
-                {pkg.originalPrice &&
-                Number(String(pkg.originalPrice).replace(/\./g, "")) >
-                  Number(String(pkg.price).replace(/\./g, "")) ? (
-                  <>
-                    <span
-                      className="text-[11px] md:text-xs uppercase tracking-[0.08em] mb-0.5"
-                      style={{ color: COLORS.chipLabel, opacity: 0.85 }}
-                    >
-                      OFERTA lanzamiento
-                    </span>
-
-                    <div className="flex items-baseline gap-2">
-                      <span
-                        className="text-xs md:text-sm line-through"
-                        style={{ color: "rgba(244, 227, 176, 0.7)" }}
-                      >
-                        ${Number(String(pkg.originalPrice).replace(/\./g, "")).toLocaleString("es-AR")}
-                      </span>
-                      <span className="text-base md:text-lg font-semibold" style={{ color: COLORS.bodyTextStrong }}>
-                        ${Number(String(pkg.price).replace(/\./g, "")).toLocaleString("es-AR")}
-                      </span>
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    <span className="opacity-80" style={{ color: COLORS.chipLabel }}>
-                      Precio:
-                    </span>{" "}
-                    <span style={{ color: COLORS.bodyTextStrong }}>
-                      {pkg.price ? `$${Number(String(pkg.price).replace(/\./g, "")).toLocaleString("es-AR")}` : "Consultar"}
-                    </span>
-                  </>
-                )}
+            <div className="flex items-start gap-3">
+              <Ruler size={19} color={COLORS.gold} />
+              <div>
+                <p className="text-sm font-semibold" style={{ color: COLORS.text }}>
+                  Guia de talles
+                </p>
+                <button
+                  type="button"
+                  onClick={() => setShowSizeGuide(true)}
+                  className="mt-1 text-sm underline underline-offset-4"
+                  style={{ color: COLORS.gold }}
+                >
+                  Ver tabla antes de elegir
+                </button>
               </div>
             </div>
           </div>
 
-          {/* Botón: Tabla guía de talles */}
-          <div className="flex justify-start mb-6">
-            <button
-              type="button"
-              onClick={() => setShowSizeGuide(true)}
-              className="inline-flex items-center rounded-full px-3 py-1 text-xs font-medium border transition-colors"
-              style={{
-                backgroundColor: COLORS.sizeGuideBg,
-                borderColor: COLORS.sizeGuideBorder,
-                color: COLORS.sizeGuideText,
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = COLORS.sizeGuideBgHover)}
-              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = COLORS.sizeGuideBg)}
-            >
-              Tabla guía de talles
-            </button>
-          </div>
-
-          <h3 className="text-lg md:text-xl font-bold mb-2 md:mb-3" style={{ color: COLORS.sectionTitle }}>
-            Envíos a todo el país
-          </h3>
-
-          <br />
-
-          {/* BOTONES CTA */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 md:gap-3">
-            <motion.a
-              href={whatsappLink}
+          <div className="mt-auto pt-6">
+            <a
+              href={buildWhatsAppLink(pkg)}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-xl px-3.5 py-2.5 md:px-4 md:py-3 font-semibold shadow-sm"
-              style={{ backgroundColor: COLORS.ctaPrimaryBg, color: COLORS.ctaPrimaryText }}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.985 }}
+              className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-md text-sm font-bold transition-transform duration-200 hover:-translate-y-0.5"
+              style={{ backgroundColor: COLORS.gold, color: COLORS.dark }}
             >
-              <FaWhatsapp size={20} className="mr-2" />
-              Consultar por WhatsApp
-            </motion.a>
+              <MessageCircle size={18} />
+              Comprar por WhatsApp
+            </a>
 
-            <button
-              onClick={onClose}
-              className="inline-flex items-center justify-center rounded-xl px-3.5 py-2.5 md:px-4 md:py-3 font-semibold border transition-colors"
-              style={{
-                backgroundColor: COLORS.ctaSecondaryBg,
-                color: COLORS.ctaSecondaryText,
-                borderColor: COLORS.ctaSecondaryBorder,
-              }}
-            >
-              Cerrar
-            </button>
+            <div className="mt-5 flex justify-center gap-2">
+              {images.map((image, imageIndex) => (
+                <button
+                  key={image.src}
+                  type="button"
+                  onClick={() => setCurrentIndex(imageIndex)}
+                  className="h-1.5 rounded-full transition-all duration-200"
+                  style={{
+                    width: imageIndex === currentIndex ? 28 : 8,
+                    backgroundColor: imageIndex === currentIndex ? COLORS.gold : "rgba(237, 229, 218, 0.34)",
+                  }}
+                  aria-label={`Ver foto ${imageIndex + 1}`}
+                />
+              ))}
+            </div>
           </div>
         </div>
-
-        {/* MINI-MODAL TABLA DE TALLES */}
-        {showSizeGuide && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[60] flex items-center justify-center bg-black/60 p-4"
-            onClick={() => setShowSizeGuide(false)}
-          >
-            <motion.div
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              transition={{ type: "spring", damping: 20, stiffness: 260 }}
-              className="relative w-full max-w-md rounded-2xl overflow-hidden bg-black border border-white/20"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <button
-                type="button"
-                onClick={() => setShowSizeGuide(false)}
-                className="absolute top-3 right-3 z-10 p-1.5 rounded-full border border-white/40 bg-black/70 text-white hover:bg-black/90 transition-colors"
-              >
-                <X size={16} />
-              </button>
-
-              <div className="w-full h-full flex items-center justify-center p-3 bg-black">
-                {(() => {
-                  const guide = pkg.guiaTalleResponsive
-                    ? { src: pkg.guiaTalleResponsive.src, srcSet: pkg.guiaTalleResponsive.srcSet }
-                    : { src: pkg.guiaTalle, srcSet: undefined };
-
-                  return (
-                    <img
-                      src={guide.src}
-                      srcSet={guide.srcSet}
-                      sizes="min(448px, 100vw)"
-                      alt="Tabla guía de talles"
-                      className="w-full h-full object-contain"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  );
-                })()}
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
       </motion.div>
+
+      {showSizeGuide && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-[1100] flex items-center justify-center bg-black/78 p-4"
+          onClick={() => setShowSizeGuide(false)}
+        >
+          <div
+            className="relative w-full max-w-lg overflow-hidden rounded-md border bg-black p-3"
+            style={{ borderColor: COLORS.line }}
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              type="button"
+              onClick={() => setShowSizeGuide(false)}
+              className="absolute right-4 top-4 z-10 grid h-9 w-9 place-items-center rounded-md border bg-black/70"
+              style={{ borderColor: COLORS.line, color: COLORS.text }}
+              aria-label="Cerrar guia de talles"
+            >
+              <X size={16} />
+            </button>
+            <img
+              src={guide.src}
+              srcSet={guide.srcSet}
+              sizes="min(512px, 96vw)"
+              alt="Guia de talles"
+              className="h-full w-full object-contain"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </motion.div>
+      )}
     </motion.div>
   );
-};
-
-export default PackageModal;
+}

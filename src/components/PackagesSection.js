@@ -1,171 +1,77 @@
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import { Ruler, Truck } from "lucide-react";
 import PackageCard from "./PackageCard";
 import PackageModal from "./PackageModal";
 import { remerasDescripcion } from "../mock/packages";
 
-// Paleta: base neutral + acentos del logo
 const COLORS = {
-  midnight: "#141416", // grafito
-  navy: "#2b3036",     // gris pizarra
-  gold: "#d2983a",     // dorado
-  sand: "#EDE5DA",     // arena
-
-  // Fondo sección
-  sectionBgStart: "#1c4985",
-  sectionBgMiddle: "#000110",
-  sectionBgEnd: "#000110",
-
-  // Filetes
-  topBorderLine: "rgba(210, 152, 58, 0.10)",
-  bottomBorderLine: "rgba(210, 152, 58, 0.30)",
-
-  // Manchas de luz
-  glowTop: "rgba(43, 48, 54, 0.20)",
-  glowBottom: "rgba(20, 20, 22, 0.10)",
-
-  // Texto
-  titleText: "#141416",
-  titleAccentText: "#d2983a",
-  titleAccentText2: "#d0d0d0ff",
-  divider: "#d2983a",
+  dark: "#000110",
+  panel: "#050b1a",
+  blue: "#1c4985",
+  text: "#f7f4e6",
+  muted: "rgba(247, 244, 230, 0.68)",
+  gold: "#d2983a",
+  line: "rgba(237, 229, 218, 0.14)",
 };
 
-const PackagesSection = () => {
+export default function PackagesSection() {
   const [selectedPackage, setSelectedPackage] = useState(null);
-
-  const handleSelectPackage = (pkg) => setSelectedPackage(pkg);
-  const handleCloseModal = () => setSelectedPackage(null);
-
-  // Sólo mostramos 3 productos
   const visiblePackages = remerasDescripcion.slice(0, 3);
 
   return (
-    <section
-      id="packages"
-      className="relative pt-[2em] overflow-hidden bg-gradient-to-br"
-      style={{
-        backgroundImage: `linear-gradient(
-          135deg,
-          ${COLORS.sectionBgStart} 0%,
-          ${COLORS.sectionBgMiddle} 55%,
-          ${COLORS.sectionBgEnd} 100%
-        )`,
-      }}
-    >
-      {/* Filetes dorados sutiles */}
-      <div
-        className="pointer-events-none absolute inset-x-0 top-0 h-px"
-        style={{ background: COLORS.topBorderLine }}
-      />
-      <div
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-px"
-        style={{ background: COLORS.bottomBorderLine }}
-      />
+    <section id="packages" className="relative overflow-hidden py-20 sm:py-24" style={{ backgroundColor: COLORS.dark }}>
+      <div className="absolute inset-x-0 top-0 h-px" style={{ backgroundColor: "rgba(210, 152, 58, 0.25)" }} />
+      <div className="absolute right-0 top-0 h-96 w-1/2 bg-[radial-gradient(circle_at_top_right,rgba(28,73,133,0.34),transparent_62%)]" />
 
-      {/* manchas de luz */}
-      <div
-        className="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full blur-3xl"
-        style={{ background: COLORS.glowTop }}
-      />
-      <div
-        className="pointer-events-none absolute -bottom-24 -left-24 h-72 w-72 rounded-full blur-3xl"
-        style={{ background: COLORS.glowBottom }}
-      />
-
-      {/* CONTENIDO que aparece al hacer scroll (texto + cards) */}
-      <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.08 }}
-        transition={{ duration: 0.35 }}
-        className="relative"
-      >
-        {/* TÍTULO */}
-        <div className="container mx-auto px-4 max-w-6xl">
-          <motion.h2
-            initial={{ opacity: 1, y: 0 }} // ya viene animado por el wrapper
-            className="text-4xl md:text-5xl font-extrabold text-center mb-6"
-            style={{ color: COLORS.titleText }}
-          >
-            <span
-              className="inline-flex items-center gap-2 px-3 py-1 rounded-xl"
-              style={{ color: COLORS.titleAccentText }}
-            >
-              VAGOS
-            </span>
-            <br />
-            <br />
-            <span
-              className="inline-flex items-center gap-2 px-3 py-1 rounded-xl"
-              style={{ color: COLORS.titleAccentText2 }}
-            >
-              Nuestras{" "}
-            </span>
-
-            <span
-              className="inline-flex items-center gap-2 px-3 py-1 rounded-xl"
-              style={{ color: COLORS.titleAccentText }}
-            >
-              Remeras
-            </span>
-          </motion.h2>
-
-          <div className="flex justify-center mb-12">
-            <span
-              className="h-[2px] w-24 rounded-full"
-              style={{ background: COLORS.divider }}
-            />
-          </div>
-        </div>
-
-        {/* BLOQUE FULL-WIDTH PARA LAS CARDS */}
-        <div className="w-full relative">
-          {/* DESKTOP/TABLET: 3 columnas de borde a borde */}
-          <div className="hidden md:grid grid-cols-3 gap-0 w-full items-stretch">
-            {visiblePackages.map((pkg) => (
-              <div key={pkg.id} className="w-full h-full">
-                <PackageCard
-                  pkg={pkg}
-                  onSelectPackage={handleSelectPackage}
-                  disableAnimation={true} // que entren junto con el texto
-                />
-              </div>
-            ))}
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.35 }}
+          className="mb-10 grid gap-8 md:grid-cols-[0.9fr_1.1fr] md:items-end"
+        >
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.24em]" style={{ color: COLORS.gold }}>
+              Tienda
+            </p>
+            <h2 className="mt-3 max-w-xl text-4xl font-black leading-none sm:text-5xl" style={{ color: COLORS.text }}>
+              La primera coleccion VAGOS
+            </h2>
           </div>
 
-          {/* MOBILE: slider horizontal */}
-          <div className="md:hidden w-full">
-            <div className="flex overflow-x-auto snap-mandatory gap-4 px-4 pb-4">
-              {visiblePackages.map((pkg) => (
-                <div key={pkg.id} className="min-w-[80%] snap-center">
-                  <PackageCard
-                    pkg={pkg}
-                    onSelectPackage={handleSelectPackage}
-                    disableAnimation={true}
-                  />
-                </div>
-              ))}
+          <div className="grid gap-3 sm:grid-cols-2">
+            <div className="flex items-center gap-3 border-y py-4" style={{ borderColor: COLORS.line }}>
+              <Truck size={20} color={COLORS.gold} />
+              <p className="text-sm leading-5" style={{ color: COLORS.muted }}>
+                Envios a todo el pais y coordinacion directa por WhatsApp.
+              </p>
+            </div>
+            <div className="flex items-center gap-3 border-y py-4" style={{ borderColor: COLORS.line }}>
+              <Ruler size={20} color={COLORS.gold} />
+              <p className="text-sm leading-5" style={{ color: COLORS.muted }}>
+                Guia de talles disponible en cada modelo antes de comprar.
+              </p>
             </div>
           </div>
+        </motion.div>
+
+        <div className="grid gap-4 md:grid-cols-3 lg:gap-5">
+          {visiblePackages.map((pkg) => (
+            <PackageCard
+              key={pkg.id}
+              pkg={pkg}
+              onSelectPackage={setSelectedPackage}
+              disableAnimation={false}
+            />
+          ))}
         </div>
-      </motion.div>
+      </div>
 
-      {/* Modal */}
       <AnimatePresence>
-        {selectedPackage && (
-          <PackageModal pkg={selectedPackage} onClose={handleCloseModal} />
-        )}
+        {selectedPackage && <PackageModal pkg={selectedPackage} onClose={() => setSelectedPackage(null)} />}
       </AnimatePresence>
-
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
     </section>
   );
-};
-
-export default PackagesSection;
+}
