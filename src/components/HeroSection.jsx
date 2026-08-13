@@ -180,7 +180,7 @@ export default function HeroSection() {
               </div>
               <div>
                 <p className="text-2xl font-black" style={{ color: COLORS.text }}>
-                  Pais
+                TODO el pais
                 </p>
                 <p className="mt-1 text-xs uppercase tracking-[0.16em]" style={{ color: COLORS.muted }}>
                   Envios
