@@ -221,7 +221,7 @@ export default function PackageModal({ pkg, onClose }) {
                     className="mt-1 text-sm underline underline-offset-4"
                     style={{ color: COLORS.gold }}
                   >
-                    Ver tabla antes de elegir
+                    Tabla guía de talles
                   </button>
                 </div>
               </div>

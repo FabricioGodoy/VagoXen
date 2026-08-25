@@ -146,7 +146,7 @@ export default function HeroSection() {
                 className="inline-flex h-12 items-center justify-center gap-2 rounded-md px-6 text-sm font-bold transition-transform duration-200 hover:-translate-y-0.5"
                 style={{ backgroundColor: COLORS.gold, color: COLORS.dark }}
               >
-                Ver remeras
+                Ver productos
                 <ArrowDown size={17} />
               </a>
               <a
