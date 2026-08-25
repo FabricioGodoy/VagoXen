@@ -1,6 +1,10 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Navigate, Route, Routes, useLocation } from "react-router-dom";
 
+import AdminProtectedRoute from "./admin/components/AdminProtectedRoute";
+import AdminLayout from "./admin/layouts/AdminLayout";
+import AdminLoginPage from "./admin/pages/AdminLoginPage";
+import AdminProductsPage from "./admin/pages/AdminProductsPage";
 import AboutSection from "./components/AboutSection";
 import ContactSection from "./components/ContactSection";
 import Footer from "./components/Footer";
@@ -34,24 +38,48 @@ function NosotrosPage() {
   return <AboutSection />;
 }
 
-export default function App() {
+function AppShell() {
   const [productFilter, setProductFilter] = useState("all");
+  const location = useLocation();
+  const isAdminRoute = location.pathname.startsWith("/admin");
 
   return (
-    <Router>
-      <div className="min-h-screen Appbgc">
+    <div className="min-h-screen Appbgc">
+      {!isAdminRoute && (
         <Navbar productFilter={productFilter} onProductFilterChange={setProductFilter} />
+      )}
 
-        <main>
-          <Routes>
-            <Route path="/" element={<HomePage productFilter={productFilter} />} />
-            <Route path="/nosotros" element={<NosotrosPage />} />
-            <Route path="/contacto" element={<ContactSection />} />
-          </Routes>
-        </main>
+      <main>
+        <Routes>
+          <Route path="/" element={<HomePage productFilter={productFilter} />} />
+          <Route path="/nosotros" element={<NosotrosPage />} />
+          <Route path="/contacto" element={<ContactSection />} />
+          <Route path="/admin/login" element={<AdminLoginPage />} />
+          <Route
+            path="/admin"
+            element={
+              <AdminProtectedRoute>
+                <AdminLayout />
+              </AdminProtectedRoute>
+            }
+          >
+            <Route index element={<Navigate to="/admin/products" replace />} />
+            <Route path="products" element={<AdminProductsPage />} />
+          </Route>
+        </Routes>
+      </main>
 
+      {!isAdminRoute && (
         <Footer />
-      </div>
+      )}
+    </div>
+  );
+}
+
+export default function App() {
+  return (
+    <Router>
+      <AppShell />
     </Router>
   );
 }
