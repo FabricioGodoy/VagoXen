@@ -37,7 +37,7 @@ export default function PackagesSection() {
               Tienda
             </p>
             <h2 className="mt-3 max-w-xl text-4xl font-black leading-none sm:text-5xl" style={{ color: COLORS.text }}>
-              La primera coleccion VAGOS
+              La coleccion VAGOS
             </h2>
           </div>
 

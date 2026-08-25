@@ -140,7 +140,7 @@ export const remerasDescripcion = [
   },
   {
     id: "04",
-    name: "Remera Blanca",
+    name: "EL BARRIO",
    description:
       "Representando a La Boca, con los detalles del puente, el ancla y las coordenadas del barrio.",
     longDescription:
@@ -186,7 +186,7 @@ export const remerasDescripcion = [
   },
   {
     id: "05",
-    name: "Buzo Negro",
+    name: "TRES DEL MUNDO",
     description:
       "El primer buzo de VAGOS representa el fútbol de Boca, y sus gloriosas tres copas Intercontinentales. Un barrio que conquistó el mundo.",
     longDescription:

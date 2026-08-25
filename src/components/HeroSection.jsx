@@ -164,7 +164,7 @@ export default function HeroSection() {
             <div className="mt-10 grid max-w-lg grid-cols-3 border-y border-white/12 py-5">
               <div>
                 <p className="text-2xl font-black" style={{ color: COLORS.text }}>
-                  3
+                  4
                 </p>
                 <p className="mt-1 text-xs uppercase tracking-[0.16em]" style={{ color: COLORS.muted }}>
                   Modelos
