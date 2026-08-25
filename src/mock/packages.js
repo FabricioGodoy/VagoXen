@@ -141,10 +141,10 @@ export const remerasDescripcion = [
   {
     id: "04",
     name: "Remera Blanca",
-    description:
-      "Remera blanca VAGOS con estampa dorada al frente. Una pieza limpia, liviana y facil de combinar.",
+   description:
+      "Representando a La Boca, con los detalles del puente, el ancla y las coordenadas del barrio.",
     longDescription:
-      "Remera blanca VAGOS con estampa dorada al frente. Una pieza limpia, liviana y facil de combinar para llevar la identidad azul y oro todos los dias.",
+      "Remera blanca VAGOS con estampa dorada al frente. Una pieza limpia, liviana y facil de combinar.",
     imageCard: makeSrcSet("card_blanca_principal", CARD_W),
     image: `${gen("card_blanca_principal")}-768.webp`,
     imagesResponsive: [
@@ -177,8 +177,8 @@ export const remerasDescripcion = [
     ],
     guiaTalleResponsive: makeSrcSet("guide_guiaTalles", GUIDE_W),
     guiaTalle: `${gen("guide_guiaTalles")}-1000.webp`,
-    price: "",
-    originalPrice: "",
+    price: "38.000",
+    originalPrice: "45.000",
     duration: "Oversize",
     destination: "UNISEX",
     includes: ["remera blanca"],
@@ -188,7 +188,7 @@ export const remerasDescripcion = [
     id: "05",
     name: "Buzo Negro",
     description:
-      "Buzo negro VAGOS con grafica azul y oro. Abrigo urbano con identidad xeneize y presencia de cancha.",
+      "El primer buzo de VAGOS representa el fútbol de Boca, y sus gloriosas tres copas Intercontinentales. Un barrio que conquistó el mundo.",
     longDescription:
       "Buzo negro VAGOS con grafica azul y oro. Abrigo urbano con identidad xeneize, pensado para usar en la calle, en la cancha y en el dia a dia.",
     imageCard: makeSrcSet("card_buzo_negro_principal", CARD_W),
@@ -221,11 +221,11 @@ export const remerasDescripcion = [
       `${gen("modal_buzo_negro_4")}-1200.webp`,
       `${gen("modal_buzo_negro_5")}-1200.webp`,
     ],
-    price: "",
-    originalPrice: "",
+    price: "83.000",
+   /*  originalPrice: "95.000", */
     duration: "Buzo",
     destination: "UNISEX",
-    includes: ["buzo negro"],
+    includes: ["TRES DEL MUNDO"],
     whatsappMessage: "AGUANTE BOCA LOCO, me interesa el buzo negro VAGOS",
   },
 ];
