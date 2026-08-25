@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Menu, ShoppingBag, X } from "lucide-react";
+import { ChevronDown, Menu, ShoppingBag, X } from "lucide-react";
 
 const COLORS = {
   bg: "rgba(0, 1, 16, 0.82)",
@@ -14,29 +14,31 @@ const COLORS = {
 
 const navItems = [
   { name: "Inicio", href: "/", type: "route" },
-  { name: "Remeras", href: "#packages", type: "section" },
+  { name: "Productos", type: "products" },
   { name: "Nosotros", href: "/nosotros", type: "route" },
   { name: "Contacto", href: "/contacto", type: "route" },
 ];
 
-export default function Navbar() {
+const productOptions = [
+  { name: "Remeras", category: "remeras" },
+  { name: "Buzos", category: "buzos" },
+];
+
+export default function Navbar({ productFilter = "all", onProductFilterChange = () => {} }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("");
+  const [isProductsOpen, setIsProductsOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
-  const closeMenu = () => setIsOpen(false);
+  const closeMenu = () => {
+    setIsOpen(false);
+    setIsProductsOpen(false);
+  };
 
-  useEffect(() => {
-    if (location.pathname !== "/") {
-      setActiveSection("");
-    }
-  }, [location.pathname]);
-
-  const goToProducts = (event) => {
+  const goToProducts = (event, category = "all") => {
     event.preventDefault();
     closeMenu();
-    setActiveSection("#packages");
+    onProductFilterChange(category);
     navigate("/");
 
     window.setTimeout(() => {
@@ -44,21 +46,102 @@ export default function Navbar() {
     }, 120);
   };
 
+  const goHome = () => {
+    closeMenu();
+    onProductFilterChange("all");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   const renderLink = (item, mobile = false) => {
     const isActive =
-      item.type === "section"
-        ? location.pathname === "/" && activeSection === item.href
-        : !activeSection && location.pathname === item.href;
+      item.type === "products"
+        ? location.pathname === "/" && productFilter !== "all"
+        : location.pathname === item.href && (item.href !== "/" || productFilter === "all");
     const className = mobile
       ? "flex items-center justify-between border-b border-white/10 px-5 py-4 text-base font-medium"
       : "relative text-sm font-medium tracking-wide transition-colors duration-200";
 
-    if (item.type === "section") {
+    if (item.type === "products") {
       return (
-        <a
+        <div
           key={item.name}
-          href={item.href}
-          onClick={goToProducts}
+          className={mobile ? "" : "relative"}
+          onMouseEnter={() => !mobile && setIsProductsOpen(true)}
+          onMouseLeave={() => !mobile && setIsProductsOpen(false)}
+        >
+          <button
+            type="button"
+            onClick={() => setIsProductsOpen((value) => (mobile ? !value : true))}
+            className={[
+              className,
+              mobile ? "w-full" : "inline-flex items-center gap-1.5",
+            ].join(" ")}
+            style={{ color: isActive ? COLORS.gold : mobile ? COLORS.text : COLORS.muted }}
+            aria-expanded={isProductsOpen}
+          >
+            <span>{item.name}</span>
+            <ChevronDown
+              size={15}
+              className={isProductsOpen ? "rotate-180 transition-transform" : "transition-transform"}
+            />
+            {!mobile && isActive && (
+              <span
+                className="absolute -bottom-2 left-0 h-px w-full"
+                style={{ backgroundColor: COLORS.gold }}
+              />
+            )}
+          </button>
+
+          <AnimatePresence>
+            {isProductsOpen && (
+              <motion.div
+                initial={{ opacity: 0, y: mobile ? -4 : 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: mobile ? -4 : 8 }}
+                transition={{ duration: 0.16 }}
+                className={
+                  mobile
+                    ? "border-b border-white/10 px-5 py-2"
+                    : "absolute left-1/2 top-full mt-5 w-40 -translate-x-1/2 rounded-md border p-2 shadow-xl backdrop-blur-xl"
+                }
+                style={
+                  mobile
+                    ? {}
+                    : { backgroundColor: COLORS.bg, borderColor: COLORS.border }
+                }
+              >
+                {productOptions.map((option) => {
+                  const isOptionActive = location.pathname === "/" && productFilter === option.category;
+
+                  return (
+                    <a
+                      key={option.category}
+                      href="#packages"
+                      onClick={(event) => goToProducts(event, option.category)}
+                      className={
+                        mobile
+                          ? "block rounded-md px-4 py-3 text-sm font-medium"
+                          : "block rounded-md px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-white/10"
+                      }
+                      style={{ color: isOptionActive ? COLORS.gold : COLORS.text }}
+                    >
+                      {option.name}
+                    </a>
+                  );
+                })}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      );
+    }
+
+    if (item.href === "/") {
+      return (
+        <Link
+          key={item.name}
+          to={item.href}
+          onClick={goHome}
           className={className}
           style={{ color: isActive ? COLORS.gold : mobile ? COLORS.text : COLORS.muted }}
         >
@@ -69,7 +152,7 @@ export default function Navbar() {
               style={{ backgroundColor: COLORS.gold }}
             />
           )}
-        </a>
+        </Link>
       );
     }
 
@@ -79,7 +162,7 @@ export default function Navbar() {
         to={item.href}
         onClick={() => {
           closeMenu();
-          setActiveSection("");
+          onProductFilterChange("all");
           window.scrollTo({ top: 0, behavior: "smooth" });
         }}
         className={className}
@@ -107,11 +190,7 @@ export default function Navbar() {
       <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link
           to="/"
-          onClick={() => {
-            closeMenu();
-            setActiveSection("");
-            window.scrollTo({ top: 0, behavior: "smooth" });
-          }}
+          onClick={goHome}
           className="flex items-center gap-3"
           aria-label="Vagos inicio"
         >
@@ -131,7 +210,7 @@ export default function Navbar() {
 
         <a
           href="#packages"
-          onClick={goToProducts}
+          onClick={(event) => goToProducts(event, "all")}
           className="hidden h-10 items-center gap-2 rounded-md px-4 text-sm font-semibold transition-transform duration-200 hover:-translate-y-0.5 md:inline-flex"
           style={{ backgroundColor: COLORS.gold, color: "#000110" }}
         >
@@ -167,12 +246,12 @@ export default function Navbar() {
             <div className="p-4">
               <a
                 href="#packages"
-                onClick={goToProducts}
+                onClick={(event) => goToProducts(event, "all")}
                 className="inline-flex w-full items-center justify-center gap-2 rounded-md px-4 py-3 text-sm font-semibold"
                 style={{ backgroundColor: COLORS.gold, color: "#000110" }}
               >
                 <ShoppingBag size={17} />
-                Ver remeras
+                Ver productos
               </a>
             </div>
           </motion.div>

@@ -14,6 +14,7 @@ const GUIDE_W = [1000, 1600];
 export const remerasDescripcion = [
   {
     id: "01",
+    category: "remeras",
     name: "Azul y Oro",
     description:
       "100% nuestros colores. 100% Boca. Un diseno en representacion al Hincha Xeneize y al templo de Brandsen 805.",
@@ -56,6 +57,7 @@ export const remerasDescripcion = [
   },
   {
     id: "02",
+    category: "remeras",
     name: "Vago Xeneize",
     description:
       "En homenaje a Vago Xeneize. Diseno moderno, con tipografia romana y flow abstracto. Estilo artistico y callejero.",
@@ -98,6 +100,7 @@ export const remerasDescripcion = [
   },
   {
     id: "03",
+    category: "remeras",
     name: "1905",
     description:
       "Un diseno que representa el nacimiento del Club Atletico Boca Juniors y sus hazanas en el Continente Asiatico.",
@@ -140,6 +143,7 @@ export const remerasDescripcion = [
   },
   {
     id: "04",
+    category: "remeras",
     name: "EL BARRIO",
    description:
       "Representando a La Boca, con los detalles del puente, el ancla y las coordenadas del barrio.",
@@ -186,6 +190,7 @@ export const remerasDescripcion = [
   },
   {
     id: "05",
+    category: "buzos",
     name: "TRES DEL MUNDO",
     description:
       "El primer buzo de VAGOS representa el fútbol de Boca, y sus gloriosas tres copas Intercontinentales. Un barrio que conquistó el mundo.",

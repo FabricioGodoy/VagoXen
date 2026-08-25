@@ -15,9 +15,32 @@ const COLORS = {
   line: "rgba(237, 229, 218, 0.14)",
 };
 
-export default function PackagesSection() {
+const sectionTitles = {
+  all: "La coleccion VAGOS",
+  remeras: "Remeras VAGOS",
+  buzos: "Buzos VAGOS",
+};
+
+const getGridItemClass = (index, total) => {
+  const remainder = total % 3;
+
+  if (remainder === 1 && index === total - 1) {
+    return "lg:col-start-3";
+  }
+
+  if (remainder === 2 && index === total - 2) {
+    return "lg:col-start-2";
+  }
+
+  return "";
+};
+
+export default function PackagesSection({ productFilter = "all" }) {
   const [selectedPackage, setSelectedPackage] = useState(null);
-  const visiblePackages = remerasDescripcion;
+  const visiblePackages =
+    productFilter === "all"
+      ? remerasDescripcion
+      : remerasDescripcion.filter((pkg) => pkg.category === productFilter);
 
   return (
     <section id="packages" className="relative overflow-hidden py-20 sm:py-24" style={{ backgroundColor: COLORS.dark }}>
@@ -37,7 +60,7 @@ export default function PackagesSection() {
               Tienda
             </p>
             <h2 className="mt-3 max-w-xl text-4xl font-black leading-none sm:text-5xl" style={{ color: COLORS.text }}>
-              La coleccion VAGOS
+              {sectionTitles[productFilter] || sectionTitles.all}
             </h2>
           </div>
 
@@ -63,7 +86,7 @@ export default function PackagesSection() {
               key={pkg.id}
               className={[
                 "lg:col-span-2",
-                visiblePackages.length === 5 && index === 3 ? "lg:col-start-2" : "",
+                getGridItemClass(index, visiblePackages.length),
               ].join(" ")}
             >
               <PackageCard

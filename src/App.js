@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import AboutSection from "./components/AboutSection";
@@ -10,7 +10,7 @@ import PackagesSection from "./components/PackagesSection";
 
 const WHATSAPP_HOME_MESSAGE = "AGUANTE BOCA LOCO. Me interesa una remera de Vagos.";
 
-function HomePage() {
+function HomePage({ productFilter }) {
   return (
     <>
       <a
@@ -25,7 +25,7 @@ function HomePage() {
       <p className="texto-flotante">Vivir A LO BOCA</p>
 
       <Hero />
-      <PackagesSection />
+      <PackagesSection productFilter={productFilter} />
     </>
   );
 }
@@ -35,14 +35,16 @@ function NosotrosPage() {
 }
 
 export default function App() {
+  const [productFilter, setProductFilter] = useState("all");
+
   return (
     <Router>
       <div className="min-h-screen Appbgc">
-        <Navbar />
+        <Navbar productFilter={productFilter} onProductFilterChange={setProductFilter} />
 
         <main>
           <Routes>
-            <Route path="/" element={<HomePage />} />
+            <Route path="/" element={<HomePage productFilter={productFilter} />} />
             <Route path="/nosotros" element={<NosotrosPage />} />
             <Route path="/contacto" element={<ContactSection />} />
           </Routes>
