@@ -17,7 +17,7 @@ const COLORS = {
 
 export default function PackagesSection() {
   const [selectedPackage, setSelectedPackage] = useState(null);
-  const visiblePackages = remerasDescripcion.slice(0, 3);
+  const visiblePackages = remerasDescripcion;
 
   return (
     <section id="packages" className="relative overflow-hidden py-20 sm:py-24" style={{ backgroundColor: COLORS.dark }}>
@@ -51,20 +51,27 @@ export default function PackagesSection() {
             <div className="flex items-center gap-3 border-y py-4" style={{ borderColor: COLORS.line }}>
               <Ruler size={20} color={COLORS.gold} />
               <p className="text-sm leading-5" style={{ color: COLORS.muted }}>
-                Guia de talles disponible en cada modelo antes de comprar.
+                Talles y detalles visibles en cada modelo antes de comprar.
               </p>
             </div>
           </div>
         </motion.div>
 
-        <div className="grid gap-4 md:grid-cols-3 lg:gap-5">
-          {visiblePackages.map((pkg) => (
-            <PackageCard
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-6 lg:gap-5">
+          {visiblePackages.map((pkg, index) => (
+            <div
               key={pkg.id}
-              pkg={pkg}
-              onSelectPackage={setSelectedPackage}
-              disableAnimation={false}
-            />
+              className={[
+                "lg:col-span-2",
+                visiblePackages.length === 5 && index === 3 ? "lg:col-start-2" : "",
+              ].join(" ")}
+            >
+              <PackageCard
+                pkg={pkg}
+                onSelectPackage={setSelectedPackage}
+                disableAnimation={false}
+              />
+            </div>
           ))}
         </div>
       </div>

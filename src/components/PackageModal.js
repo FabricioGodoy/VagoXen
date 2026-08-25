@@ -89,7 +89,9 @@ export default function PackageModal({ pkg, onClose }) {
 
   const guide = pkg.guiaTalleResponsive
     ? { src: pkg.guiaTalleResponsive.src, srcSet: pkg.guiaTalleResponsive.srcSet }
-    : { src: pkg.guiaTalle, srcSet: undefined };
+    : pkg.guiaTalle
+    ? { src: pkg.guiaTalle, srcSet: undefined }
+    : null;
 
   return (
     <motion.div
@@ -206,22 +208,24 @@ export default function PackageModal({ pkg, onClose }) {
                 </p>
               </div>
             </div>
-            <div className="flex items-start gap-3">
-              <Ruler size={19} color={COLORS.gold} />
-              <div>
-                <p className="text-sm font-semibold" style={{ color: COLORS.text }}>
-                  Guia de talles
-                </p>
-                <button
-                  type="button"
-                  onClick={() => setShowSizeGuide(true)}
-                  className="mt-1 text-sm underline underline-offset-4"
-                  style={{ color: COLORS.gold }}
-                >
-                  Ver tabla antes de elegir
-                </button>
+            {guide && (
+              <div className="flex items-start gap-3">
+                <Ruler size={19} color={COLORS.gold} />
+                <div>
+                  <p className="text-sm font-semibold" style={{ color: COLORS.text }}>
+                    Guia de talles
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => setShowSizeGuide(true)}
+                    className="mt-1 text-sm underline underline-offset-4"
+                    style={{ color: COLORS.gold }}
+                  >
+                    Ver tabla antes de elegir
+                  </button>
+                </div>
               </div>
-            </div>
+            )}
           </div>
 
           <div className="mt-auto pt-6">
@@ -255,7 +259,7 @@ export default function PackageModal({ pkg, onClose }) {
         </div>
       </motion.div>
 
-      {showSizeGuide && (
+      {showSizeGuide && guide && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
