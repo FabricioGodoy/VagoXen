@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, ShoppingBag, X } from "lucide-react";
@@ -21,14 +21,22 @@ const navItems = [
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
 
   const closeMenu = () => setIsOpen(false);
 
+  useEffect(() => {
+    if (location.pathname !== "/") {
+      setActiveSection("");
+    }
+  }, [location.pathname]);
+
   const goToProducts = (event) => {
     event.preventDefault();
     closeMenu();
+    setActiveSection("#packages");
     navigate("/");
 
     window.setTimeout(() => {
@@ -37,7 +45,10 @@ export default function Navbar() {
   };
 
   const renderLink = (item, mobile = false) => {
-    const isActive = item.type === "route" && location.pathname === item.href;
+    const isActive =
+      item.type === "section"
+        ? location.pathname === "/" && activeSection === item.href
+        : !activeSection && location.pathname === item.href;
     const className = mobile
       ? "flex items-center justify-between border-b border-white/10 px-5 py-4 text-base font-medium"
       : "relative text-sm font-medium tracking-wide transition-colors duration-200";
@@ -49,9 +60,15 @@ export default function Navbar() {
           href={item.href}
           onClick={goToProducts}
           className={className}
-          style={{ color: mobile ? COLORS.text : COLORS.muted }}
+          style={{ color: isActive ? COLORS.gold : mobile ? COLORS.text : COLORS.muted }}
         >
           {item.name}
+          {!mobile && isActive && (
+            <span
+              className="absolute -bottom-2 left-0 h-px w-full"
+              style={{ backgroundColor: COLORS.gold }}
+            />
+          )}
         </a>
       );
     }
@@ -62,6 +79,7 @@ export default function Navbar() {
         to={item.href}
         onClick={() => {
           closeMenu();
+          setActiveSection("");
           window.scrollTo({ top: 0, behavior: "smooth" });
         }}
         className={className}
@@ -91,6 +109,7 @@ export default function Navbar() {
           to="/"
           onClick={() => {
             closeMenu();
+            setActiveSection("");
             window.scrollTo({ top: 0, behavior: "smooth" });
           }}
           className="flex items-center gap-3"
