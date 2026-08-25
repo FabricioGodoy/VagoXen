@@ -25,3 +25,18 @@ export const listProductImages = async (productId) => {
 
   return data || [];
 };
+
+export const listImageVariants = async (imageId) => {
+  const client = getSupabaseClient();
+  const { data, error } = await client
+    .from("image_variants")
+    .select("id, image_id, width, height, format, storage_path, file_size_bytes, created_at")
+    .eq("image_id", imageId)
+    .order("width", { ascending: true });
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return data || [];
+};

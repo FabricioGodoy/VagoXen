@@ -1,0 +1,2445 @@
+{
+  "generatedAt": null,
+  "mode": "dry-run",
+  "storage": {
+    "bucket": "catalog",
+    "pathConvention": "products/{product-slug}/{role}/{logical-image-slug}/{content-hash-prefix}-{source-file-name}",
+    "note": "Los nombres incluyen hash de contenido para evitar cache vieja al reemplazar imagenes."
+  },
+  "source": {
+    "productsFile": "src/mock/packages.js",
+    "publicImgRoot": "public/img",
+    "publicImgTrackedCount": 190
+  },
+  "categories": [
+    {
+      "slug": "remeras",
+      "name": "Remeras",
+      "sortOrder": 0,
+      "isActive": true
+    },
+    {
+      "slug": "buzos",
+      "name": "Buzos",
+      "sortOrder": 1,
+      "isActive": true
+    }
+  ],
+  "products": [
+    {
+      "sourceId": "01",
+      "slug": "azul-y-oro",
+      "name": "Azul y Oro",
+      "category": "remeras",
+      "description": "100% nuestros colores. 100% Boca. Un diseno en representacion al Hincha Xeneize y al templo de Brandsen 805.",
+      "longDescription": "100% nuestros colores. 100% Boca. Un diseno en representacion al Hincha Xeneize y al templo de Brandsen 805.",
+      "price": 48000,
+      "originalPrice": 60000,
+      "whatsappMessage": "AGUANTE BOCA LOCO, me interesa la remera Azul y Oro",
+      "sortOrder": 0,
+      "isActive": true,
+      "displayLabel": "Oversize",
+      "audienceLabel": "UNISEX",
+      "includes": [
+        "remera azul"
+      ],
+      "rawKeys": [
+        "id",
+        "category",
+        "name",
+        "description",
+        "longDescription",
+        "imageCard",
+        "image",
+        "imagesResponsive",
+        "images",
+        "imagesMobileResponsive",
+        "imagesMobile",
+        "guiaTalleResponsive",
+        "guiaTalle",
+        "price",
+        "originalPrice",
+        "duration",
+        "destination",
+        "includes",
+        "whatsappMessage"
+      ],
+      "images": [
+        {
+          "role": "card",
+          "device": "all",
+          "sortOrder": 0,
+          "logicalName": "azul-y-oro-card",
+          "logicalSlug": "azul-y-oro-card",
+          "alt": "Azul y Oro",
+          "sourceLocal": "public/img/generated/card_azul_principal-1024.webp",
+          "sourceUrl": "/img/generated/card_azul_principal-1024.webp",
+          "storagePath": "products/azul-y-oro/card/azul-y-oro-card/9cca8a0c4833-card_azul_principal-1024.webp",
+          "variants": [
+            {
+              "sourceUrl": "/img/generated/card_azul_principal-480.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/card_azul_principal-480.webp",
+              "width": 480,
+              "height": 360,
+              "declaredWidth": 480,
+              "format": "webp",
+              "fileSizeBytes": 40948,
+              "sha256": "7a58563f81bb300f30529d55b774b974d7e15630062f876896e3507e603fbcdb",
+              "hashPrefix": "7a58563f81bb",
+              "storagePath": "products/azul-y-oro/card/azul-y-oro-card/7a58563f81bb-card_azul_principal-480.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/card_azul_principal-768.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/card_azul_principal-768.webp",
+              "width": 768,
+              "height": 576,
+              "declaredWidth": 768,
+              "format": "webp",
+              "fileSizeBytes": 81692,
+              "sha256": "7db1da00a23090faa51fcd5e6e995c052e66f2c295d48f1dadc8f5ea7e0d5491",
+              "hashPrefix": "7db1da00a230",
+              "storagePath": "products/azul-y-oro/card/azul-y-oro-card/7db1da00a230-card_azul_principal-768.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/card_azul_principal-1024.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/card_azul_principal-1024.webp",
+              "width": 1024,
+              "height": 768,
+              "declaredWidth": 1024,
+              "format": "webp",
+              "fileSizeBytes": 128954,
+              "sha256": "9cca8a0c483349d389d0aa129a2ff18bb922b77846834369675945c11e880c97",
+              "hashPrefix": "9cca8a0c4833",
+              "storagePath": "products/azul-y-oro/card/azul-y-oro-card/9cca8a0c4833-card_azul_principal-1024.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/card_azul_principal-1280.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/card_azul_principal-1280.webp",
+              "width": 1280,
+              "height": 960,
+              "declaredWidth": 1280,
+              "format": "webp",
+              "fileSizeBytes": 170796,
+              "sha256": "b96df03b11bd3165fca6fabaf7492bdbf4c0b650fc2ad005e55b689504d7d094",
+              "hashPrefix": "b96df03b11bd",
+              "storagePath": "products/azul-y-oro/card/azul-y-oro-card/b96df03b11bd-card_azul_principal-1280.webp"
+            }
+          ]
+        },
+        {
+          "role": "gallery",
+          "device": "all",
+          "sortOrder": 0,
+          "logicalName": "azul-y-oro-gallery-1",
+          "logicalSlug": "azul-y-oro-gallery-1",
+          "alt": "Azul y Oro",
+          "sourceLocal": "public/img/generated/modal_azul_1-1200.webp",
+          "sourceUrl": "/img/generated/modal_azul_1-1200.webp",
+          "storagePath": "products/azul-y-oro/gallery/azul-y-oro-gallery-1/da306e0d838a-modal_azul_1-1200.webp",
+          "variants": [
+            {
+              "sourceUrl": "/img/generated/modal_azul_1-800.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_azul_1-800.webp",
+              "width": 800,
+              "height": 800,
+              "declaredWidth": 800,
+              "format": "webp",
+              "fileSizeBytes": 91122,
+              "sha256": "fa74cac7b7d3930ed8fae496dd23ade0f623e63da42db8590ad584a12e9c7cea",
+              "hashPrefix": "fa74cac7b7d3",
+              "storagePath": "products/azul-y-oro/gallery/azul-y-oro-gallery-1/fa74cac7b7d3-modal_azul_1-800.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/modal_azul_1-1200.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_azul_1-1200.webp",
+              "width": 1200,
+              "height": 1200,
+              "declaredWidth": 1200,
+              "format": "webp",
+              "fileSizeBytes": 159480,
+              "sha256": "da306e0d838a8c34e3811b6f3a10f8a4d5851677f1247d9edc44f87d1fb5df4a",
+              "hashPrefix": "da306e0d838a",
+              "storagePath": "products/azul-y-oro/gallery/azul-y-oro-gallery-1/da306e0d838a-modal_azul_1-1200.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/modal_azul_1-1600.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_azul_1-1600.webp",
+              "width": 1600,
+              "height": 1600,
+              "declaredWidth": 1600,
+              "format": "webp",
+              "fileSizeBytes": 225164,
+              "sha256": "4a18e8b0cd3ecd7dec2112e8b10f60c0055910cfe3798fceb596894eec14d2af",
+              "hashPrefix": "4a18e8b0cd3e",
+              "storagePath": "products/azul-y-oro/gallery/azul-y-oro-gallery-1/4a18e8b0cd3e-modal_azul_1-1600.webp"
+            }
+          ]
+        },
+        {
+          "role": "gallery",
+          "device": "all",
+          "sortOrder": 1,
+          "logicalName": "azul-y-oro-gallery-2",
+          "logicalSlug": "azul-y-oro-gallery-2",
+          "alt": "Azul y Oro",
+          "sourceLocal": "public/img/generated/modal_azul_2-1200.webp",
+          "sourceUrl": "/img/generated/modal_azul_2-1200.webp",
+          "storagePath": "products/azul-y-oro/gallery/azul-y-oro-gallery-2/3275e82b452c-modal_azul_2-1200.webp",
+          "variants": [
+            {
+              "sourceUrl": "/img/generated/modal_azul_2-800.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_azul_2-800.webp",
+              "width": 800,
+              "height": 800,
+              "declaredWidth": 800,
+              "format": "webp",
+              "fileSizeBytes": 110806,
+              "sha256": "4bd5e2ef7715bcdc0e94b3ad1218f7cefdae7647d2ba8efd4adc959d387825a5",
+              "hashPrefix": "4bd5e2ef7715",
+              "storagePath": "products/azul-y-oro/gallery/azul-y-oro-gallery-2/4bd5e2ef7715-modal_azul_2-800.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/modal_azul_2-1200.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_azul_2-1200.webp",
+              "width": 1200,
+              "height": 1200,
+              "declaredWidth": 1200,
+              "format": "webp",
+              "fileSizeBytes": 202762,
+              "sha256": "3275e82b452cdfcffbc620a80136f04068bdf6e8bffea0f55ca910c1557d3552",
+              "hashPrefix": "3275e82b452c",
+              "storagePath": "products/azul-y-oro/gallery/azul-y-oro-gallery-2/3275e82b452c-modal_azul_2-1200.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/modal_azul_2-1600.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_azul_2-1600.webp",
+              "width": 1600,
+              "height": 1600,
+              "declaredWidth": 1600,
+              "format": "webp",
+              "fileSizeBytes": 316422,
+              "sha256": "daf1722f3e83f0867267aa1e01cbf6ce7f577687a6de0f010d5400988c612245",
+              "hashPrefix": "daf1722f3e83",
+              "storagePath": "products/azul-y-oro/gallery/azul-y-oro-gallery-2/daf1722f3e83-modal_azul_2-1600.webp"
+            }
+          ]
+        },
+        {
+          "role": "gallery",
+          "device": "all",
+          "sortOrder": 2,
+          "logicalName": "azul-y-oro-gallery-3",
+          "logicalSlug": "azul-y-oro-gallery-3",
+          "alt": "Azul y Oro",
+          "sourceLocal": "public/img/generated/modal_azul_3-1200.webp",
+          "sourceUrl": "/img/generated/modal_azul_3-1200.webp",
+          "storagePath": "products/azul-y-oro/gallery/azul-y-oro-gallery-3/7e68b330414b-modal_azul_3-1200.webp",
+          "variants": [
+            {
+              "sourceUrl": "/img/generated/modal_azul_3-800.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_azul_3-800.webp",
+              "width": 800,
+              "height": 800,
+              "declaredWidth": 800,
+              "format": "webp",
+              "fileSizeBytes": 78870,
+              "sha256": "8ad14a9065a305c74ead58f8d448258e32ce06033398cbf58f9d51de0761a6eb",
+              "hashPrefix": "8ad14a9065a3",
+              "storagePath": "products/azul-y-oro/gallery/azul-y-oro-gallery-3/8ad14a9065a3-modal_azul_3-800.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/modal_azul_3-1200.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_azul_3-1200.webp",
+              "width": 1200,
+              "height": 1200,
+              "declaredWidth": 1200,
+              "format": "webp",
+              "fileSizeBytes": 122756,
+              "sha256": "7e68b330414b6698d96a5bc8d1e52c5fc9020dfea856d5c2821a197346850c96",
+              "hashPrefix": "7e68b330414b",
+              "storagePath": "products/azul-y-oro/gallery/azul-y-oro-gallery-3/7e68b330414b-modal_azul_3-1200.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/modal_azul_3-1600.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_azul_3-1600.webp",
+              "width": 1600,
+              "height": 1600,
+              "declaredWidth": 1600,
+              "format": "webp",
+              "fileSizeBytes": 170926,
+              "sha256": "a49e95acc189de5d86b1c0da31e4fcee00f073c418f53b827cf9251167c28d30",
+              "hashPrefix": "a49e95acc189",
+              "storagePath": "products/azul-y-oro/gallery/azul-y-oro-gallery-3/a49e95acc189-modal_azul_3-1600.webp"
+            }
+          ]
+        },
+        {
+          "role": "gallery",
+          "device": "all",
+          "sortOrder": 3,
+          "logicalName": "azul-y-oro-gallery-4",
+          "logicalSlug": "azul-y-oro-gallery-4",
+          "alt": "Azul y Oro",
+          "sourceLocal": "public/img/generated/modal_azul_4-1200.webp",
+          "sourceUrl": "/img/generated/modal_azul_4-1200.webp",
+          "storagePath": "products/azul-y-oro/gallery/azul-y-oro-gallery-4/8faacdd0a5ce-modal_azul_4-1200.webp",
+          "variants": [
+            {
+              "sourceUrl": "/img/generated/modal_azul_4-800.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_azul_4-800.webp",
+              "width": 800,
+              "height": 800,
+              "declaredWidth": 800,
+              "format": "webp",
+              "fileSizeBytes": 39192,
+              "sha256": "d9934f2ad975bfea9a325ec8a1dc6bd5e36c8e5a7ad54372e198b9e1cd36e8e0",
+              "hashPrefix": "d9934f2ad975",
+              "storagePath": "products/azul-y-oro/gallery/azul-y-oro-gallery-4/d9934f2ad975-modal_azul_4-800.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/modal_azul_4-1200.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_azul_4-1200.webp",
+              "width": 1200,
+              "height": 1200,
+              "declaredWidth": 1200,
+              "format": "webp",
+              "fileSizeBytes": 75032,
+              "sha256": "8faacdd0a5ce250506479799659de25ba87159f103892b0117e4e39bcaa21688",
+              "hashPrefix": "8faacdd0a5ce",
+              "storagePath": "products/azul-y-oro/gallery/azul-y-oro-gallery-4/8faacdd0a5ce-modal_azul_4-1200.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/modal_azul_4-1600.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_azul_4-1600.webp",
+              "width": 1600,
+              "height": 1600,
+              "declaredWidth": 1600,
+              "format": "webp",
+              "fileSizeBytes": 128460,
+              "sha256": "e36ab7ef9968f1bda26df55e0fc61a9edcbbf6b0de6427c0cae022ba1e1562fe",
+              "hashPrefix": "e36ab7ef9968",
+              "storagePath": "products/azul-y-oro/gallery/azul-y-oro-gallery-4/e36ab7ef9968-modal_azul_4-1600.webp"
+            }
+          ]
+        },
+        {
+          "role": "size_guide",
+          "device": "all",
+          "sortOrder": 0,
+          "logicalName": "azul-y-oro-size-guide",
+          "logicalSlug": "azul-y-oro-size-guide",
+          "alt": "Azul y Oro",
+          "sourceLocal": "public/img/generated/guide_remera_azul-1600.webp",
+          "sourceUrl": "/img/generated/guide_remera_azul-1600.webp",
+          "storagePath": "products/azul-y-oro/size_guide/azul-y-oro-size-guide/257e889d4775-guide_remera_azul-1600.webp",
+          "variants": [
+            {
+              "sourceUrl": "/img/generated/guide_remera_azul-1000.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/guide_remera_azul-1000.webp",
+              "width": 1000,
+              "height": 1333,
+              "declaredWidth": 1000,
+              "format": "webp",
+              "fileSizeBytes": 27010,
+              "sha256": "a9bc401c3e167ac2309e451a57284823722e4725380f563c85af05fd94e19fe1",
+              "hashPrefix": "a9bc401c3e16",
+              "storagePath": "products/azul-y-oro/size_guide/azul-y-oro-size-guide/a9bc401c3e16-guide_remera_azul-1000.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/guide_remera_azul-1600.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/guide_remera_azul-1600.webp",
+              "width": 1086,
+              "height": 1448,
+              "declaredWidth": 1600,
+              "format": "webp",
+              "fileSizeBytes": 30714,
+              "sha256": "257e889d4775dca08538d59a0c9e9d14ed1ce2eef196a5882f8b02ee6d08614c",
+              "hashPrefix": "257e889d4775",
+              "storagePath": "products/azul-y-oro/size_guide/azul-y-oro-size-guide/257e889d4775-guide_remera_azul-1600.webp"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "02",
+      "slug": "vago-xeneize",
+      "name": "Vago Xeneize",
+      "category": "remeras",
+      "description": "En homenaje a Vago Xeneize. Diseno moderno, con tipografia romana y flow abstracto. Estilo artistico y callejero.",
+      "longDescription": "En homenaje a Vago Xeneize. Diseno moderno, con tipografia romana y flow abstracto. Estilo artistico y callejero.",
+      "price": 58000,
+      "originalPrice": 65000,
+      "whatsappMessage": "AGUANTE BOCA LOCO, me interesa la remera Vago Xeneize",
+      "sortOrder": 1,
+      "isActive": true,
+      "displayLabel": "Remeron",
+      "audienceLabel": "UNISEX",
+      "includes": [
+        "remera amarilla"
+      ],
+      "rawKeys": [
+        "id",
+        "category",
+        "name",
+        "description",
+        "longDescription",
+        "imageCard",
+        "image",
+        "imagesResponsive",
+        "images",
+        "imagesMobileResponsive",
+        "imagesMobile",
+        "guiaTalleResponsive",
+        "guiaTalle",
+        "price",
+        "originalPrice",
+        "duration",
+        "destination",
+        "includes",
+        "whatsappMessage"
+      ],
+      "images": [
+        {
+          "role": "card",
+          "device": "all",
+          "sortOrder": 0,
+          "logicalName": "vago-xeneize-card",
+          "logicalSlug": "vago-xeneize-card",
+          "alt": "Vago Xeneize",
+          "sourceLocal": "public/img/generated/card_amarilla_principal-1024.webp",
+          "sourceUrl": "/img/generated/card_amarilla_principal-1024.webp",
+          "storagePath": "products/vago-xeneize/card/vago-xeneize-card/7aee13267050-card_amarilla_principal-1024.webp",
+          "variants": [
+            {
+              "sourceUrl": "/img/generated/card_amarilla_principal-480.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/card_amarilla_principal-480.webp",
+              "width": 480,
+              "height": 360,
+              "declaredWidth": 480,
+              "format": "webp",
+              "fileSizeBytes": 23148,
+              "sha256": "2b2129157aa1a12f6b6dbf8fa179afd8cbe1d33eb6134179240aa3a5e9b5e878",
+              "hashPrefix": "2b2129157aa1",
+              "storagePath": "products/vago-xeneize/card/vago-xeneize-card/2b2129157aa1-card_amarilla_principal-480.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/card_amarilla_principal-768.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/card_amarilla_principal-768.webp",
+              "width": 768,
+              "height": 576,
+              "declaredWidth": 768,
+              "format": "webp",
+              "fileSizeBytes": 43846,
+              "sha256": "2f1cb30336bd49133de3fdf68f91eff5b29a3c0e212313c820def063907841eb",
+              "hashPrefix": "2f1cb30336bd",
+              "storagePath": "products/vago-xeneize/card/vago-xeneize-card/2f1cb30336bd-card_amarilla_principal-768.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/card_amarilla_principal-1024.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/card_amarilla_principal-1024.webp",
+              "width": 1024,
+              "height": 768,
+              "declaredWidth": 1024,
+              "format": "webp",
+              "fileSizeBytes": 68222,
+              "sha256": "7aee13267050364bbd022c66e81f19cd1309d25b45ec133a0b20efd89d483639",
+              "hashPrefix": "7aee13267050",
+              "storagePath": "products/vago-xeneize/card/vago-xeneize-card/7aee13267050-card_amarilla_principal-1024.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/card_amarilla_principal-1280.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/card_amarilla_principal-1280.webp",
+              "width": 1280,
+              "height": 960,
+              "declaredWidth": 1280,
+              "format": "webp",
+              "fileSizeBytes": 90916,
+              "sha256": "9bacd9ca60455abe6c6cc4845b58f1dce56f0d69cf30eeff18c95bf007ad655d",
+              "hashPrefix": "9bacd9ca6045",
+              "storagePath": "products/vago-xeneize/card/vago-xeneize-card/9bacd9ca6045-card_amarilla_principal-1280.webp"
+            }
+          ]
+        },
+        {
+          "role": "gallery",
+          "device": "all",
+          "sortOrder": 0,
+          "logicalName": "vago-xeneize-gallery-1",
+          "logicalSlug": "vago-xeneize-gallery-1",
+          "alt": "Vago Xeneize",
+          "sourceLocal": "public/img/generated/modal_amarilla_1-1200.webp",
+          "sourceUrl": "/img/generated/modal_amarilla_1-1200.webp",
+          "storagePath": "products/vago-xeneize/gallery/vago-xeneize-gallery-1/587f9605d26a-modal_amarilla_1-1200.webp",
+          "variants": [
+            {
+              "sourceUrl": "/img/generated/modal_amarilla_1-800.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_amarilla_1-800.webp",
+              "width": 800,
+              "height": 800,
+              "declaredWidth": 800,
+              "format": "webp",
+              "fileSizeBytes": 43468,
+              "sha256": "e1657d6ad0dbce1ccc29a8c48a7a9991e15ee52b92e835ec27ccdab37eaff70f",
+              "hashPrefix": "e1657d6ad0db",
+              "storagePath": "products/vago-xeneize/gallery/vago-xeneize-gallery-1/e1657d6ad0db-modal_amarilla_1-800.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/modal_amarilla_1-1200.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_amarilla_1-1200.webp",
+              "width": 1200,
+              "height": 1200,
+              "declaredWidth": 1200,
+              "format": "webp",
+              "fileSizeBytes": 70542,
+              "sha256": "587f9605d26af536a71c321f224961930cb27d6521be1ba0a935e8ca7795393a",
+              "hashPrefix": "587f9605d26a",
+              "storagePath": "products/vago-xeneize/gallery/vago-xeneize-gallery-1/587f9605d26a-modal_amarilla_1-1200.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/modal_amarilla_1-1600.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_amarilla_1-1600.webp",
+              "width": 1600,
+              "height": 1600,
+              "declaredWidth": 1600,
+              "format": "webp",
+              "fileSizeBytes": 102036,
+              "sha256": "cfd1181946061815526d6520be81a9256fa22d6c02ea1a50d6cb231e94a64c2f",
+              "hashPrefix": "cfd118194606",
+              "storagePath": "products/vago-xeneize/gallery/vago-xeneize-gallery-1/cfd118194606-modal_amarilla_1-1600.webp"
+            }
+          ]
+        },
+        {
+          "role": "gallery",
+          "device": "all",
+          "sortOrder": 1,
+          "logicalName": "vago-xeneize-gallery-2",
+          "logicalSlug": "vago-xeneize-gallery-2",
+          "alt": "Vago Xeneize",
+          "sourceLocal": "public/img/generated/modal_amarilla_2-1200.webp",
+          "sourceUrl": "/img/generated/modal_amarilla_2-1200.webp",
+          "storagePath": "products/vago-xeneize/gallery/vago-xeneize-gallery-2/45005d451726-modal_amarilla_2-1200.webp",
+          "variants": [
+            {
+              "sourceUrl": "/img/generated/modal_amarilla_2-800.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_amarilla_2-800.webp",
+              "width": 800,
+              "height": 800,
+              "declaredWidth": 800,
+              "format": "webp",
+              "fileSizeBytes": 42370,
+              "sha256": "aba6c4106fd8097c34939f941c4de0aaf4b8d8221bdd0247a4aa986f9342eb97",
+              "hashPrefix": "aba6c4106fd8",
+              "storagePath": "products/vago-xeneize/gallery/vago-xeneize-gallery-2/aba6c4106fd8-modal_amarilla_2-800.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/modal_amarilla_2-1200.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_amarilla_2-1200.webp",
+              "width": 1200,
+              "height": 1200,
+              "declaredWidth": 1200,
+              "format": "webp",
+              "fileSizeBytes": 69452,
+              "sha256": "45005d4517260d32af9abcd4605b1e94b2bbc90923c5248c3304ab95ae001572",
+              "hashPrefix": "45005d451726",
+              "storagePath": "products/vago-xeneize/gallery/vago-xeneize-gallery-2/45005d451726-modal_amarilla_2-1200.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/modal_amarilla_2-1600.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_amarilla_2-1600.webp",
+              "width": 1600,
+              "height": 1600,
+              "declaredWidth": 1600,
+              "format": "webp",
+              "fileSizeBytes": 98062,
+              "sha256": "81a4c01a31c3097a9b1bf4598a8d21c5f3306a1a32971bfddb5051b82ca2d7b5",
+              "hashPrefix": "81a4c01a31c3",
+              "storagePath": "products/vago-xeneize/gallery/vago-xeneize-gallery-2/81a4c01a31c3-modal_amarilla_2-1600.webp"
+            }
+          ]
+        },
+        {
+          "role": "gallery",
+          "device": "all",
+          "sortOrder": 2,
+          "logicalName": "vago-xeneize-gallery-3",
+          "logicalSlug": "vago-xeneize-gallery-3",
+          "alt": "Vago Xeneize",
+          "sourceLocal": "public/img/generated/modal_amarilla_3-1200.webp",
+          "sourceUrl": "/img/generated/modal_amarilla_3-1200.webp",
+          "storagePath": "products/vago-xeneize/gallery/vago-xeneize-gallery-3/ae19dc7f85ad-modal_amarilla_3-1200.webp",
+          "variants": [
+            {
+              "sourceUrl": "/img/generated/modal_amarilla_3-800.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_amarilla_3-800.webp",
+              "width": 800,
+              "height": 800,
+              "declaredWidth": 800,
+              "format": "webp",
+              "fileSizeBytes": 33308,
+              "sha256": "de1c6e080711b96bfb2eeca23435b87e3f30b06c76d6ecf52c5419255ab3c4fc",
+              "hashPrefix": "de1c6e080711",
+              "storagePath": "products/vago-xeneize/gallery/vago-xeneize-gallery-3/de1c6e080711-modal_amarilla_3-800.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/modal_amarilla_3-1200.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_amarilla_3-1200.webp",
+              "width": 1200,
+              "height": 1200,
+              "declaredWidth": 1200,
+              "format": "webp",
+              "fileSizeBytes": 56732,
+              "sha256": "ae19dc7f85ad9674480151363343dae5287f56d134a84de7a4607b7898c9d57a",
+              "hashPrefix": "ae19dc7f85ad",
+              "storagePath": "products/vago-xeneize/gallery/vago-xeneize-gallery-3/ae19dc7f85ad-modal_amarilla_3-1200.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/modal_amarilla_3-1600.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_amarilla_3-1600.webp",
+              "width": 1600,
+              "height": 1600,
+              "declaredWidth": 1600,
+              "format": "webp",
+              "fileSizeBytes": 83626,
+              "sha256": "0ed0145e92d293f6fbab94f41f19439c319dacb4d3422d855cfdb05ff9d6df7d",
+              "hashPrefix": "0ed0145e92d2",
+              "storagePath": "products/vago-xeneize/gallery/vago-xeneize-gallery-3/0ed0145e92d2-modal_amarilla_3-1600.webp"
+            }
+          ]
+        },
+        {
+          "role": "gallery",
+          "device": "all",
+          "sortOrder": 3,
+          "logicalName": "vago-xeneize-gallery-4",
+          "logicalSlug": "vago-xeneize-gallery-4",
+          "alt": "Vago Xeneize",
+          "sourceLocal": "public/img/generated/modal_amarilla_4-1200.webp",
+          "sourceUrl": "/img/generated/modal_amarilla_4-1200.webp",
+          "storagePath": "products/vago-xeneize/gallery/vago-xeneize-gallery-4/61bc9a39b723-modal_amarilla_4-1200.webp",
+          "variants": [
+            {
+              "sourceUrl": "/img/generated/modal_amarilla_4-800.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_amarilla_4-800.webp",
+              "width": 800,
+              "height": 800,
+              "declaredWidth": 800,
+              "format": "webp",
+              "fileSizeBytes": 70160,
+              "sha256": "f09d915da605ce64800a8c07938002e0bf824ff6016e1d88919d5a05e6ad82f3",
+              "hashPrefix": "f09d915da605",
+              "storagePath": "products/vago-xeneize/gallery/vago-xeneize-gallery-4/f09d915da605-modal_amarilla_4-800.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/modal_amarilla_4-1200.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_amarilla_4-1200.webp",
+              "width": 1200,
+              "height": 1200,
+              "declaredWidth": 1200,
+              "format": "webp",
+              "fileSizeBytes": 114034,
+              "sha256": "61bc9a39b723ee01c43e50882b4df9d5d6ece96adeef9d2d406a1c8d57d212d0",
+              "hashPrefix": "61bc9a39b723",
+              "storagePath": "products/vago-xeneize/gallery/vago-xeneize-gallery-4/61bc9a39b723-modal_amarilla_4-1200.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/modal_amarilla_4-1600.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_amarilla_4-1600.webp",
+              "width": 1600,
+              "height": 1600,
+              "declaredWidth": 1600,
+              "format": "webp",
+              "fileSizeBytes": 160290,
+              "sha256": "e1f3f604655558bbc877c7a1d756610e18815e81d771a3ea8c4726d258c43717",
+              "hashPrefix": "e1f3f6046555",
+              "storagePath": "products/vago-xeneize/gallery/vago-xeneize-gallery-4/e1f3f6046555-modal_amarilla_4-1600.webp"
+            }
+          ]
+        },
+        {
+          "role": "size_guide",
+          "device": "all",
+          "sortOrder": 0,
+          "logicalName": "vago-xeneize-size-guide",
+          "logicalSlug": "vago-xeneize-size-guide",
+          "alt": "Vago Xeneize",
+          "sourceLocal": "public/img/generated/guide_remera_amarilla-1600.webp",
+          "sourceUrl": "/img/generated/guide_remera_amarilla-1600.webp",
+          "storagePath": "products/vago-xeneize/size_guide/vago-xeneize-size-guide/cc19746ab325-guide_remera_amarilla-1600.webp",
+          "variants": [
+            {
+              "sourceUrl": "/img/generated/guide_remera_amarilla-1000.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/guide_remera_amarilla-1000.webp",
+              "width": 1000,
+              "height": 1333,
+              "declaredWidth": 1000,
+              "format": "webp",
+              "fileSizeBytes": 25172,
+              "sha256": "82ac583a8074bc574748633e46f6f3d8cc54796fe7ba8d96e68a2878fc94f7a5",
+              "hashPrefix": "82ac583a8074",
+              "storagePath": "products/vago-xeneize/size_guide/vago-xeneize-size-guide/82ac583a8074-guide_remera_amarilla-1000.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/guide_remera_amarilla-1600.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/guide_remera_amarilla-1600.webp",
+              "width": 1086,
+              "height": 1448,
+              "declaredWidth": 1600,
+              "format": "webp",
+              "fileSizeBytes": 27708,
+              "sha256": "cc19746ab32544b1557b25691d567883da552b3367a433c841d1fe5c6422e6af",
+              "hashPrefix": "cc19746ab325",
+              "storagePath": "products/vago-xeneize/size_guide/vago-xeneize-size-guide/cc19746ab325-guide_remera_amarilla-1600.webp"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "03",
+      "slug": "1905",
+      "name": "1905",
+      "category": "remeras",
+      "description": "Un diseno que representa el nacimiento del Club Atletico Boca Juniors y sus hazanas en el Continente Asiatico.",
+      "longDescription": "Un diseno que representa el nacimiento del Club Atletico Boca Juniors y sus hazanas en el Continente Asiatico.",
+      "price": 48000,
+      "originalPrice": 60000,
+      "whatsappMessage": "AGUANTE BOCA LOCO, me interesa la remera 1905",
+      "sortOrder": 2,
+      "isActive": true,
+      "displayLabel": "Oversize",
+      "audienceLabel": "UNISEX",
+      "includes": [
+        "remera negra"
+      ],
+      "rawKeys": [
+        "id",
+        "category",
+        "name",
+        "description",
+        "longDescription",
+        "imageCard",
+        "image",
+        "imagesResponsive",
+        "images",
+        "imagesMobileResponsive",
+        "imagesMobile",
+        "guiaTalleResponsive",
+        "guiaTalle",
+        "price",
+        "originalPrice",
+        "duration",
+        "destination",
+        "includes",
+        "whatsappMessage"
+      ],
+      "images": [
+        {
+          "role": "card",
+          "device": "all",
+          "sortOrder": 0,
+          "logicalName": "1905-card",
+          "logicalSlug": "1905-card",
+          "alt": "1905",
+          "sourceLocal": "public/img/generated/card_negra_principal-1024.webp",
+          "sourceUrl": "/img/generated/card_negra_principal-1024.webp",
+          "storagePath": "products/1905/card/1905-card/ace90674a5f7-card_negra_principal-1024.webp",
+          "variants": [
+            {
+              "sourceUrl": "/img/generated/card_negra_principal-480.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/card_negra_principal-480.webp",
+              "width": 480,
+              "height": 360,
+              "declaredWidth": 480,
+              "format": "webp",
+              "fileSizeBytes": 20060,
+              "sha256": "cd58c1022aa2dc43a024bf363992729421ef47acb76b79812dd51474ad518a71",
+              "hashPrefix": "cd58c1022aa2",
+              "storagePath": "products/1905/card/1905-card/cd58c1022aa2-card_negra_principal-480.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/card_negra_principal-768.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/card_negra_principal-768.webp",
+              "width": 768,
+              "height": 576,
+              "declaredWidth": 768,
+              "format": "webp",
+              "fileSizeBytes": 36328,
+              "sha256": "470f89b032db671e5614b62369eadf2cbfd927d44d1adcdab79e1aaefc071e49",
+              "hashPrefix": "470f89b032db",
+              "storagePath": "products/1905/card/1905-card/470f89b032db-card_negra_principal-768.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/card_negra_principal-1024.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/card_negra_principal-1024.webp",
+              "width": 1024,
+              "height": 768,
+              "declaredWidth": 1024,
+              "format": "webp",
+              "fileSizeBytes": 51812,
+              "sha256": "ace90674a5f7732629156ffe772d3e30ef1804bdfb33aae84f42e16871539daf",
+              "hashPrefix": "ace90674a5f7",
+              "storagePath": "products/1905/card/1905-card/ace90674a5f7-card_negra_principal-1024.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/card_negra_principal-1280.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/card_negra_principal-1280.webp",
+              "width": 1280,
+              "height": 960,
+              "declaredWidth": 1280,
+              "format": "webp",
+              "fileSizeBytes": 73396,
+              "sha256": "45500db9f6149599368435cb0bbdda2abb2f661c387d7905709cf1238e352ab3",
+              "hashPrefix": "45500db9f614",
+              "storagePath": "products/1905/card/1905-card/45500db9f614-card_negra_principal-1280.webp"
+            }
+          ]
+        },
+        {
+          "role": "gallery",
+          "device": "all",
+          "sortOrder": 0,
+          "logicalName": "1905-gallery-1",
+          "logicalSlug": "1905-gallery-1",
+          "alt": "1905",
+          "sourceLocal": "public/img/generated/modal_negra_1-1200.webp",
+          "sourceUrl": "/img/generated/modal_negra_1-1200.webp",
+          "storagePath": "products/1905/gallery/1905-gallery-1/d5d3213b8ea3-modal_negra_1-1200.webp",
+          "variants": [
+            {
+              "sourceUrl": "/img/generated/modal_negra_1-800.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_negra_1-800.webp",
+              "width": 800,
+              "height": 800,
+              "declaredWidth": 800,
+              "format": "webp",
+              "fileSizeBytes": 45118,
+              "sha256": "6ba3bd25706c47219aa7cc6fcce56fda13f6d1ddcf18a1ed10fe00249aa8e0a2",
+              "hashPrefix": "6ba3bd25706c",
+              "storagePath": "products/1905/gallery/1905-gallery-1/6ba3bd25706c-modal_negra_1-800.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/modal_negra_1-1200.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_negra_1-1200.webp",
+              "width": 1200,
+              "height": 1200,
+              "declaredWidth": 1200,
+              "format": "webp",
+              "fileSizeBytes": 84544,
+              "sha256": "d5d3213b8ea3708e511c4d674eba3bc975825874efff4bd6ec12dc3ca40d9de8",
+              "hashPrefix": "d5d3213b8ea3",
+              "storagePath": "products/1905/gallery/1905-gallery-1/d5d3213b8ea3-modal_negra_1-1200.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/modal_negra_1-1600.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_negra_1-1600.webp",
+              "width": 1600,
+              "height": 1600,
+              "declaredWidth": 1600,
+              "format": "webp",
+              "fileSizeBytes": 134342,
+              "sha256": "cf9d64897d7ccc164e0cd935a1d3907e814d0eb9f02eea956bb5c8368483fb9f",
+              "hashPrefix": "cf9d64897d7c",
+              "storagePath": "products/1905/gallery/1905-gallery-1/cf9d64897d7c-modal_negra_1-1600.webp"
+            }
+          ]
+        },
+        {
+          "role": "gallery",
+          "device": "all",
+          "sortOrder": 1,
+          "logicalName": "1905-gallery-2",
+          "logicalSlug": "1905-gallery-2",
+          "alt": "1905",
+          "sourceLocal": "public/img/generated/modal_negra_2-1200.webp",
+          "sourceUrl": "/img/generated/modal_negra_2-1200.webp",
+          "storagePath": "products/1905/gallery/1905-gallery-2/df0af4e409d8-modal_negra_2-1200.webp",
+          "variants": [
+            {
+              "sourceUrl": "/img/generated/modal_negra_2-800.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_negra_2-800.webp",
+              "width": 800,
+              "height": 800,
+              "declaredWidth": 800,
+              "format": "webp",
+              "fileSizeBytes": 66170,
+              "sha256": "303215fa09be4e505fdd8ef167fc7a7174be7c34ed90a9544c51dba6fd40a283",
+              "hashPrefix": "303215fa09be",
+              "storagePath": "products/1905/gallery/1905-gallery-2/303215fa09be-modal_negra_2-800.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/modal_negra_2-1200.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_negra_2-1200.webp",
+              "width": 1200,
+              "height": 1200,
+              "declaredWidth": 1200,
+              "format": "webp",
+              "fileSizeBytes": 129368,
+              "sha256": "df0af4e409d8e5d807ff92dae1d427d81eaf20ecfeb86064f90708e688852573",
+              "hashPrefix": "df0af4e409d8",
+              "storagePath": "products/1905/gallery/1905-gallery-2/df0af4e409d8-modal_negra_2-1200.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/modal_negra_2-1600.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_negra_2-1600.webp",
+              "width": 1600,
+              "height": 1600,
+              "declaredWidth": 1600,
+              "format": "webp",
+              "fileSizeBytes": 197840,
+              "sha256": "a1e6ea03a633dc763529c520db2d4383896ecbb98216cf08c71d80ad10ae7ad9",
+              "hashPrefix": "a1e6ea03a633",
+              "storagePath": "products/1905/gallery/1905-gallery-2/a1e6ea03a633-modal_negra_2-1600.webp"
+            }
+          ]
+        },
+        {
+          "role": "gallery",
+          "device": "all",
+          "sortOrder": 2,
+          "logicalName": "1905-gallery-3",
+          "logicalSlug": "1905-gallery-3",
+          "alt": "1905",
+          "sourceLocal": "public/img/generated/modal_negra_3-1200.webp",
+          "sourceUrl": "/img/generated/modal_negra_3-1200.webp",
+          "storagePath": "products/1905/gallery/1905-gallery-3/8cf6bf87a3d1-modal_negra_3-1200.webp",
+          "variants": [
+            {
+              "sourceUrl": "/img/generated/modal_negra_3-800.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_negra_3-800.webp",
+              "width": 800,
+              "height": 800,
+              "declaredWidth": 800,
+              "format": "webp",
+              "fileSizeBytes": 41556,
+              "sha256": "982d786f406f76f02cd4fe426fdf84b53b80ae44118a66e84394ebd52a45f4fa",
+              "hashPrefix": "982d786f406f",
+              "storagePath": "products/1905/gallery/1905-gallery-3/982d786f406f-modal_negra_3-800.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/modal_negra_3-1200.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_negra_3-1200.webp",
+              "width": 1200,
+              "height": 1200,
+              "declaredWidth": 1200,
+              "format": "webp",
+              "fileSizeBytes": 70712,
+              "sha256": "8cf6bf87a3d137ed88a294574a87800dd5de28d10629029c8144ab43ee050935",
+              "hashPrefix": "8cf6bf87a3d1",
+              "storagePath": "products/1905/gallery/1905-gallery-3/8cf6bf87a3d1-modal_negra_3-1200.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/modal_negra_3-1600.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_negra_3-1600.webp",
+              "width": 1600,
+              "height": 1600,
+              "declaredWidth": 1600,
+              "format": "webp",
+              "fileSizeBytes": 101824,
+              "sha256": "711d6b5cdc75c3ba6a7a6bd030fd554fdcbeb6ec5bf6b83712c6194985754bc2",
+              "hashPrefix": "711d6b5cdc75",
+              "storagePath": "products/1905/gallery/1905-gallery-3/711d6b5cdc75-modal_negra_3-1600.webp"
+            }
+          ]
+        },
+        {
+          "role": "gallery",
+          "device": "all",
+          "sortOrder": 3,
+          "logicalName": "1905-gallery-4",
+          "logicalSlug": "1905-gallery-4",
+          "alt": "1905",
+          "sourceLocal": "public/img/generated/modal_negra_4-1200.webp",
+          "sourceUrl": "/img/generated/modal_negra_4-1200.webp",
+          "storagePath": "products/1905/gallery/1905-gallery-4/8407fc9ad3bc-modal_negra_4-1200.webp",
+          "variants": [
+            {
+              "sourceUrl": "/img/generated/modal_negra_4-800.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_negra_4-800.webp",
+              "width": 800,
+              "height": 800,
+              "declaredWidth": 800,
+              "format": "webp",
+              "fileSizeBytes": 86102,
+              "sha256": "63cb7c1ab3a4bb59640dbcaeae4943ca116ab268aeda4843d78191104f517ae7",
+              "hashPrefix": "63cb7c1ab3a4",
+              "storagePath": "products/1905/gallery/1905-gallery-4/63cb7c1ab3a4-modal_negra_4-800.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/modal_negra_4-1200.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_negra_4-1200.webp",
+              "width": 1200,
+              "height": 1200,
+              "declaredWidth": 1200,
+              "format": "webp",
+              "fileSizeBytes": 141718,
+              "sha256": "8407fc9ad3bc04684129d1ac014e899d8f84fb08d13dfd325c0bbc8d351334fa",
+              "hashPrefix": "8407fc9ad3bc",
+              "storagePath": "products/1905/gallery/1905-gallery-4/8407fc9ad3bc-modal_negra_4-1200.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/modal_negra_4-1600.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_negra_4-1600.webp",
+              "width": 1600,
+              "height": 1600,
+              "declaredWidth": 1600,
+              "format": "webp",
+              "fileSizeBytes": 203068,
+              "sha256": "4e7fd4177c7fe18ebcbe956f267057f1ca46abe944d7b27ec7d5e2f010552843",
+              "hashPrefix": "4e7fd4177c7f",
+              "storagePath": "products/1905/gallery/1905-gallery-4/4e7fd4177c7f-modal_negra_4-1600.webp"
+            }
+          ]
+        },
+        {
+          "role": "size_guide",
+          "device": "all",
+          "sortOrder": 0,
+          "logicalName": "1905-size-guide",
+          "logicalSlug": "1905-size-guide",
+          "alt": "1905",
+          "sourceLocal": "public/img/generated/guide_remera_negra-1600.webp",
+          "sourceUrl": "/img/generated/guide_remera_negra-1600.webp",
+          "storagePath": "products/1905/size_guide/1905-size-guide/257e889d4775-guide_remera_negra-1600.webp",
+          "variants": [
+            {
+              "sourceUrl": "/img/generated/guide_remera_negra-1000.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/guide_remera_negra-1000.webp",
+              "width": 1000,
+              "height": 1333,
+              "declaredWidth": 1000,
+              "format": "webp",
+              "fileSizeBytes": 27010,
+              "sha256": "a9bc401c3e167ac2309e451a57284823722e4725380f563c85af05fd94e19fe1",
+              "hashPrefix": "a9bc401c3e16",
+              "storagePath": "products/1905/size_guide/1905-size-guide/a9bc401c3e16-guide_remera_negra-1000.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/guide_remera_negra-1600.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/guide_remera_negra-1600.webp",
+              "width": 1086,
+              "height": 1448,
+              "declaredWidth": 1600,
+              "format": "webp",
+              "fileSizeBytes": 30714,
+              "sha256": "257e889d4775dca08538d59a0c9e9d14ed1ce2eef196a5882f8b02ee6d08614c",
+              "hashPrefix": "257e889d4775",
+              "storagePath": "products/1905/size_guide/1905-size-guide/257e889d4775-guide_remera_negra-1600.webp"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "04",
+      "slug": "el-barrio",
+      "name": "EL BARRIO",
+      "category": "remeras",
+      "description": "Representando a La Boca, con los detalles del puente, el ancla y las coordenadas del barrio.",
+      "longDescription": "Remera blanca VAGOS con estampa dorada al frente. Una pieza limpia, liviana y facil de combinar.",
+      "price": 38000,
+      "originalPrice": 45000,
+      "whatsappMessage": "AGUANTE BOCA LOCO, me interesa la remera blanca VAGOS",
+      "sortOrder": 3,
+      "isActive": true,
+      "displayLabel": "Oversize",
+      "audienceLabel": "UNISEX",
+      "includes": [
+        "remera blanca"
+      ],
+      "rawKeys": [
+        "id",
+        "category",
+        "name",
+        "description",
+        "longDescription",
+        "imageCard",
+        "image",
+        "imagesResponsive",
+        "images",
+        "imagesMobileResponsive",
+        "imagesMobile",
+        "guiaTalleResponsive",
+        "guiaTalle",
+        "price",
+        "originalPrice",
+        "duration",
+        "destination",
+        "includes",
+        "whatsappMessage"
+      ],
+      "images": [
+        {
+          "role": "card",
+          "device": "all",
+          "sortOrder": 0,
+          "logicalName": "el-barrio-card",
+          "logicalSlug": "el-barrio-card",
+          "alt": "EL BARRIO",
+          "sourceLocal": "public/img/generated/card_blanca_principal-1024.webp",
+          "sourceUrl": "/img/generated/card_blanca_principal-1024.webp",
+          "storagePath": "products/el-barrio/card/el-barrio-card/0ac1200b8761-card_blanca_principal-1024.webp",
+          "variants": [
+            {
+              "sourceUrl": "/img/generated/card_blanca_principal-480.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/card_blanca_principal-480.webp",
+              "width": 480,
+              "height": 360,
+              "declaredWidth": 480,
+              "format": "webp",
+              "fileSizeBytes": 10764,
+              "sha256": "cefae07d2f1acd77b26e779996206deb6c07dbf8a08f0f47c79b661da56c19ac",
+              "hashPrefix": "cefae07d2f1a",
+              "storagePath": "products/el-barrio/card/el-barrio-card/cefae07d2f1a-card_blanca_principal-480.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/card_blanca_principal-768.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/card_blanca_principal-768.webp",
+              "width": 768,
+              "height": 576,
+              "declaredWidth": 768,
+              "format": "webp",
+              "fileSizeBytes": 24474,
+              "sha256": "bfe5f845133374d905067ff02c16f6af0b1c6cd0f9c7c1ea239151d7330390d2",
+              "hashPrefix": "bfe5f8451333",
+              "storagePath": "products/el-barrio/card/el-barrio-card/bfe5f8451333-card_blanca_principal-768.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/card_blanca_principal-1024.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/card_blanca_principal-1024.webp",
+              "width": 1024,
+              "height": 768,
+              "declaredWidth": 1024,
+              "format": "webp",
+              "fileSizeBytes": 49586,
+              "sha256": "0ac1200b876140bba011d87fdde3c13335ddf34a40f0c63390729faeb49c65da",
+              "hashPrefix": "0ac1200b8761",
+              "storagePath": "products/el-barrio/card/el-barrio-card/0ac1200b8761-card_blanca_principal-1024.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/card_blanca_principal-1280.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/card_blanca_principal-1280.webp",
+              "width": 1280,
+              "height": 960,
+              "declaredWidth": 1280,
+              "format": "webp",
+              "fileSizeBytes": 99018,
+              "sha256": "1f3255891bdd479fab0bffa8f81c30521238cbd4e7f45765c88cc14b01522cdf",
+              "hashPrefix": "1f3255891bdd",
+              "storagePath": "products/el-barrio/card/el-barrio-card/1f3255891bdd-card_blanca_principal-1280.webp"
+            }
+          ]
+        },
+        {
+          "role": "gallery",
+          "device": "all",
+          "sortOrder": 0,
+          "logicalName": "el-barrio-gallery-1",
+          "logicalSlug": "el-barrio-gallery-1",
+          "alt": "EL BARRIO",
+          "sourceLocal": "public/img/generated/modal_blanca_1-1200.webp",
+          "sourceUrl": "/img/generated/modal_blanca_1-1200.webp",
+          "storagePath": "products/el-barrio/gallery/el-barrio-gallery-1/47d96f955251-modal_blanca_1-1200.webp",
+          "variants": [
+            {
+              "sourceUrl": "/img/generated/modal_blanca_1-800.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_blanca_1-800.webp",
+              "width": 800,
+              "height": 800,
+              "declaredWidth": 800,
+              "format": "webp",
+              "fileSizeBytes": 32694,
+              "sha256": "3a8c88818decc0f5e80985b635d424772d9330e68c5cff494d06f1ec52c0c574",
+              "hashPrefix": "3a8c88818dec",
+              "storagePath": "products/el-barrio/gallery/el-barrio-gallery-1/3a8c88818dec-modal_blanca_1-800.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/modal_blanca_1-1200.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_blanca_1-1200.webp",
+              "width": 1200,
+              "height": 1200,
+              "declaredWidth": 1200,
+              "format": "webp",
+              "fileSizeBytes": 99122,
+              "sha256": "47d96f955251ea5b1bf7f5fc30d1f2537b6271f10300963f1feac358db2b8dd6",
+              "hashPrefix": "47d96f955251",
+              "storagePath": "products/el-barrio/gallery/el-barrio-gallery-1/47d96f955251-modal_blanca_1-1200.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/modal_blanca_1-1600.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_blanca_1-1600.webp",
+              "width": 1600,
+              "height": 1600,
+              "declaredWidth": 1600,
+              "format": "webp",
+              "fileSizeBytes": 206582,
+              "sha256": "44bf9f63879dc2ecd670163ffd9ee4ee802d904466dbb8c2b20c049d4267d87a",
+              "hashPrefix": "44bf9f63879d",
+              "storagePath": "products/el-barrio/gallery/el-barrio-gallery-1/44bf9f63879d-modal_blanca_1-1600.webp"
+            }
+          ]
+        },
+        {
+          "role": "gallery",
+          "device": "all",
+          "sortOrder": 1,
+          "logicalName": "el-barrio-gallery-2",
+          "logicalSlug": "el-barrio-gallery-2",
+          "alt": "EL BARRIO",
+          "sourceLocal": "public/img/generated/modal_blanca_2-1200.webp",
+          "sourceUrl": "/img/generated/modal_blanca_2-1200.webp",
+          "storagePath": "products/el-barrio/gallery/el-barrio-gallery-2/279afd0ca19e-modal_blanca_2-1200.webp",
+          "variants": [
+            {
+              "sourceUrl": "/img/generated/modal_blanca_2-800.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_blanca_2-800.webp",
+              "width": 800,
+              "height": 800,
+              "declaredWidth": 800,
+              "format": "webp",
+              "fileSizeBytes": 69374,
+              "sha256": "aab2f5c7c4e5c823c837ac309721fceef56a897d3f7b3f022b17d195089beb78",
+              "hashPrefix": "aab2f5c7c4e5",
+              "storagePath": "products/el-barrio/gallery/el-barrio-gallery-2/aab2f5c7c4e5-modal_blanca_2-800.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/modal_blanca_2-1200.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_blanca_2-1200.webp",
+              "width": 1200,
+              "height": 1200,
+              "declaredWidth": 1200,
+              "format": "webp",
+              "fileSizeBytes": 107520,
+              "sha256": "279afd0ca19ea67b5a30c5f6b73925f994ba0fe3f436a2cb5320d66e57567f8c",
+              "hashPrefix": "279afd0ca19e",
+              "storagePath": "products/el-barrio/gallery/el-barrio-gallery-2/279afd0ca19e-modal_blanca_2-1200.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/modal_blanca_2-1600.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_blanca_2-1600.webp",
+              "width": 1600,
+              "height": 1600,
+              "declaredWidth": 1600,
+              "format": "webp",
+              "fileSizeBytes": 149530,
+              "sha256": "1a6993ff19f11099995165f41906c81c23c309767b1c5245a7a0a94558fe4d92",
+              "hashPrefix": "1a6993ff19f1",
+              "storagePath": "products/el-barrio/gallery/el-barrio-gallery-2/1a6993ff19f1-modal_blanca_2-1600.webp"
+            }
+          ]
+        },
+        {
+          "role": "gallery",
+          "device": "all",
+          "sortOrder": 2,
+          "logicalName": "el-barrio-gallery-3",
+          "logicalSlug": "el-barrio-gallery-3",
+          "alt": "EL BARRIO",
+          "sourceLocal": "public/img/generated/modal_blanca_3-1200.webp",
+          "sourceUrl": "/img/generated/modal_blanca_3-1200.webp",
+          "storagePath": "products/el-barrio/gallery/el-barrio-gallery-3/b8cd94b00816-modal_blanca_3-1200.webp",
+          "variants": [
+            {
+              "sourceUrl": "/img/generated/modal_blanca_3-800.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_blanca_3-800.webp",
+              "width": 800,
+              "height": 800,
+              "declaredWidth": 800,
+              "format": "webp",
+              "fileSizeBytes": 122504,
+              "sha256": "51f06a7e0d259bbfbb21463a8094c68eb33745b1a8765a9b5193b899db5be81f",
+              "hashPrefix": "51f06a7e0d25",
+              "storagePath": "products/el-barrio/gallery/el-barrio-gallery-3/51f06a7e0d25-modal_blanca_3-800.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/modal_blanca_3-1200.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_blanca_3-1200.webp",
+              "width": 1200,
+              "height": 1200,
+              "declaredWidth": 1200,
+              "format": "webp",
+              "fileSizeBytes": 318496,
+              "sha256": "b8cd94b00816f75c63a4638f6dd38bd68bebb77279b40a9f1fed4be45cbeef8b",
+              "hashPrefix": "b8cd94b00816",
+              "storagePath": "products/el-barrio/gallery/el-barrio-gallery-3/b8cd94b00816-modal_blanca_3-1200.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/modal_blanca_3-1600.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_blanca_3-1600.webp",
+              "width": 1600,
+              "height": 1600,
+              "declaredWidth": 1600,
+              "format": "webp",
+              "fileSizeBytes": 583324,
+              "sha256": "c4ff36cc7cd7415a3d2a32dce86195a61042944233dab923f4921a4b4f6097ed",
+              "hashPrefix": "c4ff36cc7cd7",
+              "storagePath": "products/el-barrio/gallery/el-barrio-gallery-3/c4ff36cc7cd7-modal_blanca_3-1600.webp"
+            }
+          ]
+        },
+        {
+          "role": "gallery",
+          "device": "all",
+          "sortOrder": 3,
+          "logicalName": "el-barrio-gallery-4",
+          "logicalSlug": "el-barrio-gallery-4",
+          "alt": "EL BARRIO",
+          "sourceLocal": "public/img/generated/modal_blanca_4-1200.webp",
+          "sourceUrl": "/img/generated/modal_blanca_4-1200.webp",
+          "storagePath": "products/el-barrio/gallery/el-barrio-gallery-4/cac06808d3c9-modal_blanca_4-1200.webp",
+          "variants": [
+            {
+              "sourceUrl": "/img/generated/modal_blanca_4-800.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_blanca_4-800.webp",
+              "width": 800,
+              "height": 800,
+              "declaredWidth": 800,
+              "format": "webp",
+              "fileSizeBytes": 39290,
+              "sha256": "3ed22636b01757c92545c4fc1573e6a34bd53bc07039def3b2845fa3c1c630d4",
+              "hashPrefix": "3ed22636b017",
+              "storagePath": "products/el-barrio/gallery/el-barrio-gallery-4/3ed22636b017-modal_blanca_4-800.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/modal_blanca_4-1200.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_blanca_4-1200.webp",
+              "width": 1200,
+              "height": 1200,
+              "declaredWidth": 1200,
+              "format": "webp",
+              "fileSizeBytes": 78104,
+              "sha256": "cac06808d3c92107854e32fea8e7835bed835ba05b884c1c784e65fcda5b3353",
+              "hashPrefix": "cac06808d3c9",
+              "storagePath": "products/el-barrio/gallery/el-barrio-gallery-4/cac06808d3c9-modal_blanca_4-1200.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/modal_blanca_4-1600.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_blanca_4-1600.webp",
+              "width": 1600,
+              "height": 1600,
+              "declaredWidth": 1600,
+              "format": "webp",
+              "fileSizeBytes": 144806,
+              "sha256": "e5567fba0b37c177940715c4001eeae4817960dd1ce4dee4fc8aecc58f021537",
+              "hashPrefix": "e5567fba0b37",
+              "storagePath": "products/el-barrio/gallery/el-barrio-gallery-4/e5567fba0b37-modal_blanca_4-1600.webp"
+            }
+          ]
+        },
+        {
+          "role": "gallery",
+          "device": "all",
+          "sortOrder": 4,
+          "logicalName": "el-barrio-gallery-5",
+          "logicalSlug": "el-barrio-gallery-5",
+          "alt": "EL BARRIO",
+          "sourceLocal": "public/img/generated/modal_blanca_5-1200.webp",
+          "sourceUrl": "/img/generated/modal_blanca_5-1200.webp",
+          "storagePath": "products/el-barrio/gallery/el-barrio-gallery-5/cd6ef4ad08df-modal_blanca_5-1200.webp",
+          "variants": [
+            {
+              "sourceUrl": "/img/generated/modal_blanca_5-800.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_blanca_5-800.webp",
+              "width": 800,
+              "height": 800,
+              "declaredWidth": 800,
+              "format": "webp",
+              "fileSizeBytes": 75748,
+              "sha256": "743d28a18a41c2d8c2ff4905970277212b850f0bce25cf1523b5ac08cde4bf23",
+              "hashPrefix": "743d28a18a41",
+              "storagePath": "products/el-barrio/gallery/el-barrio-gallery-5/743d28a18a41-modal_blanca_5-800.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/modal_blanca_5-1200.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_blanca_5-1200.webp",
+              "width": 1200,
+              "height": 1200,
+              "declaredWidth": 1200,
+              "format": "webp",
+              "fileSizeBytes": 158748,
+              "sha256": "cd6ef4ad08dfba878b6a8e8b8a65e041b29f20ce750c56ee0555b7b31935a439",
+              "hashPrefix": "cd6ef4ad08df",
+              "storagePath": "products/el-barrio/gallery/el-barrio-gallery-5/cd6ef4ad08df-modal_blanca_5-1200.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/modal_blanca_5-1600.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_blanca_5-1600.webp",
+              "width": 1600,
+              "height": 1600,
+              "declaredWidth": 1600,
+              "format": "webp",
+              "fileSizeBytes": 246498,
+              "sha256": "455ce4c8b44a83ccc1c565cdf7c40c8233f2f439450e9521f4b0a586aebf9961",
+              "hashPrefix": "455ce4c8b44a",
+              "storagePath": "products/el-barrio/gallery/el-barrio-gallery-5/455ce4c8b44a-modal_blanca_5-1600.webp"
+            }
+          ]
+        },
+        {
+          "role": "size_guide",
+          "device": "all",
+          "sortOrder": 0,
+          "logicalName": "el-barrio-size-guide",
+          "logicalSlug": "el-barrio-size-guide",
+          "alt": "EL BARRIO",
+          "sourceLocal": "public/img/generated/guide_remera_blanca-1600.webp",
+          "sourceUrl": "/img/generated/guide_remera_blanca-1600.webp",
+          "storagePath": "products/el-barrio/size_guide/el-barrio-size-guide/2cb8232797f2-guide_remera_blanca-1600.webp",
+          "variants": [
+            {
+              "sourceUrl": "/img/generated/guide_remera_blanca-1000.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/guide_remera_blanca-1000.webp",
+              "width": 1000,
+              "height": 1000,
+              "declaredWidth": 1000,
+              "format": "webp",
+              "fileSizeBytes": 13930,
+              "sha256": "4232fd870f5c9e7b96445b4898ae5544cefdb2f38ef629fb56c6cabd31be8c4c",
+              "hashPrefix": "4232fd870f5c",
+              "storagePath": "products/el-barrio/size_guide/el-barrio-size-guide/4232fd870f5c-guide_remera_blanca-1000.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/guide_remera_blanca-1600.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/guide_remera_blanca-1600.webp",
+              "width": 1254,
+              "height": 1254,
+              "declaredWidth": 1600,
+              "format": "webp",
+              "fileSizeBytes": 18354,
+              "sha256": "2cb8232797f25d4ffe89ec70ce1d01edc09b0283fdfc08d3b57901eb28b04df7",
+              "hashPrefix": "2cb8232797f2",
+              "storagePath": "products/el-barrio/size_guide/el-barrio-size-guide/2cb8232797f2-guide_remera_blanca-1600.webp"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "05",
+      "slug": "tres-del-mundo",
+      "name": "TRES DEL MUNDO",
+      "category": "buzos",
+      "description": "El primer buzo de VAGOS representa el fútbol de Boca, y sus gloriosas tres copas Intercontinentales. Un barrio que conquistó el mundo.",
+      "longDescription": "Buzo negro VAGOS con grafica azul y oro. Abrigo urbano con identidad xeneize, pensado para usar en la calle, en la cancha y en el dia a dia.",
+      "price": 83000,
+      "originalPrice": null,
+      "whatsappMessage": "AGUANTE BOCA LOCO, me interesa el buzo negro VAGOS",
+      "sortOrder": 4,
+      "isActive": true,
+      "displayLabel": "Buzo",
+      "audienceLabel": "UNISEX",
+      "includes": [
+        "TRES DEL MUNDO"
+      ],
+      "rawKeys": [
+        "id",
+        "category",
+        "name",
+        "description",
+        "longDescription",
+        "imageCard",
+        "image",
+        "imagesResponsive",
+        "images",
+        "imagesMobileResponsive",
+        "imagesMobile",
+        "guiaTalleResponsive",
+        "guiaTalle",
+        "price",
+        "duration",
+        "destination",
+        "includes",
+        "whatsappMessage"
+      ],
+      "images": [
+        {
+          "role": "card",
+          "device": "all",
+          "sortOrder": 0,
+          "logicalName": "tres-del-mundo-card",
+          "logicalSlug": "tres-del-mundo-card",
+          "alt": "TRES DEL MUNDO",
+          "sourceLocal": "public/img/generated/card_buzo_negro_principal-1024.webp",
+          "sourceUrl": "/img/generated/card_buzo_negro_principal-1024.webp",
+          "storagePath": "products/tres-del-mundo/card/tres-del-mundo-card/63788f1b2ec5-card_buzo_negro_principal-1024.webp",
+          "variants": [
+            {
+              "sourceUrl": "/img/generated/card_buzo_negro_principal-480.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/card_buzo_negro_principal-480.webp",
+              "width": 480,
+              "height": 360,
+              "declaredWidth": 480,
+              "format": "webp",
+              "fileSizeBytes": 30628,
+              "sha256": "7e17d50fb4d21acf6b1efd7b15c9e44a59abec3708f90f4a0d93f61d05f5fa5f",
+              "hashPrefix": "7e17d50fb4d2",
+              "storagePath": "products/tres-del-mundo/card/tres-del-mundo-card/7e17d50fb4d2-card_buzo_negro_principal-480.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/card_buzo_negro_principal-768.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/card_buzo_negro_principal-768.webp",
+              "width": 768,
+              "height": 576,
+              "declaredWidth": 768,
+              "format": "webp",
+              "fileSizeBytes": 61420,
+              "sha256": "5d80d4152485fb4682756a2177f3497c249f5f2b534c5bbdae3dd71bdb33a107",
+              "hashPrefix": "5d80d4152485",
+              "storagePath": "products/tres-del-mundo/card/tres-del-mundo-card/5d80d4152485-card_buzo_negro_principal-768.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/card_buzo_negro_principal-1024.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/card_buzo_negro_principal-1024.webp",
+              "width": 1024,
+              "height": 768,
+              "declaredWidth": 1024,
+              "format": "webp",
+              "fileSizeBytes": 102048,
+              "sha256": "63788f1b2ec5727c8cc2492f36b55a330701ec0a40c3861d4b70eae8db27c553",
+              "hashPrefix": "63788f1b2ec5",
+              "storagePath": "products/tres-del-mundo/card/tres-del-mundo-card/63788f1b2ec5-card_buzo_negro_principal-1024.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/card_buzo_negro_principal-1280.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/card_buzo_negro_principal-1280.webp",
+              "width": 1280,
+              "height": 960,
+              "declaredWidth": 1280,
+              "format": "webp",
+              "fileSizeBytes": 156294,
+              "sha256": "3e5f9ce408961ed267183f5f93ddbc56ba15611ec76ce9bea0dcdebf81acacce",
+              "hashPrefix": "3e5f9ce40896",
+              "storagePath": "products/tres-del-mundo/card/tres-del-mundo-card/3e5f9ce40896-card_buzo_negro_principal-1280.webp"
+            }
+          ]
+        },
+        {
+          "role": "gallery",
+          "device": "all",
+          "sortOrder": 0,
+          "logicalName": "tres-del-mundo-gallery-1",
+          "logicalSlug": "tres-del-mundo-gallery-1",
+          "alt": "TRES DEL MUNDO",
+          "sourceLocal": "public/img/generated/modal_buzo_negro_1-1200.webp",
+          "sourceUrl": "/img/generated/modal_buzo_negro_1-1200.webp",
+          "storagePath": "products/tres-del-mundo/gallery/tres-del-mundo-gallery-1/839bf420c3e0-modal_buzo_negro_1-1200.webp",
+          "variants": [
+            {
+              "sourceUrl": "/img/generated/modal_buzo_negro_1-800.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_buzo_negro_1-800.webp",
+              "width": 800,
+              "height": 800,
+              "declaredWidth": 800,
+              "format": "webp",
+              "fileSizeBytes": 70682,
+              "sha256": "a84767b8b6f6bf08ded2d7a9d84cd7b0f05041a2df20e30af98c2db9b011da3b",
+              "hashPrefix": "a84767b8b6f6",
+              "storagePath": "products/tres-del-mundo/gallery/tres-del-mundo-gallery-1/a84767b8b6f6-modal_buzo_negro_1-800.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/modal_buzo_negro_1-1200.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_buzo_negro_1-1200.webp",
+              "width": 1200,
+              "height": 1200,
+              "declaredWidth": 1200,
+              "format": "webp",
+              "fileSizeBytes": 147052,
+              "sha256": "839bf420c3e0e937fade72420679600ba44f4c957a23e8906f32d2dc2231bbdc",
+              "hashPrefix": "839bf420c3e0",
+              "storagePath": "products/tres-del-mundo/gallery/tres-del-mundo-gallery-1/839bf420c3e0-modal_buzo_negro_1-1200.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/modal_buzo_negro_1-1600.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_buzo_negro_1-1600.webp",
+              "width": 1600,
+              "height": 1600,
+              "declaredWidth": 1600,
+              "format": "webp",
+              "fileSizeBytes": 266532,
+              "sha256": "214075e4691a85057f87b2a07a692d3abf983915aead889d8ce8aeaa0836f22c",
+              "hashPrefix": "214075e4691a",
+              "storagePath": "products/tres-del-mundo/gallery/tres-del-mundo-gallery-1/214075e4691a-modal_buzo_negro_1-1600.webp"
+            }
+          ]
+        },
+        {
+          "role": "gallery",
+          "device": "all",
+          "sortOrder": 1,
+          "logicalName": "tres-del-mundo-gallery-2",
+          "logicalSlug": "tres-del-mundo-gallery-2",
+          "alt": "TRES DEL MUNDO",
+          "sourceLocal": "public/img/generated/modal_buzo_negro_2-1200.webp",
+          "sourceUrl": "/img/generated/modal_buzo_negro_2-1200.webp",
+          "storagePath": "products/tres-del-mundo/gallery/tres-del-mundo-gallery-2/c8ecf562d572-modal_buzo_negro_2-1200.webp",
+          "variants": [
+            {
+              "sourceUrl": "/img/generated/modal_buzo_negro_2-800.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_buzo_negro_2-800.webp",
+              "width": 800,
+              "height": 800,
+              "declaredWidth": 800,
+              "format": "webp",
+              "fileSizeBytes": 122124,
+              "sha256": "8f84d18941932e0c03de36f210e509fe981bca0a1786df2ccd064ab7ee222b39",
+              "hashPrefix": "8f84d1894193",
+              "storagePath": "products/tres-del-mundo/gallery/tres-del-mundo-gallery-2/8f84d1894193-modal_buzo_negro_2-800.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/modal_buzo_negro_2-1200.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_buzo_negro_2-1200.webp",
+              "width": 1200,
+              "height": 1200,
+              "declaredWidth": 1200,
+              "format": "webp",
+              "fileSizeBytes": 194070,
+              "sha256": "c8ecf562d572eadaad59cb7a3a78dd94974762b42955c3ce848a27779f954f1e",
+              "hashPrefix": "c8ecf562d572",
+              "storagePath": "products/tres-del-mundo/gallery/tres-del-mundo-gallery-2/c8ecf562d572-modal_buzo_negro_2-1200.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/modal_buzo_negro_2-1600.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_buzo_negro_2-1600.webp",
+              "width": 1600,
+              "height": 1600,
+              "declaredWidth": 1600,
+              "format": "webp",
+              "fileSizeBytes": 267098,
+              "sha256": "5bcb6d1d12959c76c5c0ff6cb3d6d7fb92a85db222c9e8fc8e1e0dd707438d8f",
+              "hashPrefix": "5bcb6d1d1295",
+              "storagePath": "products/tres-del-mundo/gallery/tres-del-mundo-gallery-2/5bcb6d1d1295-modal_buzo_negro_2-1600.webp"
+            }
+          ]
+        },
+        {
+          "role": "gallery",
+          "device": "all",
+          "sortOrder": 2,
+          "logicalName": "tres-del-mundo-gallery-3",
+          "logicalSlug": "tres-del-mundo-gallery-3",
+          "alt": "TRES DEL MUNDO",
+          "sourceLocal": "public/img/generated/modal_buzo_negro_3-1200.webp",
+          "sourceUrl": "/img/generated/modal_buzo_negro_3-1200.webp",
+          "storagePath": "products/tres-del-mundo/gallery/tres-del-mundo-gallery-3/2f54d6e1f793-modal_buzo_negro_3-1200.webp",
+          "variants": [
+            {
+              "sourceUrl": "/img/generated/modal_buzo_negro_3-800.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_buzo_negro_3-800.webp",
+              "width": 800,
+              "height": 800,
+              "declaredWidth": 800,
+              "format": "webp",
+              "fileSizeBytes": 60452,
+              "sha256": "766b7f432a8a27a67b58cc5d4f164e7d020f3446f5c780cf3bce96fa762f4a1d",
+              "hashPrefix": "766b7f432a8a",
+              "storagePath": "products/tres-del-mundo/gallery/tres-del-mundo-gallery-3/766b7f432a8a-modal_buzo_negro_3-800.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/modal_buzo_negro_3-1200.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_buzo_negro_3-1200.webp",
+              "width": 1200,
+              "height": 1200,
+              "declaredWidth": 1200,
+              "format": "webp",
+              "fileSizeBytes": 107414,
+              "sha256": "2f54d6e1f79307a4dddcc5decf31e7c77f6838072f79f379ca1779c0967bc19b",
+              "hashPrefix": "2f54d6e1f793",
+              "storagePath": "products/tres-del-mundo/gallery/tres-del-mundo-gallery-3/2f54d6e1f793-modal_buzo_negro_3-1200.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/modal_buzo_negro_3-1600.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_buzo_negro_3-1600.webp",
+              "width": 1600,
+              "height": 1600,
+              "declaredWidth": 1600,
+              "format": "webp",
+              "fileSizeBytes": 155120,
+              "sha256": "65d2f13c3312e9b1ee58417a3d6bf0e2ca0b355c4b7cf53e88a16ad86fb2082b",
+              "hashPrefix": "65d2f13c3312",
+              "storagePath": "products/tres-del-mundo/gallery/tres-del-mundo-gallery-3/65d2f13c3312-modal_buzo_negro_3-1600.webp"
+            }
+          ]
+        },
+        {
+          "role": "gallery",
+          "device": "all",
+          "sortOrder": 3,
+          "logicalName": "tres-del-mundo-gallery-4",
+          "logicalSlug": "tres-del-mundo-gallery-4",
+          "alt": "TRES DEL MUNDO",
+          "sourceLocal": "public/img/generated/modal_buzo_negro_4-1200.webp",
+          "sourceUrl": "/img/generated/modal_buzo_negro_4-1200.webp",
+          "storagePath": "products/tres-del-mundo/gallery/tres-del-mundo-gallery-4/2bcd4b91105f-modal_buzo_negro_4-1200.webp",
+          "variants": [
+            {
+              "sourceUrl": "/img/generated/modal_buzo_negro_4-800.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_buzo_negro_4-800.webp",
+              "width": 800,
+              "height": 800,
+              "declaredWidth": 800,
+              "format": "webp",
+              "fileSizeBytes": 99170,
+              "sha256": "86370da00f01433747a0cab1898bee619c3ee4c824c5b4dcb89cf7678f6489d5",
+              "hashPrefix": "86370da00f01",
+              "storagePath": "products/tres-del-mundo/gallery/tres-del-mundo-gallery-4/86370da00f01-modal_buzo_negro_4-800.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/modal_buzo_negro_4-1200.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_buzo_negro_4-1200.webp",
+              "width": 1200,
+              "height": 1200,
+              "declaredWidth": 1200,
+              "format": "webp",
+              "fileSizeBytes": 239556,
+              "sha256": "2bcd4b91105fd542787a23e011b9c33fa25a14e5fff14eb76df1a159afc16ca7",
+              "hashPrefix": "2bcd4b91105f",
+              "storagePath": "products/tres-del-mundo/gallery/tres-del-mundo-gallery-4/2bcd4b91105f-modal_buzo_negro_4-1200.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/modal_buzo_negro_4-1600.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_buzo_negro_4-1600.webp",
+              "width": 1600,
+              "height": 1600,
+              "declaredWidth": 1600,
+              "format": "webp",
+              "fileSizeBytes": 447906,
+              "sha256": "95f34953cb07ce76f6602031e89ff151eaede68b1608dec6edd8d114a92ae88f",
+              "hashPrefix": "95f34953cb07",
+              "storagePath": "products/tres-del-mundo/gallery/tres-del-mundo-gallery-4/95f34953cb07-modal_buzo_negro_4-1600.webp"
+            }
+          ]
+        },
+        {
+          "role": "gallery",
+          "device": "all",
+          "sortOrder": 4,
+          "logicalName": "tres-del-mundo-gallery-5",
+          "logicalSlug": "tres-del-mundo-gallery-5",
+          "alt": "TRES DEL MUNDO",
+          "sourceLocal": "public/img/generated/modal_buzo_negro_5-1200.webp",
+          "sourceUrl": "/img/generated/modal_buzo_negro_5-1200.webp",
+          "storagePath": "products/tres-del-mundo/gallery/tres-del-mundo-gallery-5/f9344202515a-modal_buzo_negro_5-1200.webp",
+          "variants": [
+            {
+              "sourceUrl": "/img/generated/modal_buzo_negro_5-800.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_buzo_negro_5-800.webp",
+              "width": 800,
+              "height": 800,
+              "declaredWidth": 800,
+              "format": "webp",
+              "fileSizeBytes": 144346,
+              "sha256": "563eb43761e6d0e853cacdf6feb1c1a0d06ff9fd8aa61d75605383cd0f419cf8",
+              "hashPrefix": "563eb43761e6",
+              "storagePath": "products/tres-del-mundo/gallery/tres-del-mundo-gallery-5/563eb43761e6-modal_buzo_negro_5-800.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/modal_buzo_negro_5-1200.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_buzo_negro_5-1200.webp",
+              "width": 1200,
+              "height": 1200,
+              "declaredWidth": 1200,
+              "format": "webp",
+              "fileSizeBytes": 258936,
+              "sha256": "f9344202515a24ca93b2a8d11488fee7023f1343dcbd2feb2f7c9fb68b919fb4",
+              "hashPrefix": "f9344202515a",
+              "storagePath": "products/tres-del-mundo/gallery/tres-del-mundo-gallery-5/f9344202515a-modal_buzo_negro_5-1200.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/modal_buzo_negro_5-1600.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/modal_buzo_negro_5-1600.webp",
+              "width": 1600,
+              "height": 1600,
+              "declaredWidth": 1600,
+              "format": "webp",
+              "fileSizeBytes": 353196,
+              "sha256": "0820eca1c1ad7d712b20d4f165657ae61af46410089361def72ed4a2e51766c7",
+              "hashPrefix": "0820eca1c1ad",
+              "storagePath": "products/tres-del-mundo/gallery/tres-del-mundo-gallery-5/0820eca1c1ad-modal_buzo_negro_5-1600.webp"
+            }
+          ]
+        },
+        {
+          "role": "size_guide",
+          "device": "all",
+          "sortOrder": 0,
+          "logicalName": "tres-del-mundo-size-guide",
+          "logicalSlug": "tres-del-mundo-size-guide",
+          "alt": "TRES DEL MUNDO",
+          "sourceLocal": "public/img/generated/guide_buzo_negro-1600.webp",
+          "sourceUrl": "/img/generated/guide_buzo_negro-1600.webp",
+          "storagePath": "products/tres-del-mundo/size_guide/tres-del-mundo-size-guide/eb334407c3c8-guide_buzo_negro-1600.webp",
+          "variants": [
+            {
+              "sourceUrl": "/img/generated/guide_buzo_negro-1000.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/guide_buzo_negro-1000.webp",
+              "width": 1000,
+              "height": 1000,
+              "declaredWidth": 1000,
+              "format": "webp",
+              "fileSizeBytes": 16034,
+              "sha256": "c2d9ec06573e94c930ca5e92d7fdd3c9d45570af015fdc21f9d5638f62da6c88",
+              "hashPrefix": "c2d9ec06573e",
+              "storagePath": "products/tres-del-mundo/size_guide/tres-del-mundo-size-guide/c2d9ec06573e-guide_buzo_negro-1000.webp"
+            },
+            {
+              "sourceUrl": "/img/generated/guide_buzo_negro-1600.webp",
+              "migrationAction": "reuse_existing_runtime_variant",
+              "exists": true,
+              "localPath": "public/img/generated/guide_buzo_negro-1600.webp",
+              "width": 1254,
+              "height": 1254,
+              "declaredWidth": 1600,
+              "format": "webp",
+              "fileSizeBytes": 21052,
+              "sha256": "eb334407c3c838508a3b414120f46874baf5221bf454b096aa8aa335ec601824",
+              "hashPrefix": "eb334407c3c8",
+              "storagePath": "products/tres-del-mundo/size_guide/tres-del-mundo-size-guide/eb334407c3c8-guide_buzo_negro-1600.webp"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "products": 5,
+    "categories": 2,
+    "logicalImages": 32,
+    "logicalImagesByProduct": {
+      "1905": {
+        "card:all": 1,
+        "gallery:all": 4,
+        "size_guide:all": 1
+      },
+      "azul-y-oro": {
+        "card:all": 1,
+        "gallery:all": 4,
+        "size_guide:all": 1
+      },
+      "vago-xeneize": {
+        "card:all": 1,
+        "gallery:all": 4,
+        "size_guide:all": 1
+      },
+      "el-barrio": {
+        "card:all": 1,
+        "gallery:all": 5,
+        "size_guide:all": 1
+      },
+      "tres-del-mundo": {
+        "card:all": 1,
+        "gallery:all": 5,
+        "size_guide:all": 1
+      }
+    },
+    "variants": 96,
+    "variantsByWidthFormat": {
+      "480-webp": 5,
+      "768-webp": 5,
+      "1024-webp": 5,
+      "1280-webp": 5,
+      "800-webp": 22,
+      "1200-webp": 22,
+      "1600-webp": 22,
+      "1000-webp": 5,
+      "1086-webp": 3,
+      "1254-webp": 2
+    },
+    "estimatedUploadBytes": 10935476,
+    "estimatedUploadMB": 10.43,
+    "usedCatalogAssets": 96,
+    "omittedAssets": 94,
+    "omittedAssetsByReason": {
+      "site_content": 53,
+      "original_or_source_asset": 36,
+      "legacy_or_unused_catalog_asset": 5
+    },
+    "migrationActions": {
+      "reuseExistingRuntimeVariants": 96,
+      "regenerate": 0,
+      "uploadOriginals": 0
+    }
+  },
+  "omittedAssets": [
+    {
+      "localPath": "public/img/banner/bannerAmarillo.webp",
+      "reason": "site_content"
+    },
+    {
+      "localPath": "public/img/banner/banner_1.webp",
+      "reason": "site_content"
+    },
+    {
+      "localPath": "public/img/banner/banner_3.webp",
+      "reason": "site_content"
+    },
+    {
+      "localPath": "public/img/banner/banner_4.webp",
+      "reason": "site_content"
+    },
+    {
+      "localPath": "public/img/buzos/fotosNegrosHorizontal/buzo-negro-1.png",
+      "reason": "original_or_source_asset"
+    },
+    {
+      "localPath": "public/img/buzos/fotosNegrosHorizontal/buzo-negro-2.png",
+      "reason": "original_or_source_asset"
+    },
+    {
+      "localPath": "public/img/buzos/fotosNegrosHorizontal/buzo-negro-3.jpg",
+      "reason": "original_or_source_asset"
+    },
+    {
+      "localPath": "public/img/buzos/fotosNegrosHorizontal/buzo-negro-4.jpg",
+      "reason": "original_or_source_asset"
+    },
+    {
+      "localPath": "public/img/buzos/fotosNegrosHorizontal/buzo-negro-principal.jpg",
+      "reason": "original_or_source_asset"
+    },
+    {
+      "localPath": "public/img/generated/guide_guiaTalles-1000.webp",
+      "reason": "legacy_or_unused_catalog_asset"
+    },
+    {
+      "localPath": "public/img/generated/guide_guiaTalles-1600.webp",
+      "reason": "legacy_or_unused_catalog_asset"
+    },
+    {
+      "localPath": "public/img/generated/guide_TalleAmarilla-1000.webp",
+      "reason": "legacy_or_unused_catalog_asset"
+    },
+    {
+      "localPath": "public/img/generated/guide_TalleAmarilla-1600.webp",
+      "reason": "legacy_or_unused_catalog_asset"
+    },
+    {
+      "localPath": "public/img/generated/hero_banner1-mob-1280.webp",
+      "reason": "site_content"
+    },
+    {
+      "localPath": "public/img/generated/hero_banner1-mob-1600.webp",
+      "reason": "site_content"
+    },
+    {
+      "localPath": "public/img/generated/hero_banner1-mob-1920.webp",
+      "reason": "site_content"
+    },
+    {
+      "localPath": "public/img/generated/hero_banner1-mob-2560.webp",
+      "reason": "site_content"
+    },
+    {
+      "localPath": "public/img/generated/hero_banner1-mob-640.webp",
+      "reason": "site_content"
+    },
+    {
+      "localPath": "public/img/generated/hero_banner1-mob-960.webp",
+      "reason": "site_content"
+    },
+    {
+      "localPath": "public/img/generated/hero_banner1-web-1280.webp",
+      "reason": "site_content"
+    },
+    {
+      "localPath": "public/img/generated/hero_banner1-web-1600.webp",
+      "reason": "site_content"
+    },
+    {
+      "localPath": "public/img/generated/hero_banner1-web-1920.webp",
+      "reason": "site_content"
+    },
+    {
+      "localPath": "public/img/generated/hero_banner1-web-2560.webp",
+      "reason": "site_content"
+    },
+    {
+      "localPath": "public/img/generated/hero_banner1-web-640.webp",
+      "reason": "site_content"
+    },
+    {
+      "localPath": "public/img/generated/hero_banner1-web-960.webp",
+      "reason": "site_content"
+    },
+    {
+      "localPath": "public/img/generated/hero_banner2-mob-1280.webp",
+      "reason": "site_content"
+    },
+    {
+      "localPath": "public/img/generated/hero_banner2-mob-1600.webp",
+      "reason": "site_content"
+    },
+    {
+      "localPath": "public/img/generated/hero_banner2-mob-1920.webp",
+      "reason": "site_content"
+    },
+    {
+      "localPath": "public/img/generated/hero_banner2-mob-2560.webp",
+      "reason": "site_content"
+    },
+    {
+      "localPath": "public/img/generated/hero_banner2-mob-640.webp",
+      "reason": "site_content"
+    },
+    {
+      "localPath": "public/img/generated/hero_banner2-mob-960.webp",
+      "reason": "site_content"
+    },
+    {
+      "localPath": "public/img/generated/hero_banner2-web-1280.webp",
+      "reason": "site_content"
+    },
+    {
+      "localPath": "public/img/generated/hero_banner2-web-1600.webp",
+      "reason": "site_content"
+    },
+    {
+      "localPath": "public/img/generated/hero_banner2-web-1920.webp",
+      "reason": "site_content"
+    },
+    {
+      "localPath": "public/img/generated/hero_banner2-web-2560.webp",
+      "reason": "site_content"
+    },
+    {
+      "localPath": "public/img/generated/hero_banner2-web-640.webp",
+      "reason": "site_content"
+    },
+    {
+      "localPath": "public/img/generated/hero_banner2-web-960.webp",
+      "reason": "site_content"
+    },
+    {
+      "localPath": "public/img/generated/hero_banner3-mob-1280.webp",
+      "reason": "site_content"
+    },
+    {
+      "localPath": "public/img/generated/hero_banner3-mob-1600.webp",
+      "reason": "site_content"
+    },
+    {
+      "localPath": "public/img/generated/hero_banner3-mob-1920.webp",
+      "reason": "site_content"
+    },
+    {
+      "localPath": "public/img/generated/hero_banner3-mob-2560.webp",
+      "reason": "site_content"
+    },
+    {
+      "localPath": "public/img/generated/hero_banner3-mob-640.webp",
+      "reason": "site_content"
+    },
+    {
+      "localPath": "public/img/generated/hero_banner3-mob-960.webp",
+      "reason": "site_content"
+    },
+    {
+      "localPath": "public/img/generated/hero_banner3-web-1280.webp",
+      "reason": "site_content"
+    },
+    {
+      "localPath": "public/img/generated/hero_banner3-web-1600.webp",
+      "reason": "site_content"
+    },
+    {
+      "localPath": "public/img/generated/hero_banner3-web-1920.webp",
+      "reason": "site_content"
+    },
+    {
+      "localPath": "public/img/generated/hero_banner3-web-2560.webp",
+      "reason": "site_content"
+    },
+    {
+      "localPath": "public/img/generated/hero_banner3-web-640.webp",
+      "reason": "site_content"
+    },
+    {
+      "localPath": "public/img/generated/hero_banner3-web-960.webp",
+      "reason": "site_content"
+    },
+    {
+      "localPath": "public/img/generated/hero_banner4-mob-1280.webp",
+      "reason": "site_content"
+    },
+    {
+      "localPath": "public/img/generated/hero_banner4-mob-1600.webp",
+      "reason": "site_content"
+    },
+    {
+      "localPath": "public/img/generated/hero_banner4-mob-1920.webp",
+      "reason": "site_content"
+    },
+    {
+      "localPath": "public/img/generated/hero_banner4-mob-2560.webp",
+      "reason": "site_content"
+    },
+    {
+      "localPath": "public/img/generated/hero_banner4-mob-640.webp",
+      "reason": "site_content"
+    },
+    {
+      "localPath": "public/img/generated/hero_banner4-mob-960.webp",
+      "reason": "site_content"
+    },
+    {
+      "localPath": "public/img/generated/hero_banner4-web-1280.webp",
+      "reason": "site_content"
+    },
+    {
+      "localPath": "public/img/generated/hero_banner4-web-1600.webp",
+      "reason": "site_content"
+    },
+    {
+      "localPath": "public/img/generated/hero_banner4-web-1920.webp",
+      "reason": "site_content"
+    },
+    {
+      "localPath": "public/img/generated/hero_banner4-web-2560.webp",
+      "reason": "site_content"
+    },
+    {
+      "localPath": "public/img/generated/hero_banner4-web-640.webp",
+      "reason": "site_content"
+    },
+    {
+      "localPath": "public/img/generated/hero_banner4-web-960.webp",
+      "reason": "site_content"
+    },
+    {
+      "localPath": "public/img/guitaTalle/guiaTalle1.webp",
+      "reason": "legacy_or_unused_catalog_asset"
+    },
+    {
+      "localPath": "public/img/logos/svg/puente_amarillo.svg",
+      "reason": "site_content"
+    },
+    {
+      "localPath": "public/img/remeras/fotosAmarillasHorizontal/amarilla.webp",
+      "reason": "original_or_source_asset"
+    },
+    {
+      "localPath": "public/img/remeras/fotosAmarillasHorizontal/amarilla2.webp",
+      "reason": "original_or_source_asset"
+    },
+    {
+      "localPath": "public/img/remeras/fotosAmarillasHorizontal/amarilla3.webp",
+      "reason": "original_or_source_asset"
+    },
+    {
+      "localPath": "public/img/remeras/fotosAmarillasHorizontal/amarilla4.webp",
+      "reason": "original_or_source_asset"
+    },
+    {
+      "localPath": "public/img/remeras/fotosAmarillasHorizontal/amarilla5.webp",
+      "reason": "original_or_source_asset"
+    },
+    {
+      "localPath": "public/img/remeras/fotosAzulesHorizontal/azul.webp",
+      "reason": "original_or_source_asset"
+    },
+    {
+      "localPath": "public/img/remeras/fotosAzulesHorizontal/azul2.webp",
+      "reason": "original_or_source_asset"
+    },
+    {
+      "localPath": "public/img/remeras/fotosAzulesHorizontal/azul3.webp",
+      "reason": "original_or_source_asset"
+    },
+    {
+      "localPath": "public/img/remeras/fotosAzulesHorizontal/azul4.webp",
+      "reason": "original_or_source_asset"
+    },
+    {
+      "localPath": "public/img/remeras/fotosAzulesHorizontal/azul5.webp",
+      "reason": "original_or_source_asset"
+    },
+    {
+      "localPath": "public/img/remeras/fotosBlancasHorizontal/blanca-1.png",
+      "reason": "original_or_source_asset"
+    },
+    {
+      "localPath": "public/img/remeras/fotosBlancasHorizontal/blanca-2.jpg",
+      "reason": "original_or_source_asset"
+    },
+    {
+      "localPath": "public/img/remeras/fotosBlancasHorizontal/blanca-3.jpg",
+      "reason": "original_or_source_asset"
+    },
+    {
+      "localPath": "public/img/remeras/fotosBlancasHorizontal/blanca-4.jpg",
+      "reason": "original_or_source_asset"
+    },
+    {
+      "localPath": "public/img/remeras/fotosBlancasHorizontal/blanca-principal.jpg",
+      "reason": "original_or_source_asset"
+    },
+    {
+      "localPath": "public/img/remeras/fotosNegrasHorizontal/negra.webp",
+      "reason": "original_or_source_asset"
+    },
+    {
+      "localPath": "public/img/remeras/fotosNegrasHorizontal/negra2.webp",
+      "reason": "original_or_source_asset"
+    },
+    {
+      "localPath": "public/img/remeras/fotosNegrasHorizontal/negra3.webp",
+      "reason": "original_or_source_asset"
+    },
+    {
+      "localPath": "public/img/remeras/fotosNegrasHorizontal/negra4.webp",
+      "reason": "original_or_source_asset"
+    },
+    {
+      "localPath": "public/img/remeras/fotosNegrasHorizontal/negra5.webp",
+      "reason": "original_or_source_asset"
+    },
+    {
+      "localPath": "public/img/vagos/horizontalAmarilla.webp",
+      "reason": "original_or_source_asset"
+    },
+    {
+      "localPath": "public/img/vagos/horizontalNegra.webp",
+      "reason": "original_or_source_asset"
+    },
+    {
+      "localPath": "public/img/vagos/verticalAzul.webp",
+      "reason": "original_or_source_asset"
+    },
+    {
+      "localPath": "public/img/vagos/web/amarilla 4.webp",
+      "reason": "original_or_source_asset"
+    },
+    {
+      "localPath": "public/img/vagos/web/amarilla 5.webp",
+      "reason": "original_or_source_asset"
+    },
+    {
+      "localPath": "public/img/vagos/web/amarilla.webp",
+      "reason": "original_or_source_asset"
+    },
+    {
+      "localPath": "public/img/vagos/web/amarilla2.webp",
+      "reason": "original_or_source_asset"
+    },
+    {
+      "localPath": "public/img/vagos/web/amarillo3.webp",
+      "reason": "original_or_source_asset"
+    },
+    {
+      "localPath": "public/img/vagos/web/IMG_4061.webp",
+      "reason": "original_or_source_asset"
+    },
+    {
+      "localPath": "public/img/vagos/web/negra2.webp",
+      "reason": "original_or_source_asset"
+    },
+    {
+      "localPath": "public/img/vagos/web/negra3.webp",
+      "reason": "original_or_source_asset"
+    }
+  ],
+  "checks": {
+    "missingAssets": [],
+    "duplicateProductSlugs": [],
+    "duplicateStoragePaths": [],
+    "avifRecommendation": "No agregar AVIF en esta etapa: todas las variantes usadas ya son WebP y duplicar formatos aumentaria Storage y complejidad sin medicion real en produccion.",
+    "frontendContract": "Con products, categories, product_images e image_variants se puede reconstruir imageCard, imagesResponsive, imagesMobileResponsive, guiaTalleResponsive y fallbacks image/images/guiaTalle mediante un mapper."
+  },
+  "dryRunGuarantee": {
+    "inserts": 0,
+    "updates": 0,
+    "deletes": 0,
+    "uploads": 0,
+    "storageChanges": 0
+  }
+}

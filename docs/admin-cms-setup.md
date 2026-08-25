@@ -25,10 +25,11 @@ CRA solo expone variables que empiezan con `REACT_APP_`.
 
 ## 3. Ejecutar migraciones
 
-La migracion inicial esta versionada en:
+Las migraciones versionadas son:
 
 ```text
 supabase/migrations/20260825000100_admin_cms_base.sql
+supabase/migrations/20260825000200_add_image_variants.sql
 ```
 
 Opcion con Supabase CLI:
@@ -72,7 +73,7 @@ products/
   {product-slug}/
     card/
     gallery/
-    size-guide/
+    size_guide/
 
 site/
   banners/
