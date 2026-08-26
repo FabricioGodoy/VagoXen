@@ -131,7 +131,7 @@ export default function HeroSection() {
               className="mt-6 max-w-xl text-base leading-7 sm:text-lg"
               style={{ color: COLORS.muted }}
             >
-              Disenos originales, calce comodo y produccion pensada para hinchas que quieren llevar los colores todos los dias.
+              Diseños originales, calce comodo y produccion pensada para hinchas que quieren llevar los colores todos los dias.
             </motion.p>
 
             <motion.div
